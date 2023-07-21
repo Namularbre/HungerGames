@@ -15,7 +15,7 @@ public class PlayerConnectionListener implements Listener {
         final String message = ChatColor.GOLD +  player.getDisplayName() + " is volunteers as a tribute.";
         event.setJoinMessage(message);
 
-        final String playerHelpMessage = ChatColor.GOLD + " do /kits to see the kits, and then /kit [name] to select the kit.";
+        final String playerHelpMessage = ChatColor.GOLD + "Do /kits to see the kits, and then /kit [name] to select the kit.";
 
         player.sendRawMessage(playerHelpMessage);
     }
