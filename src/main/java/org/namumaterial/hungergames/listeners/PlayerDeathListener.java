@@ -10,6 +10,8 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.namumaterial.hungergames.managers.PlayerManager;
 import org.namumaterial.hungergames.managers.PluginStateManager;
 
+import java.util.Random;
+
 public class PlayerDeathListener implements Listener {
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
@@ -29,7 +31,26 @@ public class PlayerDeathListener implements Listener {
     }
 
     private void makeCanonBallSound(Player player) {
+        final float VOLUME = 5.0f;
+        final float PITCH = 1.0f;
+
         Location location = player.getLocation();
-        location.getWorld().playSound(location, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 5.0f, 1.0f);
+        location.getWorld().playSound(location, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, VOLUME, PITCH);
+    }
+
+    private Sound pickRandomMusic() {
+        Sound[] sounds = {Sound.MUSIC_DISC_CHIRP, Sound.MUSIC_DISC_BLOCKS, Sound.MUSIC_DISC_CAT, Sound.MUSIC_DISC_FAR, Sound.MUSIC_DISC_MALL};
+        Random randomGenerator = new Random(sounds.length);
+        final int musicIndex = randomGenerator.nextInt();
+
+        return sounds[musicIndex];
+    }
+
+    private void makeWinAnimation(Player player) {
+        final float VOLUME = 5.0f;
+        final float PITCH = 1.0f;
+
+        Location location = player.getLocation();
+        location.getWorld().playSound(location, pickRandomMusic(), VOLUME, PITCH);
     }
 }
