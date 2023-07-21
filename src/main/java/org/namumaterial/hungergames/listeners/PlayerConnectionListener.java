@@ -12,7 +12,11 @@ public class PlayerConnectionListener implements Listener {
     public void onPlayerConnection(PlayerJoinEvent event) {
         Player player = (Player) event.getPlayer();
 
-        final String message = player.getDisplayName() + " volunteers as a tribute.";
+        final String message = ChatColor.GOLD +  player.getDisplayName() + " is volunteers as a tribute.";
         event.setJoinMessage(message);
+
+        final String playerHelpMessage = ChatColor.GOLD + " do /kits to see the kits, and then /kit [name] to select the kit.";
+
+        player.sendRawMessage(playerHelpMessage);
     }
 }
