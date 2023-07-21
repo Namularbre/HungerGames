@@ -12,7 +12,7 @@ public class PlayerConnectionListener implements Listener {
     public void onPlayerConnection(PlayerJoinEvent event) {
         Player player = (Player) event.getPlayer();
 
-        final String message = ChatColor.GOLD + player.getDisplayName() + " volunteers as a tribute.";
-        Bukkit.getServer().broadcastMessage(message);
+        final String message = player.getDisplayName() + " volunteers as a tribute.";
+        event.setJoinMessage(message);
     }
 }
