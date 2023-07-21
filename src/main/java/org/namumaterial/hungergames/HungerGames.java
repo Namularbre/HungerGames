@@ -1,6 +1,7 @@
 package org.namumaterial.hungergames;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import org.namumaterial.hungergames.listeners.PlayerDeathListener;
 import org.namumaterial.hungergames.managers.ItemManager;
 import org.namumaterial.hungergames.listeners.PlayerCompassListener;
 import org.namumaterial.hungergames.managers.PluginStateManager;
@@ -19,6 +20,7 @@ public final class HungerGames extends JavaPlugin {
 
         getLogger().info("Initialising listeners...");
         getServer().getPluginManager().registerEvents(new PlayerCompassListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
         getLogger().info("Done");
     }
 
