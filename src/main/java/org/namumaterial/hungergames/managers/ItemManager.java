@@ -1,4 +1,4 @@
-package org.namumaterial.hungergames.items;
+package org.namumaterial.hungergames.managers;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;

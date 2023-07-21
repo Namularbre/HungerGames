@@ -1,8 +1,9 @@
 package org.namumaterial.hungergames;
 
 import org.bukkit.plugin.java.JavaPlugin;
-import org.namumaterial.hungergames.items.ItemManager;
+import org.namumaterial.hungergames.managers.ItemManager;
 import org.namumaterial.hungergames.listeners.PlayerCompassListener;
+import org.namumaterial.hungergames.managers.PluginStateManager;
 
 public final class HungerGames extends JavaPlugin {
 
@@ -10,6 +11,10 @@ public final class HungerGames extends JavaPlugin {
     public void onEnable() {
         getLogger().info("Initialising items...");
         ItemManager.init();
+        getLogger().info("Done");
+
+        getLogger().info("Initialising plugin's state manager");
+        PluginStateManager.init();
         getLogger().info("Done");
 
         getLogger().info("Initialising listeners...");
