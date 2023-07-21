@@ -27,6 +27,7 @@ public class PlayerDeathListener implements Listener {
         } else {
             PluginStateManager.setCurrentStep(PluginStateManager.State.END);
             Bukkit.getServer().broadcastMessage("You WON");
+            makeWinAnimation(player);
         }
     }
 
