@@ -48,12 +48,17 @@ public class PlayerCompassListener implements Listener {
 
         if (hasCompassInHand(player) && isRightClickAction(event)) {
             Player nearestPlayer = getNearestPlayer(player);
-            Location nearestPlayerLocation = nearestPlayer.getLocation();
 
-            final double distanceBetweenPlayers = nearestPlayerLocation.distance(player.getLocation());
+            if (nearestPlayer != null) {
+                Location nearestPlayerLocation = nearestPlayer.getLocation();
 
-            String message = "PLayer " + nearestPlayer.getName() + " is at " + distanceBetweenPlayers + " block(s) from you.";
-            player.sendRawMessage(message);
+                final double distanceBetweenPlayers = nearestPlayerLocation.distance(player.getLocation());
+
+                String message = "PLayer " + nearestPlayer.getName() + " is at " + distanceBetweenPlayers + " block(s) from you.";
+                player.sendRawMessage(message);
+            } else {
+                player.sendRawMessage("No player where found.");
+            }
         }
     }
 
