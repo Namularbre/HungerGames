@@ -1,6 +1,5 @@
 package org.namumaterial.hungergames.listeners;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -9,14 +8,15 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.namumaterial.hungergames.managers.PlayerManager;
 
 public class PlayerCompassListener implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
 
-        if (player.getInventory().contains(Material.COMPASS)) {
-            Player nearestPlayer = getNearestPlayer(player);
+        if (hasACompassInInventory(player)) {
+            Player nearestPlayer = PlayerManager.getNearestPlayer(player);
 
             if (nearestPlayer != null) {
                 Location nearestPlayerLocation = nearestPlayer.getLocation();
@@ -25,21 +25,8 @@ public class PlayerCompassListener implements Listener {
         }
     }
 
-    private Player getNearestPlayer(Player player) {
-        Player nearestPlayer = null;
-        double nearestDistance = Double.MAX_VALUE;
-
-        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-            if (onlinePlayer != player) {
-                double distance = onlinePlayer.getLocation().distance(player.getLocation());
-                if (distance < nearestDistance) {
-                    nearestPlayer = onlinePlayer;
-                    nearestDistance = distance;
-                }
-            }
-        }
-
-        return nearestPlayer;
+    private static boolean hasACompassInInventory(Player player) {
+        return player.getInventory().contains(Material.COMPASS);
     }
 
     @EventHandler
@@ -47,7 +34,7 @@ public class PlayerCompassListener implements Listener {
         Player player = event.getPlayer();
 
         if (hasCompassInHand(player) && isRightClickAction(event)) {
-            Player nearestPlayer = getNearestPlayer(player);
+            Player nearestPlayer = PlayerManager.getNearestPlayer(player);
 
             if (nearestPlayer != null) {
                 Location nearestPlayerLocation = nearestPlayer.getLocation();
