@@ -2,7 +2,7 @@ package org.namumaterial.hungergames.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.entity.EntityType;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,7 +15,7 @@ public class PlayerDeathListener implements Listener {
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player player = (Player) event.getEntity();
 
-        spawnLightning(player);
+        makeCanonBallSound(player);
 
         final int NUMBER_OF_PLAYER_REMAINING = PlayerManager.getNumberOfAlivePlayer();
         final int ONE_PLAYER_LEFT = 1;
@@ -28,8 +28,8 @@ public class PlayerDeathListener implements Listener {
         }
     }
 
-    private void spawnLightning(Player player) {
-        Location playerLocation = player.getLocation();
-        player.getWorld().spawnEntity(playerLocation, EntityType.LIGHTNING);
+    private void makeCanonBallSound(Player player) {
+        Location location = player.getLocation();
+        location.getWorld().playSound(location, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 5.0f, 1.0f);
     }
 }
