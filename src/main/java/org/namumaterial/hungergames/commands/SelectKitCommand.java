@@ -6,18 +6,21 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.namumaterial.hungergames.kits.Kit;
 import org.namumaterial.hungergames.managers.HungerGameStateManager;
-import org.namumaterial.hungergames.managers.KitManager;
 
-public class ListKitCommand implements CommandExecutor {
+public class SelectKitCommand implements CommandExecutor {
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (HungerGameStateManager.currentState == HungerGameStateManager.State.NOT_STARTED) {
-            sender.sendMessage(ChatColor.GOLD + "Here are the available kits");
-            for (Kit kit : KitManager.getKits()) {
-                sender.sendMessage(kit.toString());
+            if (args.length != 1) {
+                sender.sendMessage(ChatColor.RED + "This command require de kit name : /kit [name]");
+                return true;
             }
+            final String KIT_NAME = args[0];
+
+            sender.sendMessage("Kit " + KIT_NAME + " selected");
         } else {
-            sender.sendMessage(ChatColor.RED + "You can't change kit while the game is running");
+            sender.sendMessage(ChatColor.RED + "You can't change kit while the game is started");
         }
 
         return true;

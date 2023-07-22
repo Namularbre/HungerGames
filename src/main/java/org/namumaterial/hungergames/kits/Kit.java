@@ -33,7 +33,22 @@ public class Kit {
         this.items.put(itemStack, 1);
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String toString() {
-        return "Kit " + this.name + " contains : " + this.items.toString();
+        String itemsToString = "";
+
+        for (ItemStack itemStack: items.keySet()) {
+
+            if (itemStack.hasItemMeta()) {
+                itemsToString += itemStack.getItemMeta().getDisplayName() + " x" + items.get(itemStack);
+            } else {
+                itemsToString += itemStack.getType().toString() + " x" + items.get(itemStack);
+            }
+        }
+
+        return "Kit " + this.name + " contains : " + itemsToString;
     }
 }

@@ -3,6 +3,7 @@ package org.namumaterial.hungergames;
 import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.namumaterial.hungergames.commands.ListKitCommand;
+import org.namumaterial.hungergames.commands.SelectKitCommand;
 import org.namumaterial.hungergames.listeners.PlayerCompassListener;
 import org.namumaterial.hungergames.listeners.PlayerConnectionListener;
 import org.namumaterial.hungergames.listeners.PlayerDeathListener;
@@ -49,6 +50,7 @@ public final class HungerGames extends JavaPlugin {
 
         getLogger().info("Initialising commands...");
         getCommand("kits").setExecutor(new ListKitCommand());
+        getCommand("kit").setExecutor(new SelectKitCommand());
         getLogger().info("Done");
 
         getLogger().info("Initialising tasks...");
