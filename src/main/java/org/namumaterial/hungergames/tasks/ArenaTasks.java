@@ -17,7 +17,7 @@ public class ArenaTasks extends BukkitRunnable {
     }
 
     private void checkForPlayerOutsideTheArena() {
-        Collection<Player> alivePlayers = TributeManager.getPlayers();
+        Collection<Player> alivePlayers = TributeManager.getTributes();
 
         for (Player player: alivePlayers) {
             if (!player.isDead() && !HungerGames.arena.isInsideRegion(player)) {

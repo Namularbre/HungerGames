@@ -7,8 +7,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.namumaterial.hungergames.managers.PlayerManager;
-import org.namumaterial.hungergames.managers.PluginStateManager;
+import org.namumaterial.hungergames.managers.TributeManager;
+import org.namumaterial.hungergames.managers.HungerGameStateManager;
 
 import java.util.Random;
 
@@ -19,13 +19,13 @@ public class PlayerDeathListener implements Listener {
 
         makeCanonBallSound(player);
 
-        final int NUMBER_OF_PLAYER_REMAINING = PlayerManager.getNumberOfAlivePlayer();
+        final int NUMBER_OF_PLAYER_REMAINING = TributeManager.getNumberOfAlivePlayer();
         final int ONE_PLAYER_LEFT = 1;
 
         if (NUMBER_OF_PLAYER_REMAINING != ONE_PLAYER_LEFT) {
             Bukkit.getServer().broadcastMessage(NUMBER_OF_PLAYER_REMAINING + "remaining !");
         } else {
-            PluginStateManager.setCurrentStep(PluginStateManager.State.END);
+            HungerGameStateManager.setCurrentStep(HungerGameStateManager.State.ENDED);
             Bukkit.getServer().broadcastMessage("You WON");
             makeWinAnimation(player);
         }
