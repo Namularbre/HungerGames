@@ -1,6 +1,5 @@
 package org.namumaterial.hungergames.utils;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 
@@ -30,7 +29,6 @@ public class Arena {
 
     public void reduceRadius(double value) {
         if (!this.reductionFinished) {
-            Bukkit.getServer().broadcastMessage("Arena radius : " + this.radius);
             this.radius = this.radius - value;
             return;
         }
