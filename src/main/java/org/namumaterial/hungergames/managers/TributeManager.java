@@ -6,19 +6,19 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class PlayerManager {
-    public static Collection players;
+public class TributeManager {
+    public static Collection tributes;
 
     public static void init() {
-        players = new ArrayList<Player>();
+        tributes = new ArrayList<Player>();
     }
 
     public static void addPlayer(Player player) {
-        players.add(player);
+        tributes.add(player);
     }
 
     public static void removePlayer(Player player) {
-        players.remove(player);
+        tributes.remove(player);
     }
 
     public static int getNumberOfAlivePlayer() {
@@ -30,6 +30,10 @@ public class PlayerManager {
         }
 
         return numberOfAlivePlayer;
+    }
+
+    public static Collection<Player> getTributes() {
+        return new ArrayList<>(Bukkit.getServer().getOnlinePlayers());
     }
 
     public static int getNumberOfPlayer() {
@@ -52,4 +56,5 @@ public class PlayerManager {
 
         return nearestPlayer;
     }
+    
 }
