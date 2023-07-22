@@ -6,3 +6,6 @@ commands:
   kits:
     description: Show all the existing kits
     usage: /kits
+  kit:
+    description: Select a tributes kit
+    usage: /kit [name]
