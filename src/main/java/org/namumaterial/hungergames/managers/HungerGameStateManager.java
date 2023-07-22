@@ -1,11 +1,11 @@
 package org.namumaterial.hungergames.managers;
 
-public class PluginStateManager {
+public class HungerGameStateManager {
     public enum State {
         NOT_STARTED,
-        NO_PVP,
+        STARTING,
         PLAYING,
-        END,
+        ENDED,
     }
 
     public static State currentState;
