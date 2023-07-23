@@ -15,22 +15,12 @@ public class PlayerConnectionListener implements Listener {
     public void onPlayerConnection(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         if (HungerGameStateManager.currentState == HungerGameStateManager.State.NOT_STARTED) {
-
-
             final String message = ChatColor.GOLD +  player.getDisplayName() + " is volunteers as a tribute.";
             event.setJoinMessage(message);
 
-            final String playerHelpMessage = ChatColor.GOLD + "Do /kits to see the kits, and then /kit [name] to select the kit.";
-            player.sendRawMessage(playerHelpMessage);
-
-            addPlayerToTributeManager(player);
-            changeHungerGameState();
+            setPlayerNotStarted(player);
         } else {
-            player.sendRawMessage(ChatColor.GOLD + "Game is already started, but you can have a look !");
-            player.setGameMode(GameMode.SPECTATOR);
-            player.setCanPickupItems(false);
-            player.setAllowFlight(true);
-            player.setCollidable(false);
+            setPlayerSpectator(player);
         }
     }
 
@@ -45,5 +35,21 @@ public class PlayerConnectionListener implements Listener {
 
     private void addPlayerToTributeManager(Player player) {
         TributeManager.addPlayer(player);
+    }
+
+    private void setPlayerNotStarted(Player player) {
+        final String playerHelpMessage = ChatColor.GOLD + "Do /kits to see the kits, and then /kit [name] to select the kit.";
+        player.sendRawMessage(playerHelpMessage);
+
+        addPlayerToTributeManager(player);
+        changeHungerGameState();
+    }
+
+    private void setPlayerSpectator(Player player) {
+        player.sendRawMessage(ChatColor.GOLD + "Game is already started, but you can have a look !");
+        player.setGameMode(GameMode.SPECTATOR);
+        player.setCanPickupItems(false);
+        player.setAllowFlight(true);
+        player.setCollidable(false);
     }
 }
