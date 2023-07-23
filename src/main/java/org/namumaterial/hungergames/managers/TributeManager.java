@@ -44,8 +44,15 @@ public class TributeManager {
         return !player.isDead() && player.getGameMode() == GameMode.SURVIVAL;
     }
 
-    public static Collection<Player> getTributes() {
-        return new ArrayList<>(Bukkit.getServer().getOnlinePlayers());
+    public static Collection<Player> getAlivePlayers() {
+        ArrayList<Player> alivePlayers = new ArrayList<>();
+        for (Player player: Bukkit.getServer().getOnlinePlayers()) {
+            if (!player.isDead() && player.getGameMode() == GameMode.SURVIVAL) {
+                alivePlayers.add(player);
+            }
+        }
+
+        return alivePlayers;
     }
 
     public static int getNumberOfPlayer() {
