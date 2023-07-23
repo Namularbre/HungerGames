@@ -2,25 +2,36 @@ package org.namumaterial.hungergames.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.namumaterial.hungergames.managers.HungerGameStateManager;
 import org.namumaterial.hungergames.managers.TributeManager;
 
 public class PlayerConnectionListener implements Listener {
     @EventHandler
     public void onPlayerConnection(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+        if (HungerGameStateManager.currentState == HungerGameStateManager.State.NOT_STARTED) {
 
-        final String message = ChatColor.GOLD +  player.getDisplayName() + " is volunteers as a tribute.";
-        event.setJoinMessage(message);
 
-        final String playerHelpMessage = ChatColor.GOLD + "Do /kits to see the kits, and then /kit [name] to select the kit.";
-        player.sendRawMessage(playerHelpMessage);
+            final String message = ChatColor.GOLD +  player.getDisplayName() + " is volunteers as a tribute.";
+            event.setJoinMessage(message);
 
-        addPlayerToTributeManager(player);
-        changeHungerGameState();
+            final String playerHelpMessage = ChatColor.GOLD + "Do /kits to see the kits, and then /kit [name] to select the kit.";
+            player.sendRawMessage(playerHelpMessage);
+
+            addPlayerToTributeManager(player);
+            changeHungerGameState();
+        } else {
+            player.sendRawMessage(ChatColor.GOLD + "Game is already started, but you can have a look !");
+            player.setGameMode(GameMode.SPECTATOR);
+            player.setCanPickupItems(false);
+            player.setAllowFlight(true);
+            player.setCollidable(false);
+        }
     }
 
     private void changeHungerGameState() {

@@ -1,6 +1,7 @@
 package org.namumaterial.hungergames.managers;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.namumaterial.hungergames.utils.Tribute;
 
@@ -31,12 +32,16 @@ public class TributeManager {
     public static int getNumberOfAlivePlayer() {
         int numberOfAlivePlayer = 0;
         for (Player player: Bukkit.getServer().getOnlinePlayers()) {
-            if (!player.isDead()) {
+            if (isPlaying(player)) {
                 numberOfAlivePlayer++;
             }
         }
 
         return numberOfAlivePlayer;
+    }
+
+    private static boolean isPlaying(Player player) {
+        return !player.isDead() && player.getGameMode() == GameMode.SURVIVAL;
     }
 
     public static Collection<Player> getTributes() {
