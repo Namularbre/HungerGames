@@ -12,15 +12,15 @@ public class ArenaTasks extends BukkitRunnable {
 
     @Override
     public void run() {
-        checkForPlayerOutsideTheArena();
+        checkForTributesOutsideTheArena();
         reduceArena();
     }
 
-    private void checkForPlayerOutsideTheArena() {
-        Collection<Player> alivePlayers = TributeManager.getTributes();
+    private void checkForTributesOutsideTheArena() {
+        Collection<Player> aliveTributes = TributeManager.getAlivePlayers();
 
-        for (Player player: alivePlayers) {
-            if (!player.isDead() && !HungerGames.arena.isInsideRegion(player)) {
+        for (Player player: aliveTributes) {
+            if (!HungerGames.arena.isInsideRegion(player)) {
                 giveDamageToPlayer(player);
             }
         }
