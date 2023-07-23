@@ -31,4 +31,13 @@ public class KitManager {
             return null;
         }
     }
+
+    public static Kit getRandomKit() {
+        Random random = new Random();
+
+        final int KIT_INDEX = random.nextInt(kits.keySet().size());
+        final ArrayList<String> KITS_LIST = new ArrayList<>(kits.keySet());
+
+        return kits.get(KITS_LIST.get(KIT_INDEX));
+    }
 }

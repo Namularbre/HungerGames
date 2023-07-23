@@ -19,6 +19,7 @@ public class PlayerConnectionListener implements Listener {
         final String playerHelpMessage = ChatColor.GOLD + "Do /kits to see the kits, and then /kit [name] to select the kit.";
         player.sendRawMessage(playerHelpMessage);
 
+        addPlayerToTributeManager(player);
         changeHungerGameState();
     }
 
@@ -28,8 +29,10 @@ public class PlayerConnectionListener implements Listener {
 
         if (NUMBER_OF_PLAYER < MINIMAL_AMOUNT_OF_PLAYER_BEFORE_START) {
             Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "" + (MINIMAL_AMOUNT_OF_PLAYER_BEFORE_START - NUMBER_OF_PLAYER) + " player needed before start.");
-        } else {
-
         }
+    }
+
+    private void addPlayerToTributeManager(Player player) {
+        TributeManager.addPlayer(player);
     }
 }

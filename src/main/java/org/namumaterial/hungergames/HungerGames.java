@@ -8,10 +8,7 @@ import org.namumaterial.hungergames.listeners.PlayerCompassListener;
 import org.namumaterial.hungergames.listeners.PlayerConnectionListener;
 import org.namumaterial.hungergames.listeners.PlayerDeathListener;
 import org.namumaterial.hungergames.listeners.ShieldCraftListener;
-import org.namumaterial.hungergames.managers.HungerGameStateManager;
-import org.namumaterial.hungergames.managers.ItemManager;
-import org.namumaterial.hungergames.managers.KitManager;
-import org.namumaterial.hungergames.managers.TaskManager;
+import org.namumaterial.hungergames.managers.*;
 import org.namumaterial.hungergames.utils.Arena;
 import org.namumaterial.hungergames.utils.GeneralConfig;
 
@@ -28,6 +25,10 @@ public final class HungerGames extends JavaPlugin {
 
         getLogger().info("Initialising kits...");
         KitManager.init();
+        getLogger().info("Done");
+
+        getLogger().info("Initialising tributes manager...");
+        TributeManager.init();
         getLogger().info("Done");
 
         getLogger().info("Initialising arena...");

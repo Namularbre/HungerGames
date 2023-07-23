@@ -4,22 +4,12 @@ import org.bukkit.entity.Player;
 import org.namumaterial.hungergames.kits.Kit;
 
 public class Tribute {
-    private Player data;
     private Kit kit;
     private int popularity;
 
-    public Tribute(Player data, Kit kit, int popularity) {
-        this.data = data;
+    public Tribute(Kit kit, int popularity) {
         this.kit = kit;
         this.popularity = popularity;
-    }
-
-    public Player getData() {
-        return data;
-    }
-
-    public void setData(Player data) {
-        this.data = data;
     }
 
     public Kit getKit() {
