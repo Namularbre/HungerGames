@@ -45,6 +45,12 @@ public class PlayerConnectionListener implements Listener {
         changeHungerGameState();
     }
 
+    private void setPlayerNotStartedSurvival(Player player) {
+        player.setGameMode(GameMode.SURVIVAL);
+        player.setCanPickupItems(false);
+        player.setCollidable(false);
+    }
+
     private void setPlayerSpectator(Player player) {
         player.sendRawMessage(ChatColor.GOLD + "Game is already started, but you can have a look !");
         player.setGameMode(GameMode.SPECTATOR);
