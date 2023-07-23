@@ -43,7 +43,6 @@ public final class HungerGames extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ShieldCraftListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerConnectionListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerDisconnectionListener(), this);
-        getServer().getPluginManager().registerEvents(new ServerStopListener(), this);
         getLogger().info("Done");
 
         getLogger().info("Initialising commands...");
