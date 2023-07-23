@@ -4,10 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.namumaterial.hungergames.commands.ListKitCommand;
 import org.namumaterial.hungergames.commands.SelectKitCommand;
-import org.namumaterial.hungergames.listeners.PlayerCompassListener;
-import org.namumaterial.hungergames.listeners.PlayerConnectionListener;
-import org.namumaterial.hungergames.listeners.PlayerDeathListener;
-import org.namumaterial.hungergames.listeners.ShieldCraftListener;
+import org.namumaterial.hungergames.listeners.*;
 import org.namumaterial.hungergames.managers.*;
 import org.namumaterial.hungergames.utils.Arena;
 import org.namumaterial.hungergames.utils.GeneralConfig;
@@ -47,6 +44,7 @@ public final class HungerGames extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
         getServer().getPluginManager().registerEvents(new ShieldCraftListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerConnectionListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerDisconnectionListener(), this);
         getLogger().info("Done");
 
         getLogger().info("Initialising commands...");
