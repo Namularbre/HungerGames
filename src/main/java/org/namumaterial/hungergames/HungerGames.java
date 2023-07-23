@@ -8,11 +8,8 @@ import org.namumaterial.hungergames.commands.SelectKitCommand;
 import org.namumaterial.hungergames.listeners.*;
 import org.namumaterial.hungergames.managers.*;
 import org.namumaterial.hungergames.utils.Arena;
-import org.namumaterial.hungergames.utils.GeneralConfig;
 
 public final class HungerGames extends JavaPlugin {
-
-    public static GeneralConfig generalConfig;
     public static Arena arena;
 
     @Override
@@ -46,6 +43,7 @@ public final class HungerGames extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ShieldCraftListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerConnectionListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerDisconnectionListener(), this);
+        getServer().getPluginManager().registerEvents(new ServerStopListener(), this);
         getLogger().info("Done");
 
         getLogger().info("Initialising commands...");
