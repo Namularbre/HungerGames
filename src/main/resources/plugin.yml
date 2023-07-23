@@ -9,3 +9,6 @@ commands:
   kit:
     description: Select a tributes kit
     usage: /kit [name]
+  change_state:
+    description: Change current game state
+    usage: /change_state [state]
