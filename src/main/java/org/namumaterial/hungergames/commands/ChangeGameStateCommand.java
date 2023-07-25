@@ -6,6 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.namumaterial.hungergames.managers.HungerGameStateManager;
+import org.namumaterial.hungergames.managers.KitManager;
 
 public class ChangeGameStateCommand implements CommandExecutor {
     @Override
@@ -31,7 +32,11 @@ public class ChangeGameStateCommand implements CommandExecutor {
 
         if (state != null) {
             HungerGameStateManager.setCurrentStep(state);
-            player.sendRawMessage(ChatColor.GREEN + "worked"); //TODO: remove this
+
+            if (state == HungerGameStateManager.State.STARTING) {
+                KitManager.giveKitToPlayers();
+            }
+
         } else {
             player.sendRawMessage(ChatColor.RED + "Unknown state");
         }

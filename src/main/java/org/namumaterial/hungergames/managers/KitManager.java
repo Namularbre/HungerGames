@@ -1,5 +1,7 @@
 package org.namumaterial.hungergames.managers;
 
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.namumaterial.hungergames.kits.ArcherKit;
 import org.namumaterial.hungergames.kits.CookKit;
 import org.namumaterial.hungergames.kits.Kit;
@@ -39,5 +41,19 @@ public class KitManager {
         final ArrayList<String> KITS_LIST = new ArrayList<>(kits.keySet());
 
         return kits.get(KITS_LIST.get(KIT_INDEX));
+    }
+
+    public static void giveKitToPlayers() {
+        for (Player player: TributeManager.getAlivePlayers()) {
+            Kit selectedKit = TributeManager.getTribute(player).getKit();
+
+            for (Map.Entry<ItemStack, Integer> itemAndAmount: selectedKit.getItems().entrySet()) {
+                ItemStack itemStack = itemAndAmount.getKey();
+                int amount = itemAndAmount.getValue();
+
+                player.getInventory().addItem(new ItemStack(itemStack.getType(), amount));
+                player.updateInventory();
+            }
+        }
     }
 }

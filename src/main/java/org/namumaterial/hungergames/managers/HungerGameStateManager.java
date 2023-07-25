@@ -41,4 +41,5 @@ public class HungerGameStateManager {
     public static void setCurrentStep(State state) {
         currentState = state;
     }
+
 }
