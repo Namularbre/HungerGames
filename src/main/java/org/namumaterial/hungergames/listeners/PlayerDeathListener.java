@@ -25,7 +25,7 @@ public class PlayerDeathListener implements Listener {
         final int ONE_PLAYER_LEFT = 1;
 
         if (NUMBER_OF_PLAYER_REMAINING != ONE_PLAYER_LEFT) {
-            Bukkit.getServer().broadcastMessage(NUMBER_OF_PLAYER_REMAINING + "remaining !");
+            Bukkit.getServer().broadcastMessage(NUMBER_OF_PLAYER_REMAINING + " tributes remaining !");
         } else {
             HungerGameStateManager.setCurrentStep(HungerGameStateManager.State.ENDED);
             Bukkit.getServer().broadcastMessage("You WON");
