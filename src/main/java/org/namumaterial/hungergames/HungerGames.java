@@ -2,9 +2,7 @@ package org.namumaterial.hungergames;
 
 import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.namumaterial.hungergames.commands.ChangeGameStateCommand;
-import org.namumaterial.hungergames.commands.ListKitCommand;
-import org.namumaterial.hungergames.commands.SelectKitCommand;
+import org.namumaterial.hungergames.commands.*;
 import org.namumaterial.hungergames.listeners.*;
 import org.namumaterial.hungergames.managers.*;
 import org.namumaterial.hungergames.utils.Arena;
@@ -49,6 +47,8 @@ public final class HungerGames extends JavaPlugin {
         getCommand("kits").setExecutor(new ListKitCommand());
         getCommand("kit").setExecutor(new SelectKitCommand());
         getCommand("change_state").setExecutor(new ChangeGameStateCommand());
+        getCommand("set_popularity").setExecutor(new SetPopularityCommand());
+        getCommand("popularity").setExecutor(new CheckPopularityCommand());
         getLogger().info("Done");
 
         getLogger().info("Initialising tasks...");
