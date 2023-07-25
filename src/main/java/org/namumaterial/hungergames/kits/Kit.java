@@ -3,6 +3,7 @@ package org.namumaterial.hungergames.kits;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +16,10 @@ public class Kit {
         this.items = new HashMap<>();
 
         addItemByMaterial(Material.COMPASS);
+    }
+
+    public Map<ItemStack, Integer> getItems() {
+        return this.items;
     }
 
     public void addItemByMaterial(Material material, int amount) {
