@@ -12,3 +12,12 @@ commands:
   change_state:
     description: Change current game state
     usage: /change_state [state]
+  gift:
+    description: Spawn a gift next to you
+    usage: /gift
+  set_popularity:
+    description: Set the popularity of a player
+    usage: /set_popularity [amount] where amount is a positive Integer
+  popularity:
+    description: Show your popularity
+    usage: /popularity
