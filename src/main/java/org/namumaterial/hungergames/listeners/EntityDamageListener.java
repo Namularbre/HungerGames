@@ -7,7 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.namumaterial.hungergames.managers.HungerGameStateManager;
 
-public class PlayerDamageListener implements Listener {
+public class EntityDamageListener implements Listener {
     @EventHandler
     public void onPlayerDamage(EntityDamageEvent event) {
         Entity entity = event.getEntity();
