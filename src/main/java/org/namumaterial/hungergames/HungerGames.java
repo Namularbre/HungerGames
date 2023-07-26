@@ -51,6 +51,7 @@ public final class HungerGames extends JavaPlugin {
         getCommand("kits").setExecutor(new ListKitCommand());
         getCommand("kit").setExecutor(new SelectKitCommand());
         getCommand("change_state").setExecutor(new ChangeGameStateCommand());
+        getCommand("state").setExecutor(new CheckGameStateCommand());
         getCommand("gift").setExecutor(new GiftCommand());
         getCommand("set_popularity").setExecutor(new SetPopularityCommand());
         getCommand("popularity").setExecutor(new CheckPopularityCommand());

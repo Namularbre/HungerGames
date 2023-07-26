@@ -21,3 +21,6 @@ commands:
   popularity:
     description: Show your popularity
     usage: /popularity
+  state:
+    description: Show game current state
+    usage: /state
