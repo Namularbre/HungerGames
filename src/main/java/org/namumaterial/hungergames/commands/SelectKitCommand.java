@@ -1,6 +1,5 @@
 package org.namumaterial.hungergames.commands;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -9,6 +8,7 @@ import org.namumaterial.hungergames.kits.Kit;
 import org.namumaterial.hungergames.managers.HungerGameStateManager;
 import org.namumaterial.hungergames.managers.KitManager;
 import org.namumaterial.hungergames.managers.TributeManager;
+import org.namumaterial.hungergames.utils.PlayerRawMessageSender;
 
 public class SelectKitCommand implements CommandExecutor {
 
@@ -20,9 +20,9 @@ public class SelectKitCommand implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        if (HungerGameStateManager.currentState == HungerGameStateManager.State.NOT_STARTED) {
+        if (HungerGameStateManager.gameIsNotStarted()) {
             if (args.length != 1) {
-                player.sendMessage(ChatColor.RED + "This command require the kit name : /kit [name]");
+                PlayerRawMessageSender.sendErrorMessage("This command require the kit name : /kit [name]", player);
                 return true;
             }
             final String KIT_NAME = args[0];
@@ -32,14 +32,14 @@ public class SelectKitCommand implements CommandExecutor {
             if (selectedKit != null) {
                 TributeManager.getTribute(player).setKit(selectedKit);
 
-                player.sendMessage("Kit " + KIT_NAME + " selected");
+                PlayerRawMessageSender.sendInformationMessage("Kit " + KIT_NAME + " selected", player);
             } else {
                 TributeManager.getTribute(player).setKit(KitManager.getRandomKit());
 
-                player.sendRawMessage(ChatColor.RED + "The kit doesn't exists. You have now a random one");
+                PlayerRawMessageSender.sendErrorMessage("The kit doesn't exists. You have now a random one", player);
             }
         } else {
-            player.sendMessage(ChatColor.RED + "You can't change kit while the game is started");
+            PlayerRawMessageSender.sendErrorMessage("You can't change kit while the game is started", player);
         }
 
         return true;

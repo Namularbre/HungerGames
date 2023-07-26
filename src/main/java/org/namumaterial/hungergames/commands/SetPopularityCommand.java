@@ -1,11 +1,11 @@
 package org.namumaterial.hungergames.commands;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.namumaterial.hungergames.managers.TributeManager;
+import org.namumaterial.hungergames.utils.PlayerRawMessageSender;
 
 public class SetPopularityCommand implements CommandExecutor {
     @Override
@@ -19,7 +19,7 @@ public class SetPopularityCommand implements CommandExecutor {
         if (player.isOp()) {
 
             if (args.length != 1) {
-                player.sendRawMessage(ChatColor.RED + "This command need one argument. /set_popularity [amount]");
+                PlayerRawMessageSender.sendErrorMessage("This command need one argument. /set_popularity [amount]", player);
                 return true;
             }
 
@@ -28,12 +28,12 @@ public class SetPopularityCommand implements CommandExecutor {
 
             if (amountIsValid(AMOUNT)) {
                 TributeManager.getTribute(player).setPopularity(AMOUNT);
-                player.sendRawMessage(ChatColor.GOLD + "Set your popularity to " + STRING_AMOUNT);
+                PlayerRawMessageSender.sendValidationMessage("Set your popularity to " + STRING_AMOUNT, player);
             } else {
-                player.sendRawMessage(ChatColor.RED + "The argument need to be an integer (Ex : 1, 2, 3...)");
+                PlayerRawMessageSender.sendErrorMessage("The argument need to be an integer (Ex : 1, 2, 3...)", player);
             }
         } else {
-            player.sendRawMessage(ChatColor.RED + "You don't have the permission to run this command");
+            PlayerRawMessageSender.sendNoCommandPermissionMessage(player);
         }
 
         return true;
@@ -44,10 +44,11 @@ public class SetPopularityCommand implements CommandExecutor {
     }
 
     private int getPopularityAmount(String stringAmount) {
+        final int INVALID_VALUE = -1;
         try {
             return Integer.parseInt(stringAmount);
         } catch (NumberFormatException exception) {
-            return -1;
+            return INVALID_VALUE;
         }
     }
 }

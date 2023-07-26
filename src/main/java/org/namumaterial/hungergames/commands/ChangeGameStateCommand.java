@@ -1,12 +1,12 @@
 package org.namumaterial.hungergames.commands;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.namumaterial.hungergames.managers.HungerGameStateManager;
 import org.namumaterial.hungergames.managers.KitManager;
+import org.namumaterial.hungergames.utils.PlayerRawMessageSender;
 
 public class ChangeGameStateCommand implements CommandExecutor {
     @Override
@@ -18,11 +18,12 @@ public class ChangeGameStateCommand implements CommandExecutor {
         Player player = (Player) sender;
 
         if (args.length != 1) {
-            player.sendRawMessage(ChatColor.RED + "This command need one argument. It is used like this : /change_state [state]");
+            PlayerRawMessageSender.sendErrorMessage("This command need one argument. It is used like this : /change_state [state]", player);
+            return true;
         }
 
         if (!player.isOp()) {
-            player.sendRawMessage(ChatColor.RED + "You don't have the permission to use this command");
+            PlayerRawMessageSender.sendNoCommandPermissionMessage(player);
             return true;
         }
 
@@ -32,13 +33,14 @@ public class ChangeGameStateCommand implements CommandExecutor {
 
         if (state != null) {
             HungerGameStateManager.setCurrentStep(state);
+            PlayerRawMessageSender.sendValidationMessage("Done", player);
 
             if (state == HungerGameStateManager.State.STARTING) {
                 KitManager.giveKitToPlayers();
             }
 
         } else {
-            player.sendRawMessage(ChatColor.RED + "Unknown state");
+            PlayerRawMessageSender.sendErrorMessage("Unknown state", player);
         }
 
         return true;

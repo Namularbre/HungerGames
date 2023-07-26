@@ -6,6 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.namumaterial.hungergames.tasks.GiftTasks;
+import org.namumaterial.hungergames.utils.PlayerRawMessageSender;
 
 public class GiftCommand implements CommandExecutor {
     @Override
@@ -19,8 +20,9 @@ public class GiftCommand implements CommandExecutor {
         if (player.isOp()) {
             GiftTasks giftTasks = new GiftTasks();
             giftTasks.giveGiftToPlayer(player);
+            PlayerRawMessageSender.sendValidationMessage("Done", player);
         } else {
-            player.sendRawMessage(ChatColor.RED + "You don't have permission to run this command");
+            PlayerRawMessageSender.sendNoCommandPermissionMessage(player);
         }
 
         return true;
