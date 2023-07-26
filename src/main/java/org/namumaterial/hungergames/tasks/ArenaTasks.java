@@ -1,10 +1,10 @@
 package org.namumaterial.hungergames.tasks;
 
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.namumaterial.hungergames.HungerGames;
 import org.namumaterial.hungergames.managers.TributeManager;
+import org.namumaterial.hungergames.utils.PlayerRawMessageSender;
 
 import java.util.Collection;
 
@@ -28,7 +28,7 @@ public class ArenaTasks extends BukkitRunnable {
 
     private void giveDamageToPlayer(Player player) {
         final double OUT_OF_ARENA_DAMAGE = 5.0;
-        player.sendRawMessage(ChatColor.GOLD + "You are outside of the arena. Come back quick are you will die !");
+        PlayerRawMessageSender.sendInformationMessage("You are outside of the arena. Come back quick are you will die !", player);
         player.damage(OUT_OF_ARENA_DAMAGE);
     }
 
