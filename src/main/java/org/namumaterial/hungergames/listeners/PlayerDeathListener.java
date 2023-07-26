@@ -9,13 +9,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.namumaterial.hungergames.managers.TributeManager;
 import org.namumaterial.hungergames.managers.HungerGameStateManager;
+import org.namumaterial.hungergames.utils.Tribute;
 
 import java.util.Random;
 
 public class PlayerDeathListener implements Listener {
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
-        Player player = (Player) event.getEntity();
+        Player player = event.getEntity();
 
         makeCanonBallSound(player);
 
@@ -26,11 +27,19 @@ public class PlayerDeathListener implements Listener {
 
         if (NUMBER_OF_PLAYER_REMAINING != ONE_PLAYER_LEFT) {
             Bukkit.getServer().broadcastMessage(NUMBER_OF_PLAYER_REMAINING + " tributes remaining !");
+            givePopularityToKiller(player);
         } else {
             HungerGameStateManager.setCurrentStep(HungerGameStateManager.State.ENDED);
             Bukkit.getServer().broadcastMessage("You WON");
             makeWinAnimation(player);
         }
+    }
+
+    private void givePopularityToKiller(Player player) {
+        Player killer = player.getKiller();
+
+        Tribute tribute = TributeManager.getTribute(killer);
+        tribute.addPopularity(500);
     }
 
     private void makeCanonBallSound(Player player) {
