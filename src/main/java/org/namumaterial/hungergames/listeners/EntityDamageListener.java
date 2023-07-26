@@ -12,7 +12,7 @@ public class EntityDamageListener implements Listener {
     public void onPlayerDamage(EntityDamageEvent event) {
         Entity entity = event.getEntity();
 
-        if (HungerGameStateManager.gameIsNotStared()) {
+        if (HungerGameStateManager.gameIsNotStarted()) {
             cancelEvent(event);
         } else if (HungerGameStateManager.gameIsStarting()) {
             if (entityIsPlayer(entity)) {

@@ -14,7 +14,7 @@ public class PlayerConnectionListener implements Listener {
     @EventHandler
     public void onPlayerConnection(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        if (HungerGameStateManager.gameIsNotStared()) {
+        if (HungerGameStateManager.gameIsNotStarted()) {
             final String message = ChatColor.GOLD +  player.getDisplayName() + " is volunteers as a tribute.";
             event.setJoinMessage(message);
 

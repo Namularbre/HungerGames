@@ -33,7 +33,7 @@ public class HungerGameStateManager {
         stringToStateMap.put("ended", State.ENDED);
     }
 
-    public static boolean gameIsNotStared() {
+    public static boolean gameIsNotStarted() {
         return currentState == State.NOT_STARTED;
     }
 
