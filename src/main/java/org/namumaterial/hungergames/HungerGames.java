@@ -39,6 +39,7 @@ public final class HungerGames extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerCompassListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerKillListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerMineOreListener(), this);
         getServer().getPluginManager().registerEvents(new ShieldCraftListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerConnectionListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerDisconnectionListener(), this);
