@@ -11,6 +11,7 @@ public class HungerGameStateManager {
     }
 
     private static HashMap<String, State> stringToStateMap;
+    public static State currentState;
 
     public static State stateFromString(String stringState) {
         try {
@@ -20,8 +21,6 @@ public class HungerGameStateManager {
             return null;
         }
     }
-
-    public static State currentState;
 
     public static void init() {
         currentState = State.NOT_STARTED;
@@ -34,8 +33,24 @@ public class HungerGameStateManager {
         stringToStateMap.put("ended", State.ENDED);
     }
 
-    public static State getCurrentState() {
-        return currentState;
+    public static boolean gameIsNotStared() {
+        return currentState == State.NOT_STARTED;
+    }
+
+    public static boolean gameIsStarting() {
+        return currentState == State.STARTING;
+    }
+
+    public static boolean gameIsPlaying() {
+        return currentState == State.PLAYING;
+    }
+
+    public static boolean gameIsEnded() {
+        return currentState == State.ENDED;
+    }
+
+    public static boolean gameIsLaunched() {
+        return gameIsPlaying() || gameIsStarting();
     }
 
     public static void setCurrentStep(State state) {
