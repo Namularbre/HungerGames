@@ -12,9 +12,9 @@ public class EntityDamageListener implements Listener {
     public void onPlayerDamage(EntityDamageEvent event) {
         Entity entity = event.getEntity();
 
-        if (gameIsNotStarted()) {
+        if (HungerGameStateManager.gameIsNotStared()) {
             cancelEvent(event);
-        } else if (gameIsStarting()) {
+        } else if (HungerGameStateManager.gameIsStarting()) {
             if (entityIsPlayer(entity)) {
                 cancelEvent(event);
             }
@@ -25,17 +25,8 @@ public class EntityDamageListener implements Listener {
         event.setCancelled(true);
     }
 
-    private static boolean gameIsStarting() {
-        return HungerGameStateManager.currentState == HungerGameStateManager.State.STARTING;
-    }
-
-    private static boolean gameIsNotStarted() {
-        return HungerGameStateManager.currentState == HungerGameStateManager.State.NOT_STARTED;
-    }
-
     private static boolean entityIsPlayer(Entity entity) {
         return entity instanceof Player;
     }
-
 
 }

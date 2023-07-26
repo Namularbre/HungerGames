@@ -14,7 +14,7 @@ public class PlayerConnectionListener implements Listener {
     @EventHandler
     public void onPlayerConnection(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        if (HungerGameStateManager.currentState == HungerGameStateManager.State.NOT_STARTED) {
+        if (HungerGameStateManager.gameIsNotStared()) {
             final String message = ChatColor.GOLD +  player.getDisplayName() + " is volunteers as a tribute.";
             event.setJoinMessage(message);
 
@@ -43,12 +43,6 @@ public class PlayerConnectionListener implements Listener {
 
         addPlayerToTributeManager(player);
         changeHungerGameState();
-    }
-
-    private void setPlayerNotStartedSurvival(Player player) {
-        player.setGameMode(GameMode.SURVIVAL);
-        player.setCanPickupItems(false);
-        player.setCollidable(false);
     }
 
     private void setPlayerSpectator(Player player) {

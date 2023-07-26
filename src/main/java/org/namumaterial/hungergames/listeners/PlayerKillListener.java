@@ -11,7 +11,7 @@ import org.namumaterial.hungergames.utils.Tribute;
 public class PlayerKillListener implements Listener {
     @EventHandler
     public void onPlayerKill(EntityDeathEvent event) {
-        if (gameIsLaunched()) {
+        if (HungerGameStateManager.gameIsLaunched()) {
             LivingEntity killedEntity = event.getEntity();
 
             Player killer = killedEntity.getKiller();
@@ -30,7 +30,4 @@ public class PlayerKillListener implements Listener {
         }
     }
 
-    private static boolean gameIsLaunched() {
-        return HungerGameStateManager.currentState == HungerGameStateManager.State.STARTING || HungerGameStateManager.currentState == HungerGameStateManager.State.PLAYING;
-    }
 }

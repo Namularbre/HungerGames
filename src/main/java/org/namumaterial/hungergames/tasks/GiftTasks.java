@@ -24,7 +24,7 @@ public class GiftTasks extends BukkitRunnable {
     }
 
     private void giveGiftToTributes() {
-        if (!gameIsLaunched()) {
+        if (!HungerGameStateManager.gameIsLaunched()) {
             return;
         }
 
@@ -41,10 +41,6 @@ public class GiftTasks extends BukkitRunnable {
                 advertPlayer(player);
             }
         }
-    }
-
-    private boolean gameIsLaunched() {
-        return HungerGameStateManager.currentState == HungerGameStateManager.State.PLAYING || HungerGameStateManager.currentState == HungerGameStateManager.State.STARTING;
     }
 
     private void advertPlayer(Player player) {
