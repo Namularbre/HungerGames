@@ -17,13 +17,7 @@ public class TaskManager {
         //Run unconditional tasks
         arenaTasks.runTaskTimer(plugin, DELAY, PERIOD);
 
-        if (gameIsLaunched()) {
-            giftTasks.runTaskTimer(plugin, DELAY, PERIOD);
-        }
-    }
-
-    private static boolean gameIsLaunched() {
-        return HungerGameStateManager.currentState == HungerGameStateManager.State.PLAYING || HungerGameStateManager.currentState == HungerGameStateManager.State.STARTING;
+        giftTasks.runTaskTimer(plugin, DELAY, PERIOD);
     }
 
 }
