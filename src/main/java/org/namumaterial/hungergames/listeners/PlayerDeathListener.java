@@ -39,8 +39,10 @@ public class PlayerDeathListener implements Listener {
     private void givePopularityToKiller(Player killedPlayer) {
         Player killer = killedPlayer.getKiller();
 
-        Tribute tribute = TributeManager.getTribute(killer);
-        tribute.addPopularity(500);
+        if (killer != null) {
+            Tribute tribute = TributeManager.getTribute(killer);
+            tribute.addPopularity(500);
+        }
     }
 
     private void putDeadPlayerInSpectatorGamemode(Player killedPlayer) {
