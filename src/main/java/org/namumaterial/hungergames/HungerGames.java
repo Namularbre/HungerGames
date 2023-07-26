@@ -55,6 +55,7 @@ public final class HungerGames extends JavaPlugin {
         getCommand("gift").setExecutor(new GiftCommand());
         getCommand("setpopularity").setExecutor(new SetPopularityCommand());
         getCommand("popularity").setExecutor(new CheckPopularityCommand());
+        getCommand("heal").setExecutor(new HealCommand());
         getLogger().info("Done");
 
         getLogger().info("Initialising tasks...");

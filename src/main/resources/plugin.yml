@@ -12,6 +12,9 @@ commands:
   setstate:
     description: Change current game state
     usage: /change_state [state]
+  state:
+    description: Show game current state
+    usage: /state
   gift:
     description: Spawn a gift next to you
     usage: /gift
@@ -21,6 +24,6 @@ commands:
   popularity:
     description: Show your popularity
     usage: /popularity
-  state:
-    description: Show game current state
-    usage: /state
+  heal:
+    description: Heal the player
+    usage: /heal
