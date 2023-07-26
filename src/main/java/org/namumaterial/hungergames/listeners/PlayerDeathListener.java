@@ -32,6 +32,8 @@ public class PlayerDeathListener implements Listener {
             Bukkit.getServer().broadcastMessage( ChatColor.GOLD + "GAME OVER");
             makeWinAnimation(killedPlayer);
         }
+
+        putDeadPlayerInSpectatorGamemode(killedPlayer);
     }
 
     private void givePopularityToKiller(Player killedPlayer) {
@@ -41,7 +43,10 @@ public class PlayerDeathListener implements Listener {
         tribute.addPopularity(500);
     }
 
-    private void makeCanonBallSound(Player player) {
+    private void putDeadPlayerInSpectatorGamemode(Player killedPlayer) {
+        killedPlayer.setGameMode(GameMode.SPECTATOR);
+    }
+
     private void makeCanonBallSound(Player killedPlayer) {
         final float VOLUME = 5.0f;
         final float PITCH = 1.0f;
