@@ -7,7 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Random;
 
 public class GiftContentMaker {
-    private ItemStack[] loot = {
+    private final ItemStack[] LOOT = {
         //Diamond stuff
         new ItemStack(Material.DIAMOND, 1),
         new ItemStack(Material.DIAMOND, 2),
@@ -75,7 +75,7 @@ public class GiftContentMaker {
     private ItemStack pickRandomItemStack() {
         Random random = new Random();
 
-        return this.loot[random.nextInt(loot.length)];
+        return this.LOOT[random.nextInt(LOOT.length)];
     }
 
     private int getRandomNumberOfItemStackInGift() {
