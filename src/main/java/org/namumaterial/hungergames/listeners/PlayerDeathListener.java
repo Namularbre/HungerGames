@@ -1,6 +1,7 @@
 package org.namumaterial.hungergames.listeners;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -26,11 +27,11 @@ public class PlayerDeathListener implements Listener {
         final int ONE_PLAYER_LEFT = 1;
 
         if (NUMBER_OF_PLAYER_REMAINING != ONE_PLAYER_LEFT) {
-            Bukkit.getServer().broadcastMessage(NUMBER_OF_PLAYER_REMAINING + " tributes remaining !");
+            Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "" + NUMBER_OF_PLAYER_REMAINING + " tributes remaining !");
             givePopularityToKiller(player);
         } else {
             HungerGameStateManager.setCurrentStep(HungerGameStateManager.State.ENDED);
-            Bukkit.getServer().broadcastMessage("You WON");
+            Bukkit.getServer().broadcastMessage( ChatColor.GOLD + "You WON !");
             makeWinAnimation(player);
         }
     }
