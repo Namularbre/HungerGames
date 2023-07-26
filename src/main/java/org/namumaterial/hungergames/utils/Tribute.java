@@ -27,4 +27,8 @@ public class Tribute {
     public void setPopularity(int popularity) {
         this.popularity = popularity;
     }
+
+    public void addPopularity(int value) {
+        this.popularity += value;
+    }
 }
