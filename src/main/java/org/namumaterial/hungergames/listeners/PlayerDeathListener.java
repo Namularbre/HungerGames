@@ -1,9 +1,6 @@
 package org.namumaterial.hungergames.listeners;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,37 +14,39 @@ import java.util.Random;
 public class PlayerDeathListener implements Listener {
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
-        Player player = event.getEntity();
+        Player killedPlayer = event.getEntity();
 
-        makeCanonBallSound(player);
+        makeCanonBallSound(killedPlayer);
 
-        TributeManager.removePlayer(player);
+        TributeManager.removePlayer(killedPlayer);
 
         final int NUMBER_OF_PLAYER_REMAINING = TributeManager.getNumberOfAlivePlayer();
         final int ONE_PLAYER_LEFT = 1;
 
         if (NUMBER_OF_PLAYER_REMAINING != ONE_PLAYER_LEFT) {
             Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "" + NUMBER_OF_PLAYER_REMAINING + " tributes remaining !");
-            givePopularityToKiller(player);
+            givePopularityToKiller(killedPlayer);
+
         } else {
             HungerGameStateManager.setCurrentStep(HungerGameStateManager.State.ENDED);
-            Bukkit.getServer().broadcastMessage( ChatColor.GOLD + "You WON !");
-            makeWinAnimation(player);
+            Bukkit.getServer().broadcastMessage( ChatColor.GOLD + "GAME OVER");
+            makeWinAnimation(killedPlayer);
         }
     }
 
-    private void givePopularityToKiller(Player player) {
-        Player killer = player.getKiller();
+    private void givePopularityToKiller(Player killedPlayer) {
+        Player killer = killedPlayer.getKiller();
 
         Tribute tribute = TributeManager.getTribute(killer);
         tribute.addPopularity(500);
     }
 
     private void makeCanonBallSound(Player player) {
+    private void makeCanonBallSound(Player killedPlayer) {
         final float VOLUME = 5.0f;
         final float PITCH = 1.0f;
 
-        Location location = player.getLocation();
+        Location location = killedPlayer.getLocation();
         location.getWorld().playSound(location, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, VOLUME, PITCH);
     }
 
@@ -59,11 +58,11 @@ public class PlayerDeathListener implements Listener {
         return sounds[musicIndex];
     }
 
-    private void makeWinAnimation(Player player) {
+    private void makeWinAnimation(Player killedPlayer) {
         final float VOLUME = 5.0f;
         final float PITCH = 1.0f;
 
-        Location location = player.getLocation();
+        Location location = killedPlayer.getLocation();
         location.getWorld().playSound(location, pickRandomMusic(), VOLUME, PITCH);
     }
 }
