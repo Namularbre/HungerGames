@@ -57,4 +57,14 @@ public class HungerGameStateManager {
         currentState = state;
     }
 
+    public static String currentStateToString() {
+        for (String stringState: stringToStateMap.keySet()) {
+            if (currentState == stringToStateMap.get(stringState)) {
+                return stringState;
+            }
+        }
+
+        return "ERROR_STATE_NOT_FOUND";
+    }
+
 }
