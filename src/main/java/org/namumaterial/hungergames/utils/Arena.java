@@ -4,16 +4,14 @@ import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 
 public class Arena {
-    private Location center;
+    private final Location center;
     private double radius;
-    private double endRadius;
-    private boolean reductionFinished;
+    private final double endRadius;
 
     public Arena(Location center, double radius) {
         this.center = center;
         this.radius = radius;
         this.endRadius = 200.0;
-        this.reductionFinished = false;
     }
 
     public boolean isInsideRegion(Location location) {
@@ -28,17 +26,10 @@ public class Arena {
     }
 
     public void reduceRadius(double value) {
-        if (!this.reductionFinished) {
-            this.radius = this.radius - value;
-            return;
-        }
-
-        if (this.radius <= this.endRadius) {
-            this.reductionFinished = true;
-        }
+        this.radius = Math.max(this.radius - value, this.endRadius);
     }
 
     public boolean isReductionFinished() {
-        return this.reductionFinished;
+        return this.radius > this.endRadius;
     }
 }
