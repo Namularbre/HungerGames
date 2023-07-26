@@ -1,11 +1,11 @@
 package org.namumaterial.hungergames.tasks;
 
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.namumaterial.hungergames.managers.HungerGameStateManager;
 import org.namumaterial.hungergames.managers.TributeManager;
 import org.namumaterial.hungergames.utils.GiftContentMaker;
+import org.namumaterial.hungergames.utils.PlayerRawMessageSender;
 import org.namumaterial.hungergames.utils.Tribute;
 
 public class GiftTasks extends BukkitRunnable {
@@ -44,6 +44,6 @@ public class GiftTasks extends BukkitRunnable {
     }
 
     private void advertPlayer(Player player) {
-        player.sendRawMessage(ChatColor.GOLD + "You received a gift from sponsors !");
+        PlayerRawMessageSender.sendInformationMessage("You received a gift from sponsors !", player);
     }
 }
