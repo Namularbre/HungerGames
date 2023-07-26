@@ -1,6 +1,5 @@
 package org.namumaterial.hungergames.tasks;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -8,8 +7,6 @@ import org.namumaterial.hungergames.managers.HungerGameStateManager;
 import org.namumaterial.hungergames.managers.TributeManager;
 import org.namumaterial.hungergames.utils.GiftContentMaker;
 import org.namumaterial.hungergames.utils.Tribute;
-
-import java.util.Collection;
 
 public class GiftTasks extends BukkitRunnable {
     @Override
@@ -35,8 +32,6 @@ public class GiftTasks extends BukkitRunnable {
 
         for (Player player : TributeManager.getAlivePlayers()) {
             Tribute tribute = TributeManager.getTribute(player);
-
-            Bukkit.getServer().broadcastMessage("Give gifts task" + tribute.getPopularity() + " " + player.getName());
 
             if (tribute.getPopularity() >= GIFT_POPULARITY) {
                 tribute.setPopularity(tribute.getPopularity() - GIFT_POPULARITY);
