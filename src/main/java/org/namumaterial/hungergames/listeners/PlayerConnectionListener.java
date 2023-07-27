@@ -9,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.namumaterial.hungergames.managers.HungerGameStateManager;
 import org.namumaterial.hungergames.managers.TributeManager;
+import org.namumaterial.hungergames.utils.PlayerRawMessageSender;
 
 public class PlayerConnectionListener implements Listener {
     @EventHandler
@@ -38,15 +39,14 @@ public class PlayerConnectionListener implements Listener {
     }
 
     private void setPlayerNotStarted(Player player) {
-        final String playerHelpMessage = ChatColor.GOLD + "Do /kits to see the kits, and then /kit [name] to select the kit.";
-        player.sendRawMessage(playerHelpMessage);
+        PlayerRawMessageSender.sendInformationMessage("Do /kits to see the kits, and then /kit [name] to select the kit.", player);
 
         addPlayerToTributeManager(player);
         changeHungerGameState();
     }
 
     private void setPlayerSpectator(Player player) {
-        player.sendRawMessage(ChatColor.GOLD + "Game is already started, but you can have a look !");
+        PlayerRawMessageSender.sendInformationMessage("Game is already started, but you can have a look !", player);
         player.setGameMode(GameMode.SPECTATOR);
         player.setCanPickupItems(false);
         player.setAllowFlight(true);
