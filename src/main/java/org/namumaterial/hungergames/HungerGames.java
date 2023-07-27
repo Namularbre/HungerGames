@@ -56,6 +56,8 @@ public final class HungerGames extends JavaPlugin {
         getCommand("setpopularity").setExecutor(new SetPopularityCommand());
         getCommand("popularity").setExecutor(new CheckPopularityCommand());
         getCommand("heal").setExecutor(new HealCommand());
+        getCommand("spawn").setExecutor(new SpawnCommand());
+        getCommand("arenaradius").setExecutor(new CheckArenaRadiusCommand());
         getLogger().info("Done");
 
         getLogger().info("Initialising tasks...");
