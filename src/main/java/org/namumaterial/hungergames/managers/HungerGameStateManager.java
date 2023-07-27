@@ -57,6 +57,18 @@ public class HungerGameStateManager {
         currentState = state;
     }
 
+    public static void setStarting() {
+        currentState = State.STARTING;
+    }
+
+    public static void setPlaying() {
+        currentState = State.PLAYING;
+    }
+
+    public static void setEnded() {
+        currentState = State.ENDED;
+    }
+
     public static String currentStateToString() {
         for (String stringState: stringToStateMap.keySet()) {
             if (currentState == stringToStateMap.get(stringState)) {
