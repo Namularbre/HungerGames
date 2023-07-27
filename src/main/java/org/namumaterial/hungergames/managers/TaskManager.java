@@ -14,9 +14,7 @@ public class TaskManager {
         ArenaTasks arenaTasks = new ArenaTasks();
         GiftTasks giftTasks = new GiftTasks();
 
-        //Run unconditional tasks
         arenaTasks.runTaskTimer(plugin, DELAY, PERIOD);
-
         giftTasks.runTaskTimer(plugin, DELAY, PERIOD);
     }
 

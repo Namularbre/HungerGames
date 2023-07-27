@@ -3,10 +3,9 @@ package org.namumaterial.hungergames.tasks;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.namumaterial.hungergames.HungerGames;
+import org.namumaterial.hungergames.managers.HungerGameStateManager;
 import org.namumaterial.hungergames.managers.TributeManager;
 import org.namumaterial.hungergames.utils.PlayerRawMessageSender;
-
-import java.util.Collection;
 
 public class ArenaTasks extends BukkitRunnable {
 
@@ -17,11 +16,11 @@ public class ArenaTasks extends BukkitRunnable {
     }
 
     private void checkForTributesOutsideTheArena() {
-        Collection<Player> aliveTributes = TributeManager.getAlivePlayers();
-
-        for (Player player: aliveTributes) {
-            if (!HungerGames.arena.isInsideRegion(player)) {
-                giveDamageToPlayer(player);
+        if (HungerGameStateManager.gameIsLaunched()) {
+            for (Player player: TributeManager.getAlivePlayers()) {
+                if (!HungerGames.arena.isInsideRegion(player)) {
+                    giveDamageToPlayer(player);
+                }
             }
         }
     }
@@ -34,9 +33,10 @@ public class ArenaTasks extends BukkitRunnable {
 
     private void reduceArena() {
         if (!HungerGames.arena.isReductionFinished()) {
-             final double ARENA_REDUCING_VALUE = 1.0;
+             final double ARENA_REDUCING_VALUE = 10.0;
 
              HungerGames.arena.reduceRadius(ARENA_REDUCING_VALUE);
         }
     }
+
 }

@@ -30,6 +30,14 @@ public class Arena {
     }
 
     public boolean isReductionFinished() {
-        return this.radius > this.endRadius;
+        return this.radius <= this.endRadius;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+
+    public Location getCenter() {
+        return center;
     }
 }
