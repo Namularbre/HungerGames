@@ -27,3 +27,9 @@ commands:
   heal:
     description: Heal the player
     usage: /heal
+  spawn:
+    description: Teleport the player to the spawn point, the middle of the arena
+    usage: /spawn
+  arenaradius:
+    description: Show arena radius
+    usage: /arenaradius
