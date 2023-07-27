@@ -25,6 +25,19 @@ public class Arena {
         return this.isInsideRegion(entity.getLocation());
     }
 
+    public boolean isNearBorder(Location playerLocation) {
+        double dx = playerLocation.getX() - this.center.getX();
+        double dz = playerLocation.getZ() - this.center.getZ();
+        double distanceSquared = dx * dx + dz * dz;
+        double distanceToBorder = this.radius - 50.0;
+
+        return distanceSquared >= (distanceToBorder * distanceToBorder);
+    }
+
+    public boolean isNearBorder(LivingEntity entity) {
+        return this.isNearBorder(entity.getLocation());
+    }
+
     public void reduceRadius(double value) {
         this.radius = Math.max(this.radius - value, this.endRadius);
     }
@@ -39,5 +52,13 @@ public class Arena {
 
     public Location getCenter() {
         return center;
+    }
+
+    public double getEndRadius() {
+        return endRadius;
+    }
+
+    public void setRadius(double radius) {
+        this.radius = radius;
     }
 }

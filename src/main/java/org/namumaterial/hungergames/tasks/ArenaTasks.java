@@ -11,18 +11,8 @@ public class ArenaTasks extends BukkitRunnable {
 
     @Override
     public void run() {
-        checkForTributesOutsideTheArena();
         reduceArena();
-    }
-
-    private void checkForTributesOutsideTheArena() {
-        if (HungerGameStateManager.gameIsLaunched()) {
-            for (Player player: TributeManager.getAlivePlayers()) {
-                if (!HungerGames.arena.isInsideRegion(player)) {
-                    giveDamageToPlayer(player);
-                }
-            }
-        }
+        runBorderAndPlayerVerificationTasks();
     }
 
     private void giveDamageToPlayer(Player player) {
@@ -32,10 +22,23 @@ public class ArenaTasks extends BukkitRunnable {
     }
 
     private void reduceArena() {
-        if (!HungerGames.arena.isReductionFinished()) {
+        if (!HungerGames.arena.isReductionFinished() && HungerGameStateManager.gameIsLaunched()) {
              final double ARENA_REDUCING_VALUE = 10.0;
 
              HungerGames.arena.reduceRadius(ARENA_REDUCING_VALUE);
+        }
+    }
+
+    private void runBorderAndPlayerVerificationTasks() {
+        if (HungerGameStateManager.gameIsLaunched()) {
+
+            for (Player player: TributeManager.getAlivePlayers()) {
+                if (!HungerGames.arena.isInsideRegion(player)) {
+                    giveDamageToPlayer(player);
+                } else if (HungerGames.arena.isNearBorder(player)) {
+                    PlayerRawMessageSender.sendInformationMessage("You are near the arena border ! Turn around to avoid being killed !", player);
+                }
+            }
         }
     }
 
