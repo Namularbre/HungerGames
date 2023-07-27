@@ -28,7 +28,7 @@ public class PlayerDeathListener implements Listener {
             givePopularityToKiller(killedPlayer);
 
         } else {
-            HungerGameStateManager.setCurrentStep(HungerGameStateManager.State.ENDED);
+            HungerGameStateManager.setEnded();
             Bukkit.getServer().broadcastMessage( ChatColor.GOLD + "GAME OVER");
             makeWinAnimation(killedPlayer);
         }
