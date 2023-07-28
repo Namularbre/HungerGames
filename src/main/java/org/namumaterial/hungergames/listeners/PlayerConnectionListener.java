@@ -8,6 +8,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.namumaterial.hungergames.managers.HungerGameStateManager;
 import org.namumaterial.hungergames.managers.TributeManager;
 import org.namumaterial.hungergames.utils.PlayerRawMessageSender;
+import org.namumaterial.hungergames.utils.Tribute; //Don't remove
 
 public class PlayerConnectionListener implements Listener {
     @EventHandler
