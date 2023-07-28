@@ -3,6 +3,7 @@ package org.namumaterial.hungergames.managers;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
+import org.namumaterial.hungergames.HungerGames;
 import org.namumaterial.hungergames.utils.Tribute;
 
 import java.util.ArrayList;
@@ -78,6 +79,12 @@ public class TributeManager {
 
     public static Tribute getTribute(Player player) {
         return tributes.get(player);
+    }
+
+    public static void teleportAllPlayersToSpawn() {
+        for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+            player.teleport(HungerGames.arena.getCenter());
+        }
     }
 
 }
