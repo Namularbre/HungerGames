@@ -29,24 +29,11 @@ public class GiftContentMaker {
         new ItemStack(Material.IRON_LEGGINGS, 1),
         new ItemStack(Material.IRON_BOOTS, 1),
 
-        //Gold
-        new ItemStack(Material.GOLD_INGOT, 3),
-        new ItemStack(Material.GOLDEN_SWORD, 1),
-        new ItemStack(Material.GOLDEN_AXE, 1),
-        new ItemStack(Material.GOLDEN_PICKAXE, 1),
-        new ItemStack(Material.GOLDEN_HELMET, 1),
-        new ItemStack(Material.GOLDEN_CHESTPLATE, 1),
-        new ItemStack(Material.GOLDEN_LEGGINGS, 1),
-        new ItemStack(Material.GOLDEN_BOOTS, 1),
-
         //Food
         new ItemStack(Material.COOKED_BEEF, 3),
         new ItemStack(Material.COOKED_BEEF, 4),
         new ItemStack(Material.COOKED_BEEF, 5),
         new ItemStack(Material.GOLDEN_APPLE, 1),
-        new ItemStack(Material.GOLDEN_APPLE, 2),
-        new ItemStack(Material.GOLDEN_APPLE, 3),
-        new ItemStack(Material.ENCHANTED_GOLDEN_APPLE, 1),
 
         //Random items
         new ItemStack(Material.ENCHANTING_TABLE, 1),
@@ -62,6 +49,9 @@ public class GiftContentMaker {
         new ItemStack(Material.ARROW, 42),
         new ItemStack(Material.ARROW, 64),
         new ItemStack(Material.ANVIL, 1),
+        new ItemStack(Material.LAPIS_LAZULI, 12),
+        new ItemStack(Material.LAPIS_LAZULI, 15),
+        new ItemStack(Material.LAPIS_LAZULI, 20),
     };
 
     public void makeGiftContent(Inventory giftInventory) {
