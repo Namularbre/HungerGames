@@ -23,9 +23,7 @@ public class ArenaTasks extends BukkitRunnable {
 
     private void reduceArena() {
         if (!HungerGames.arena.isReductionFinished() && HungerGameStateManager.gameIsLaunched()) {
-             final double ARENA_REDUCING_VALUE = 10.0;
-
-             HungerGames.arena.reduceRadius(ARENA_REDUCING_VALUE);
+             HungerGames.arena.reduceRadius();
         }
     }
 

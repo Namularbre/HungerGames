@@ -31,6 +31,7 @@ public class ChangeHungerGamesStateToStartingTasks extends BukkitRunnable {
                 Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "May the odds be ever in your favor!");
                 KitManager.giveKitToPlayers();
                 HungerGameStateManager.setStarting();
+                TributeManager.teleportAllPlayersToSpawn();
                 this.finished = true;
             }
         }

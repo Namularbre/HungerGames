@@ -25,10 +25,9 @@ public final class HungerGames extends JavaPlugin {
         getLogger().info("Done");
 
         getLogger().info("Initialising arena...");
-        final double ARENA_RADIUS = 1000.0;
         final Location SPAWN_LOCATION = getServer().getWorld("world").getSpawnLocation();
 
-        arena = new Arena(SPAWN_LOCATION, ARENA_RADIUS);
+        arena = new Arena(SPAWN_LOCATION);
         getLogger().info("Done");
 
         getLogger().info("Initialising plugin's state manager...");

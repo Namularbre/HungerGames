@@ -5,6 +5,7 @@ import org.namumaterial.hungergames.tasks.ArenaTasks;
 import org.namumaterial.hungergames.tasks.ChangeHungerGamesStateToPlayingTasks;
 import org.namumaterial.hungergames.tasks.ChangeHungerGamesStateToStartingTasks;
 import org.namumaterial.hungergames.tasks.GiftTasks;
+import org.namumaterial.hungergames.utils.HungerGamesConfiguration;
 import org.namumaterial.hungergames.utils.SecondToTicksConverter;
 
 public class TaskManager {
@@ -12,6 +13,7 @@ public class TaskManager {
     public static void runTasks(Plugin plugin) {
         final int TEN_SECOND_PERIOD = SecondToTicksConverter.convert(10);
         final int ONE_SECOND_PERIOD = SecondToTicksConverter.convert(1);
+        final int ARENA_REDUCING_PERIOD = SecondToTicksConverter.convert(HungerGamesConfiguration.ARENA_REDUCING_PERIOD);
         final int DELAY = 0;
 
         ArenaTasks arenaTasks = new ArenaTasks();
