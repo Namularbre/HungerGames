@@ -34,8 +34,4 @@ public class ChangeHungerGamesStateToStartingTasks extends BukkitRunnable {
             }
         }
     }
-
-    private int ticksToSecond(int ticks) {
-        return ticks / 20;
-    }
 }
