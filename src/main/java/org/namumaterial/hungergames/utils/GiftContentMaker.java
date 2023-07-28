@@ -69,9 +69,8 @@ public class GiftContentMaker {
     }
 
     private int getRandomNumberOfItemStackInGift() {
-        final int MAX_ITEMSTACK_NUMBER_IN_GIFT = 10;
         Random random = new Random();
 
-        return random.nextInt(MAX_ITEMSTACK_NUMBER_IN_GIFT);
+        return random.nextInt(HungerGamesConfiguration.MAX_ITEM_IN_GIFT);
     }
 }

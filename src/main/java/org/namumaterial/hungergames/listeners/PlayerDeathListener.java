@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.namumaterial.hungergames.managers.TributeManager;
 import org.namumaterial.hungergames.managers.HungerGameStateManager;
+import org.namumaterial.hungergames.utils.HungerGamesConfiguration;
 import org.namumaterial.hungergames.utils.Tribute;
 
 import java.util.Random;
@@ -41,7 +42,7 @@ public class PlayerDeathListener implements Listener {
 
         if (killer != null) {
             Tribute tribute = TributeManager.getTribute(killer);
-            tribute.addPopularity(500);
+            tribute.addPopularity(HungerGamesConfiguration.PLAYER_KILLING_POPULARITY);
         }
     }
 

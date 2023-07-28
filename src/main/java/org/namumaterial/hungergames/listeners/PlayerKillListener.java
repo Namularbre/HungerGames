@@ -6,6 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.namumaterial.hungergames.managers.HungerGameStateManager;
 import org.namumaterial.hungergames.managers.TributeManager;
+import org.namumaterial.hungergames.utils.HungerGamesConfiguration;
 import org.namumaterial.hungergames.utils.Tribute;
 
 public class PlayerKillListener implements Listener {
@@ -20,10 +21,10 @@ public class PlayerKillListener implements Listener {
                 Tribute tribute = TributeManager.getTribute(killer);
 
                 if (killedEntity instanceof Monster) {
-                    final int POPULARITY_GAIN_FOR_MONSTER = 50;
+                    final int POPULARITY_GAIN_FOR_MONSTER = HungerGamesConfiguration.MONSTER_KILLING_POPULARITY;
                     tribute.addPopularity(POPULARITY_GAIN_FOR_MONSTER);
                 } else if (killedEntity instanceof Animals) {
-                    final int POPULARITY_GAIN_FOR_ANIMALS = 10;
+                    final int POPULARITY_GAIN_FOR_ANIMALS = HungerGamesConfiguration.ANIMAL_KILLING_POPULARITY;
                     tribute.addPopularity(POPULARITY_GAIN_FOR_ANIMALS);
                 }
             }
