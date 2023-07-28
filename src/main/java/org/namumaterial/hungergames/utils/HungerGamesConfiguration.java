@@ -10,10 +10,11 @@ public class HungerGamesConfiguration {
     public static final double ARENA_START_RADIUS = 1000.0;
     public static final double ARENA_END_RADIUS = 200.0;
     public static final double ARENA_REDUCING_VALUE = 10.0;
-    public static final int ARENA_REDUCING_PERIOD = 30;
 
     //Feast configuration
     public static final int MAX_ITEM_IN_FEAST = 15;
+    public static final int NUMBER_OF_FEAST = 3;
+    public static final int SECONDS_BETWEEN_FEAST = 300;
 
     //Popularity & gift configuration
     public static final int MAX_ITEM_IN_GIFT = 10;
