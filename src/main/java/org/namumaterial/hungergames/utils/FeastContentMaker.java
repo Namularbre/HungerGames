@@ -43,9 +43,8 @@ public class FeastContentMaker {
     }
 
     private int getRandomNumberOfItemStackInFeast() {
-        final int MAX_ITEMSTACK_NUMBER_IN_FEAST = 15;
         Random random = new Random();
 
-        return random.nextInt(MAX_ITEMSTACK_NUMBER_IN_FEAST);
+        return random.nextInt(HungerGamesConfiguration.MAX_ITEM_IN_FEAST);
     }
 }
