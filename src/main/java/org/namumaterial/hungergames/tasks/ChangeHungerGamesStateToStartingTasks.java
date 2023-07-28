@@ -11,6 +11,7 @@ import org.namumaterial.hungergames.utils.HungerGamesConfiguration;
 public class ChangeHungerGamesStateToStartingTasks extends BukkitRunnable {
     private int secondsLeft;
     private boolean finished;
+
     public ChangeHungerGamesStateToStartingTasks() {
         this.secondsLeft = HungerGamesConfiguration.SECOND_BEFORE_STARTING_GAME_WHEN_ENOUGH_PLAYER;
         this.finished = false;
