@@ -18,17 +18,13 @@ public class ListKitCommand implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        if (HungerGameStateManager.gameIsNotStarted()) {
-            StringBuilder message = new StringBuilder("Here are the available kits");
+        StringBuilder message = new StringBuilder("Here are the available kits :");
 
-            for (Kit kit : KitManager.getKits()) {
-                message.append(kit.toString()).append("\n");
-            }
-
-            PlayerRawMessageSender.sendInformationMessage(message.toString(), player);
-        } else {
-            PlayerRawMessageSender.sendErrorMessage("You can't change kit while the game is running", player);
+        for (Kit kit : KitManager.getKits()) {
+            message.append(kit.toString()).append("\n");
         }
+
+        PlayerRawMessageSender.sendInformationMessage(message.toString(), player);
 
         return true;
     }
