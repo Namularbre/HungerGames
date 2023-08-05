@@ -18,7 +18,7 @@ public class ListKitCommand implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        if (HungerGameStateManager.currentState == HungerGameStateManager.State.NOT_STARTED) {
+        if (HungerGameStateManager.gameIsNotStarted()) {
             StringBuilder message = new StringBuilder("Here are the available kits");
 
             for (Kit kit : KitManager.getKits()) {
