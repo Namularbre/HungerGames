@@ -46,11 +46,12 @@ public class Kit {
         String itemsToString = "";
 
         for (ItemStack itemStack: items.keySet()) {
+            final String SPACE = " ";
 
             if (itemStack.hasItemMeta()) {
-                itemsToString += itemStack.getItemMeta().getDisplayName() + " x" + items.get(itemStack);
+                itemsToString += itemStack.getItemMeta().getDisplayName() + " x" + items.get(itemStack) + SPACE;
             } else {
-                itemsToString += itemStack.getType().toString() + " x" + items.get(itemStack);
+                itemsToString += itemStack.getType().toString() + " x" + items.get(itemStack)  + SPACE;
             }
         }
 
