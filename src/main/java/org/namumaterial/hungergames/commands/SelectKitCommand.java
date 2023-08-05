@@ -9,6 +9,7 @@ import org.namumaterial.hungergames.managers.HungerGameStateManager;
 import org.namumaterial.hungergames.managers.KitManager;
 import org.namumaterial.hungergames.managers.TributeManager;
 import org.namumaterial.hungergames.utils.PlayerRawMessageSender;
+import org.namumaterial.hungergames.utils.Tribute;
 
 public class SelectKitCommand implements CommandExecutor {
 
@@ -39,7 +40,9 @@ public class SelectKitCommand implements CommandExecutor {
                 PlayerRawMessageSender.sendErrorMessage("The kit doesn't exists. You have now a random one", player);
             }
         } else {
-            PlayerRawMessageSender.sendErrorMessage("You can't change kit while the game is started", player);
+            final Tribute TRIBUTE = TributeManager.getTribute(player);
+            final String KIT_NAME = TRIBUTE.getKit().getName();
+            PlayerRawMessageSender.sendInformationMessage("Your kit is " + KIT_NAME, player);
         }
 
         return true;
