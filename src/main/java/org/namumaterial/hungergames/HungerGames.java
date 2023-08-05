@@ -44,6 +44,7 @@ public final class HungerGames extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerDisconnectionListener(), this);
         getServer().getPluginManager().registerEvents(new EntityDamageListener(), this);
         getServer().getPluginManager().registerEvents(new NoInteractionOnNotStartedListener(), this);
+        getServer().getPluginManager().registerEvents(new TntListener(), this);
         getLogger().info("Done");
 
         getLogger().info("Initialising commands...");
