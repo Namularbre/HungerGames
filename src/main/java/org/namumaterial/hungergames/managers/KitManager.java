@@ -10,7 +10,18 @@ public class KitManager {
     private static Map<String, Kit> kits;
 
     public static void init() {
-        ArrayList<Kit> kitsList = new ArrayList<Kit>(Arrays.asList(new KatnissKit(), new MinerKit(), new CookKit(), new FinnickKit(), new PeetaKit(), new GaleKit()));
+        ArrayList<Kit> kitsList = new ArrayList<Kit>(Arrays.asList(
+                new ButcherKit(),
+                new CareerKit(),
+                new FinnickKit(),
+                new GaleKit(),
+                new GhastKit(),
+                new HorsemanKit(),
+                new KatnissKit(),
+                new MinerKit(),
+                new PeetaKit(),
+                new WariorKit()
+        ));
 
         kits = new HashMap<>();
 
