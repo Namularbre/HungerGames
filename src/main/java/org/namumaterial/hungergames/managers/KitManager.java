@@ -2,10 +2,7 @@ package org.namumaterial.hungergames.managers;
 
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.namumaterial.hungergames.kits.ArcherKit;
-import org.namumaterial.hungergames.kits.CookKit;
-import org.namumaterial.hungergames.kits.Kit;
-import org.namumaterial.hungergames.kits.MinerKit;
+import org.namumaterial.hungergames.kits.*;
 
 import java.util.*;
 
@@ -13,7 +10,7 @@ public class KitManager {
     private static Map<String, Kit> kits;
 
     public static void init() {
-        ArrayList<Kit> kitsList = new ArrayList<>(Arrays.asList(new ArcherKit(), new MinerKit(), new CookKit(), new ArcherKit()));
+        ArrayList<Kit> kitsList = new ArrayList<Kit>(Arrays.asList(new KatnissKit(), new MinerKit(), new CookKit(), new FinnickKit(), new PeetaKit(), new GaleKit()));
 
         kits = new HashMap<>();
 
