@@ -8,5 +8,6 @@ public class GaleKit extends Kit {
 
         addItemByMaterial(Material.TNT, 10);
         addItemByMaterial(Material.COBWEB, 20);
+        addItemByMaterial(Material.BOW);
     }
 }
