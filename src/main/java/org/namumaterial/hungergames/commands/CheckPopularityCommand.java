@@ -17,12 +17,39 @@ public class CheckPopularityCommand implements CommandExecutor {
         Player player = (Player) sender;
 
         if (player.isOp()) {
-            final int POPULARITY = TributeManager.getTribute(player).getPopularity();
-            PlayerRawMessageSender.sendValidationMessage("Your popularity is " + POPULARITY, player);
+
+            if (hasNoArguments(args)) {
+                showOwnPopularity(player);
+            } else {
+                showOtherPopularity(args, player);
+            }
         } else {
             PlayerRawMessageSender.sendNoCommandPermissionMessage(player);
         }
 
         return true;
+    }
+
+    private static boolean hasNoArguments(String[] args) {
+        return args.length == 0;
+    }
+
+    private static void showOtherPopularity(String[] args, Player player) {
+        final String PLAYER_NAME = args[0];
+
+        for (Player onlinePlayer: TributeManager.getAlivePlayers()) {
+            if (onlinePlayer.getName().equals(PLAYER_NAME)) {
+                final int POPULARITY = TributeManager.getTribute(onlinePlayer).getPopularity();
+                PlayerRawMessageSender.sendValidationMessage(PLAYER_NAME + "'s popularity is " + POPULARITY, player);
+                return;
+            }
+        }
+
+        PlayerRawMessageSender.sendErrorMessage("Player not found or not alive", player);
+    }
+
+    private static void showOwnPopularity(Player player) {
+        final int POPULARITY = TributeManager.getTribute(player).getPopularity();
+        PlayerRawMessageSender.sendValidationMessage("Your popularity is " + POPULARITY, player);
     }
 }
