@@ -17,10 +17,6 @@ public final class HungerGames extends JavaPlugin {
         HungerGamesConfiguration.init(this);
         getLogger().info("Done");
 
-        getLogger().info("Initialising items...");
-        ItemManager.init();
-        getLogger().info("Done");
-
         getLogger().info("Initialising kits...");
         KitManager.init();
         getLogger().info("Done");
