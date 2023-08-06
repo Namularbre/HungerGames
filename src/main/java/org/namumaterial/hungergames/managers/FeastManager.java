@@ -39,7 +39,7 @@ public class FeastManager {
 
         int groundY = world.getHighestBlockYAt((int) randomX, (int) randomZ);
 
-        return new Location(world, randomX, groundY, randomZ);
+        return new Location(world, randomX, groundY + 1, randomZ);
     }
 
     private static String feastLocationToString(Location feastLocation) {
