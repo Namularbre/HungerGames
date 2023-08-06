@@ -13,26 +13,60 @@ public final class HungerGames extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        loadConfig();
+
+        initKits();
+
+        initTributeManager();
+
+        initArena();
+
+        initHungerGameStateManager();
+
+        initEvents();
+
+        initCommands();
+
+        initTaskManager();
+    }
+
+    private void initTaskManager() {
+        getLogger().info("Initialising tasks...");
+        TaskManager.runTasks(this);
+        getLogger().info("Done");
+    }
+
+    private void loadConfig() {
         getLogger().info("Loading config...");
         HungerGamesConfiguration.init(this);
         getLogger().info("Done");
+    }
 
+    private void initKits() {
         getLogger().info("Initialising kits...");
         KitManager.init();
         getLogger().info("Done");
+    }
 
+    private void initTributeManager() {
         getLogger().info("Initialising tributes manager...");
         TributeManager.init();
         getLogger().info("Done");
+    }
 
+    private void initArena() {
         getLogger().info("Initialising arena...");
         createArena();
         getLogger().info("Done");
+    }
 
+    private void initHungerGameStateManager() {
         getLogger().info("Initialising plugin's state manager...");
         HungerGameStateManager.init();
         getLogger().info("Done");
+    }
 
+    private void initEvents() {
         getLogger().info("Initialising listeners...");
         getServer().getPluginManager().registerEvents(new PlayerCompassListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
@@ -47,7 +81,9 @@ public final class HungerGames extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new FireballListener(), this);
         getServer().getPluginManager().registerEvents(new SpawnTamedHorseListener(), this);
         getLogger().info("Done");
+    }
 
+    private void initCommands() {
         getLogger().info("Initialising commands...");
         getCommand("kits").setExecutor(new ListKitCommand());
         getCommand("kit").setExecutor(new SelectKitCommand());
@@ -60,10 +96,6 @@ public final class HungerGames extends JavaPlugin {
         getCommand("heal").setExecutor(new HealCommand());
         getCommand("spawn").setExecutor(new SpawnCommand());
         getCommand("arenaradius").setExecutor(new ArenaRadiusCommand());
-        getLogger().info("Done");
-
-        getLogger().info("Initialising tasks...");
-        TaskManager.runTasks(this);
         getLogger().info("Done");
     }
 
