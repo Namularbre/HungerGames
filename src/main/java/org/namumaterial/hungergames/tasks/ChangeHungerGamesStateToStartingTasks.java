@@ -13,7 +13,7 @@ public class ChangeHungerGamesStateToStartingTasks extends BukkitRunnable {
     private boolean finished;
 
     public ChangeHungerGamesStateToStartingTasks() {
-        this.secondsLeft = HungerGamesConfiguration.SECOND_BEFORE_STARTING_GAME_WHEN_ENOUGH_PLAYER;
+        this.secondsLeft = HungerGamesConfiguration.SECOND_BEFORE_STARTING_GAME;
         this.finished = false;
     }
 

@@ -1,0 +1,20 @@
+#time config
+minimal_amount_of_player: 4
+second_before_starting_game: 90
+second_before_pvp: 90
+#arena config
+arena_start_radius: 2500.0
+arena_end_radius: 200.0
+arena_reducing_pvp: 10.0
+#feast config
+max_item_in_feast: 15
+number_of_feast: 3
+seconds_between_feast: 500
+#popularity & gift config
+max_item_in_gift: 3
+coal_ore_mining_popularity: 5
+iron_ore_mining_popularity: 50
+diamond_ore_mining_popularity: 250
+monster_killing_popularity: 50
+animal_killing_popularity: 10
+player_killing_popularity: 500

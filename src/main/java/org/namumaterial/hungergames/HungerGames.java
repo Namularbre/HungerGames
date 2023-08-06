@@ -6,12 +6,17 @@ import org.namumaterial.hungergames.commands.*;
 import org.namumaterial.hungergames.listeners.*;
 import org.namumaterial.hungergames.managers.*;
 import org.namumaterial.hungergames.utils.Arena;
+import org.namumaterial.hungergames.utils.HungerGamesConfiguration;
 
 public final class HungerGames extends JavaPlugin {
     public static Arena arena;
 
     @Override
     public void onEnable() {
+        getLogger().info("Loading config...");
+        HungerGamesConfiguration.init(this);
+        getLogger().info("Done");
+
         getLogger().info("Initialising items...");
         ItemManager.init();
         getLogger().info("Done");
@@ -25,9 +30,7 @@ public final class HungerGames extends JavaPlugin {
         getLogger().info("Done");
 
         getLogger().info("Initialising arena...");
-        final Location SPAWN_LOCATION = getServer().getWorld("world").getSpawnLocation();
-
-        arena = new Arena(SPAWN_LOCATION);
+        createArena();
         getLogger().info("Done");
 
         getLogger().info("Initialising plugin's state manager...");
@@ -66,6 +69,12 @@ public final class HungerGames extends JavaPlugin {
         getLogger().info("Initialising tasks...");
         TaskManager.runTasks(this);
         getLogger().info("Done");
+    }
+
+    public void createArena() {
+        final Location SPAWN_LOCATION = getServer().getWorld("world").getSpawnLocation();
+
+        arena = new Arena(SPAWN_LOCATION);
     }
 
     @Override
