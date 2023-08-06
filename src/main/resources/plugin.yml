@@ -18,6 +18,9 @@ commands:
   gift:
     description: Spawn a gift next to you
     usage: /gift
+  feast:
+    description: Spawn a feast on the map
+    usage: /feast
   setpopularity:
     description: Set the popularity of a player
     usage: /set_popularity [amount] where amount is a positive Integer
