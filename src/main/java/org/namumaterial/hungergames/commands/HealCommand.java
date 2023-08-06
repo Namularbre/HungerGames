@@ -18,9 +18,11 @@ public class HealCommand implements CommandExecutor {
         if (player.isOp()) {
             final double FULL_HEALTH = 20.0;
             final int FULL_FOOD = 20;
+            final float SATURATION = 20.0f;
 
             player.setHealth(FULL_HEALTH);
             player.setFoodLevel(FULL_FOOD);
+            player.setSaturation(SATURATION);
             PlayerRawMessageSender.sendValidationMessage("Healed !", player);
         } else {
             PlayerRawMessageSender.sendNoCommandPermissionMessage(player);
