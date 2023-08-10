@@ -18,7 +18,7 @@ public class ListKitCommand implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        StringBuilder message = new StringBuilder("Here are the available kits :");
+        StringBuilder message = new StringBuilder("Here are the available kits :\n");
 
         for (Kit kit : KitManager.getKits()) {
             message.append(kit.toString()).append("\n");
