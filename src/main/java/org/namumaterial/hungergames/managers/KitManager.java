@@ -19,8 +19,7 @@ public class KitManager {
                 new HorsemanKit(),
                 new KatnissKit(),
                 new MinerKit(),
-                new PeetaKit(),
-                new WariorKit()
+                new PeetaKit()
         ));
 
         kits = new HashMap<>();
