@@ -6,7 +6,7 @@ public class CareerKit extends Kit {
     public CareerKit() {
         super("Career");
 
-        addItemByMaterial(Material.IRON_SWORD);
+        addItemByMaterial(Material.STONE_SWORD);
         addItemByMaterial(Material.LEATHER_BOOTS);
     }
 }
