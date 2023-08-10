@@ -79,7 +79,7 @@ public final class HungerGames extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new NoInteractionOnNotStartedListener(), this);
         getServer().getPluginManager().registerEvents(new TntListener(), this);
         getServer().getPluginManager().registerEvents(new FireballListener(), this);
-        getServer().getPluginManager().registerEvents(new SpawnTamedHorseListener(), this);
+        getServer().getPluginManager().registerEvents(new TamedHorseListener(), this);
         getLogger().info("Done");
     }
 

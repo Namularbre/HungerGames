@@ -9,10 +9,13 @@ import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
-public class SpawnTamedHorseListener implements Listener {
+public class TamedHorseListener implements Listener {
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player tamedHorseUser = event.getPlayer();
@@ -62,5 +65,14 @@ public class SpawnTamedHorseListener implements Listener {
     private void removeTamedHorseFromInventory(Player tamedHorseUser, ItemStack tamedHorse) {
         tamedHorse.setAmount(tamedHorse.getAmount() - 1);
         tamedHorseUser.updateInventory();
+    }
+
+    @EventHandler
+    public void onPlayerOpenTamedHorseInventory(InventoryOpenEvent event) {
+        InventoryHolder inventoryHolder = event.getInventory().getHolder();
+
+        if (inventoryHolder instanceof Horse) {
+            event.setCancelled(true);
+        }
     }
 }
