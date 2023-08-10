@@ -7,7 +7,6 @@ public class GaleKit extends Kit {
         super("Gale");
 
         addItemByMaterial(Material.TNT, 10);
-        addItemByMaterial(Material.COBWEB, 20);
-        addItemByMaterial(Material.BOW);
+        addItemByMaterial(Material.COBWEB);
     }
 }
