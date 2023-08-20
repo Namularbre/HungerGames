@@ -38,25 +38,27 @@ public class HungerGamesConfiguration {
     }
 
     private static void loadData() {
-        MINIMAL_AMOUNT_OF_PLAYER = configuration.getInt("minimal_amount_of_player");
-        SECOND_BEFORE_STARTING_GAME = configuration.getInt("second_before_starting_game");
-        SECOND_BEFORE_PVP = configuration.getInt("second_before_pvp");
+        if (configuration != null) {
+            MINIMAL_AMOUNT_OF_PLAYER = configuration.getInt("minimal_amount_of_player");
+            SECOND_BEFORE_STARTING_GAME = configuration.getInt("second_before_starting_game");
+            SECOND_BEFORE_PVP = configuration.getInt("second_before_pvp");
 
-        ARENA_START_RADIUS = configuration.getDouble("arena_start_radius");
-        ARENA_END_RADIUS = configuration.getDouble("arena_end_radius");
-        ARENA_REDUCING_VALUE = configuration.getDouble("arena_reducing_pvp");
+            ARENA_START_RADIUS = configuration.getDouble("arena_start_radius");
+            ARENA_END_RADIUS = configuration.getDouble("arena_end_radius");
+            ARENA_REDUCING_VALUE = configuration.getDouble("arena_reducing_pvp");
 
-        MAX_ITEM_IN_FEAST = configuration.getInt("max_item_in_feast");
-        NUMBER_OF_FEAST = configuration.getInt("number_of_feast");
-        SECONDS_BETWEEN_FEAST = configuration.getInt("seconds_between_feast");
+            MAX_ITEM_IN_FEAST = configuration.getInt("max_item_in_feast");
+            NUMBER_OF_FEAST = configuration.getInt("number_of_feast");
+            SECONDS_BETWEEN_FEAST = configuration.getInt("seconds_between_feast");
 
-        MAX_ITEM_IN_GIFT = configuration.getInt("max_item_in_gift");
-        COAL_ORE_MINING_POPULARITY = configuration.getInt("coal_ore_mining_popularity");
-        IRON_ORE_MINING_POPULARITY = configuration.getInt("iron_ore_mining_popularity");
-        DIAMOND_ORE_MINING_POPULARITY = configuration.getInt("diamond_ore_mining_popularity");
-        MONSTER_KILLING_POPULARITY = configuration.getInt("monster_killing_popularity");
-        ANIMAL_KILLING_POPULARITY = configuration.getInt("animal_killing_popularity");
-        PLAYER_KILLING_POPULARITY = configuration.getInt("player_killing_popularity");
+            MAX_ITEM_IN_GIFT = configuration.getInt("max_item_in_gift");
+            COAL_ORE_MINING_POPULARITY = configuration.getInt("coal_ore_mining_popularity");
+            IRON_ORE_MINING_POPULARITY = configuration.getInt("iron_ore_mining_popularity");
+            DIAMOND_ORE_MINING_POPULARITY = configuration.getInt("diamond_ore_mining_popularity");
+            MONSTER_KILLING_POPULARITY = configuration.getInt("monster_killing_popularity");
+            ANIMAL_KILLING_POPULARITY = configuration.getInt("animal_killing_popularity");
+            PLAYER_KILLING_POPULARITY = configuration.getInt("player_killing_popularity");
+        }
     }
 
 }
