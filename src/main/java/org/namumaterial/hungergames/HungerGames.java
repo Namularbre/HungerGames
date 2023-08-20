@@ -96,6 +96,7 @@ public final class HungerGames extends JavaPlugin {
         getCommand("heal").setExecutor(new HealCommand());
         getCommand("spawn").setExecutor(new SpawnCommand());
         getCommand("arenaradius").setExecutor(new ArenaRadiusCommand());
+        getCommand("team").setExecutor(new TeammateCommand());
         getLogger().info("Done");
     }
 
