@@ -20,25 +20,10 @@ public class TeammateCommand implements CommandExecutor {
         Player player = (Player) sender;
 
         if (args.length == 1) {
-            boolean finded = false;
-
-            for (Player alivePlayer: TributeManager.getAlivePlayers()) {
-                if (alivePlayer.getName().equals(args[0])) {
-                    Tribute senderTribute = TributeManager.getTribute(player);
-                    senderTribute.addTeammates(alivePlayer);
-                    finded = true;
-                    PlayerRawMessageSender.sendValidationMessage("Player added to team", player);
-                }
-            }
-
-            if (!finded) {
-                PlayerRawMessageSender.sendErrorMessage("Player not found", player);
-            }
+            addTeammate(player, args[0]);
         } else if (args.length == 0) {
             Tribute tribute = TributeManager.getTribute(player);
-
             Collection<Player> teammates = tribute.getTeammates();
-
             teammatesToString(teammates, player);
         } else {
             PlayerRawMessageSender.sendErrorMessage("You need to give one username", player);
@@ -59,5 +44,43 @@ public class TeammateCommand implements CommandExecutor {
         }
 
         PlayerRawMessageSender.sendInformationMessage(teammatesString.toString(), player);
+    }
+
+    private void addTeammate(Player player, String teammateName) {
+        if (player.getName().equals(teammateName)) {
+            PlayerRawMessageSender.sendErrorMessage("You can't be your own teammate", player);
+            return;
+        }
+
+        if (isNotAlreadyATeammate(player, teammateName)) {
+            boolean finded = false;
+
+            for (Player alivePlayer: TributeManager.getAlivePlayers()) {
+                if (alivePlayer.getName().equals(teammateName)) {
+                    Tribute senderTribute = TributeManager.getTribute(player);
+                    senderTribute.addTeammates(alivePlayer);
+                    finded = true;
+                    PlayerRawMessageSender.sendValidationMessage("Player added to team", player);
+                }
+            }
+
+            if (!finded) {
+                PlayerRawMessageSender.sendErrorMessage("Player not found", player);
+            }
+        } else {
+            PlayerRawMessageSender.sendErrorMessage("Player is already your teammate", player);
+        }
+    }
+
+    private boolean isNotAlreadyATeammate(Player player, String teammateName) {
+        Tribute tribute = TributeManager.getTribute(player);
+
+        for (Player teammate: tribute.getTeammates()) {
+            if (teammate.getName().equals(teammateName)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
