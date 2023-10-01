@@ -1,10 +1,6 @@
 package org.namumaterial.hungergames.utils;
 
-import org.bukkit.entity.Player;
 import org.namumaterial.hungergames.kits.Kit;
-
-import java.util.ArrayList;
-import java.util.Collection;
 
 public class Tribute {
     private Kit kit;
