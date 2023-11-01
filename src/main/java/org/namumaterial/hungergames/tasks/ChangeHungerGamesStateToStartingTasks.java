@@ -27,7 +27,10 @@ public class ChangeHungerGamesStateToStartingTasks extends BukkitRunnable {
         if (TributeManager.getAlivePlayers().size() >= HungerGamesConfiguration.MINIMAL_AMOUNT_OF_PLAYER) {
             if (this.secondsLeft > 0) {
                 secondsLeft--;
-                Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "Enough players are connected, starting in " + secondsLeft + " seconds");
+
+                if (this.secondsLeft % 5 == 0 || this.secondsLeft == 3 || this.secondsLeft == 2 || this.secondsLeft == 1) {
+                    Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "Enough players are connected, starting in " + secondsLeft + " seconds");
+                }
             } else if (this.secondsLeft == 0) {
                 Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "May the odds be ever in your favor!");
                 KitManager.giveKitToPlayers();

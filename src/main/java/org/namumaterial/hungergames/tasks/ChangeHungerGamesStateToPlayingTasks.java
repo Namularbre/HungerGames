@@ -25,7 +25,10 @@ public class ChangeHungerGamesStateToPlayingTasks extends BukkitRunnable {
         if (HungerGameStateManager.gameIsStarting()) {
             if (this.secondLeft > 0) {
                 this.secondLeft--;
-                Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "" + this.secondLeft + " seconds remaining before Pvp is enabled !");
+
+                if (secondLeft % 5 == 0 || secondLeft == 3 || secondLeft == 2 || secondLeft == 1) {
+                    Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "" + this.secondLeft + " seconds remaining before Pvp is enabled !");
+                }
             } else if (this.secondLeft == 0) {
                 this.finished = true;
                 HungerGameStateManager.setPlaying();
