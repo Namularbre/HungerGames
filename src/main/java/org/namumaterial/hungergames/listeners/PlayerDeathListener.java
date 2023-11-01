@@ -19,8 +19,6 @@ public class PlayerDeathListener implements Listener {
 
         makeCanonBallSound(killedPlayer);
 
-        TributeManager.removePlayer(killedPlayer);
-
         final int NUMBER_OF_PLAYER_REMAINING = TributeManager.getNumberOfAlivePlayer();
         final int ONE_PLAYER_LEFT = 1;
 
