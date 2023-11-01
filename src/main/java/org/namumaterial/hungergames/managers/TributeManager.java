@@ -56,10 +56,6 @@ public class TributeManager {
         return alivePlayers;
     }
 
-    public static int getNumberOfPlayer() {
-        return Bukkit.getServer().getOnlinePlayers().size();
-    }
-
     public static Player getNearestPlayer(Player player) {
         Player nearestPlayer = null;
         double nearestDistance = Double.MAX_VALUE;
