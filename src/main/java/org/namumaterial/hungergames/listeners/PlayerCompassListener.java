@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.namumaterial.hungergames.managers.TributeManager;
+import org.namumaterial.hungergames.managers.PlayerManager;
 
 public class PlayerCompassListener implements Listener {
     @EventHandler
@@ -16,7 +16,7 @@ public class PlayerCompassListener implements Listener {
         Player player = event.getPlayer();
 
         if (hasACompassInInventory(player)) {
-            Player nearestPlayer = TributeManager.getNearestPlayer(player);
+            Player nearestPlayer = PlayerManager.getNearestPlayer(player);
 
             if (nearestPlayer != null) {
                 Location nearestPlayerLocation = nearestPlayer.getLocation();
@@ -34,7 +34,7 @@ public class PlayerCompassListener implements Listener {
         Player player = event.getPlayer();
 
         if (hasCompassInHand(player) && isRightClickAction(event)) {
-            Player nearestPlayer = TributeManager.getNearestPlayer(player);
+            Player nearestPlayer = PlayerManager.getNearestPlayer(player);
 
             if (nearestPlayer != null) {
                 Location nearestPlayerLocation = nearestPlayer.getLocation();

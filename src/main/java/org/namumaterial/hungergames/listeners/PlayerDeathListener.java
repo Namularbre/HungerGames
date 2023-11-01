@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.namumaterial.hungergames.managers.PlayerManager;
 import org.namumaterial.hungergames.managers.TributeManager;
 import org.namumaterial.hungergames.managers.HungerGameStateManager;
 import org.namumaterial.hungergames.utils.HungerGamesConfiguration;
@@ -19,7 +20,7 @@ public class PlayerDeathListener implements Listener {
 
         makeCanonBallSound(killedPlayer);
 
-        final int NUMBER_OF_PLAYER_REMAINING = TributeManager.getNumberOfAlivePlayer();
+        final int NUMBER_OF_PLAYER_REMAINING = PlayerManager.getNumberOfAlivePlayer();
         final int ONE_PLAYER_LEFT = 1;
 
         if (NUMBER_OF_PLAYER_REMAINING != ONE_PLAYER_LEFT) {

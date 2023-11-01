@@ -5,6 +5,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.namumaterial.hungergames.managers.HungerGameStateManager;
 import org.namumaterial.hungergames.managers.KitManager;
+import org.namumaterial.hungergames.managers.PlayerManager;
 import org.namumaterial.hungergames.managers.TributeManager;
 import org.namumaterial.hungergames.utils.HungerGamesConfiguration;
 
@@ -31,7 +32,7 @@ public class ChangeHungerGamesStateToStartingTasks extends BukkitRunnable {
                 Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "May the odds be ever in your favor!");
                 KitManager.giveKitToPlayers();
                 HungerGameStateManager.setStarting();
-                TributeManager.teleportAllPlayersToSpawn();
+                PlayerManager.teleportAllPlayersToSpawn();
                 this.finished = true;
             }
         }
