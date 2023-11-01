@@ -45,10 +45,6 @@ public class HungerGameStateManager {
         return currentState == State.PLAYING;
     }
 
-    public static boolean gameIsEnded() {
-        return currentState == State.ENDED;
-    }
-
     public static boolean gameIsLaunched() {
         return gameIsPlaying() || gameIsStarting();
     }
