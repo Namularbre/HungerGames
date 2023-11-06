@@ -6,7 +6,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.namumaterial.hungergames.managers.HungerGameStateManager;
 import org.namumaterial.hungergames.managers.KitManager;
 import org.namumaterial.hungergames.managers.PlayerManager;
-import org.namumaterial.hungergames.managers.TributeManager;
 import org.namumaterial.hungergames.utils.HungerGamesConfiguration;
 
 public class ChangeHungerGamesStateToStartingTasks extends BukkitRunnable {
@@ -24,7 +23,7 @@ public class ChangeHungerGamesStateToStartingTasks extends BukkitRunnable {
             return;
         }
 
-        if (TributeManager.getAlivePlayers().size() >= HungerGamesConfiguration.MINIMAL_AMOUNT_OF_PLAYER) {
+        if (PlayerManager.getAlivePlayers().size() >= HungerGamesConfiguration.MINIMAL_AMOUNT_OF_PLAYER) {
             if (this.secondsLeft > 0) {
                 secondsLeft--;
 

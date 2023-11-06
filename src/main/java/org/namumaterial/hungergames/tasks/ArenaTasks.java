@@ -4,7 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.namumaterial.hungergames.HungerGames;
 import org.namumaterial.hungergames.managers.HungerGameStateManager;
-import org.namumaterial.hungergames.managers.TributeManager;
+import org.namumaterial.hungergames.managers.PlayerManager;
 import org.namumaterial.hungergames.utils.PlayerRawMessageSender;
 
 public class ArenaTasks extends BukkitRunnable {
@@ -30,7 +30,7 @@ public class ArenaTasks extends BukkitRunnable {
     private void runBorderAndPlayerVerificationTasks() {
         if (HungerGameStateManager.gameIsLaunched()) {
 
-            for (Player player: TributeManager.getAlivePlayers()) {
+            for (Player player: PlayerManager.getAlivePlayers()) {
                 if (!HungerGames.arena.isInsideRegion(player)) {
                     giveDamageToPlayer(player);
                 } else if (HungerGames.arena.isNearBorder(player)) {

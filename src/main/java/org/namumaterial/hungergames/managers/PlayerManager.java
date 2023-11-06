@@ -5,6 +5,9 @@ import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.namumaterial.hungergames.HungerGames;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class PlayerManager {
 
     public static Player getNearestPlayer(Player player) {
@@ -43,5 +46,16 @@ public class PlayerManager {
 
     private static boolean isPlaying(Player player) {
         return !player.isDead() && player.getGameMode() == GameMode.SURVIVAL;
+    }
+
+    public static Collection<Player> getAlivePlayers() {
+        ArrayList<Player> alivePlayers = new ArrayList<>();
+        for (Player player: Bukkit.getServer().getOnlinePlayers()) {
+            if (!player.isDead() && player.getGameMode() == GameMode.SURVIVAL) {
+                alivePlayers.add(player);
+            }
+        }
+
+        return alivePlayers;
     }
 }

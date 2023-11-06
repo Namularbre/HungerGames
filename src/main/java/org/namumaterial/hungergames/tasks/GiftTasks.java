@@ -3,6 +3,7 @@ package org.namumaterial.hungergames.tasks;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.namumaterial.hungergames.managers.HungerGameStateManager;
+import org.namumaterial.hungergames.managers.PlayerManager;
 import org.namumaterial.hungergames.managers.TributeManager;
 import org.namumaterial.hungergames.utils.GiftContentMaker;
 import org.namumaterial.hungergames.utils.PlayerRawMessageSender;
@@ -30,7 +31,7 @@ public class GiftTasks extends BukkitRunnable {
 
         final int GIFT_POPULARITY = 1000;
 
-        for (Player player : TributeManager.getAlivePlayers()) {
+        for (Player player : PlayerManager.getAlivePlayers()) {
             Tribute tribute = TributeManager.getTribute(player);
 
             if (tribute.getPopularity() >= GIFT_POPULARITY) {

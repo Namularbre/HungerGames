@@ -51,7 +51,7 @@ public class KitManager {
     }
 
     public static void giveKitToPlayers() {
-        for (Player player: TributeManager.getAlivePlayers()) {
+        for (Player player: PlayerManager.getAlivePlayers()) {
             Kit selectedKit = TributeManager.getTribute(player).getKit();
 
             for (Map.Entry<ItemStack, Integer> itemAndAmount: selectedKit.getItems().entrySet()) {
