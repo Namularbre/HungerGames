@@ -4,8 +4,9 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 
 public class HungerGamesConfiguration {
+
+    public static int MINIMAL_AMOUNT_OF_PLAYER = 3;
     //Time config
-    public static int MINIMAL_AMOUNT_OF_PLAYER = 1;
     public static int SECOND_BEFORE_STARTING_GAME = 90;
     public static int SECOND_BEFORE_PVP = 90;
 
