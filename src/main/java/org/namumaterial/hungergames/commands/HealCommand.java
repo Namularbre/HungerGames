@@ -4,6 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.namumaterial.hungergames.managers.PlayerManager;
 import org.namumaterial.hungergames.utils.PlayerRawMessageSender;
 
 public class HealCommand implements CommandExecutor {
@@ -16,13 +17,7 @@ public class HealCommand implements CommandExecutor {
         Player player = (Player) sender;
 
         if (player.isOp()) {
-            final double FULL_HEALTH = 20.0;
-            final int FULL_FOOD = 20;
-            final float SATURATION = 20.0f;
-
-            player.setHealth(FULL_HEALTH);
-            player.setFoodLevel(FULL_FOOD);
-            player.setSaturation(SATURATION);
+            PlayerManager.healPlayer(player);
             PlayerRawMessageSender.sendValidationMessage("Healed !", player);
         } else {
             PlayerRawMessageSender.sendNoCommandPermissionMessage(player);
