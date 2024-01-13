@@ -14,8 +14,10 @@ public class FeastTasks extends BukkitRunnable {
 
     @Override
     public void run() {
+        final int UNLIMITED_NUMBER_OF_FEAST = -1;
         if (HungerGameStateManager.gameIsPlaying()) {
-            if (HungerGamesConfiguration.NUMBER_OF_FEAST == -1 || HungerGamesConfiguration.NUMBER_OF_FEAST >= numberOfFeastSpawned) {
+            if (HungerGamesConfiguration.NUMBER_OF_FEAST == UNLIMITED_NUMBER_OF_FEAST || HungerGamesConfiguration.NUMBER_OF_FEAST > numberOfFeastSpawned) {
+                this.numberOfFeastSpawned++;
                 FeastManager.placeFeast();
             }
         }
