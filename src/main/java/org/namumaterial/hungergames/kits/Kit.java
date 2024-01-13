@@ -3,9 +3,7 @@ package org.namumaterial.hungergames.kits;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Kit {
     private String name;
