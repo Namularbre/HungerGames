@@ -21,11 +21,7 @@ public class SelectKitCommand implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        if (HungerGameStateManager.gameIsNotStarted()) {
-            if (args.length != 1) {
-                PlayerRawMessageSender.sendErrorMessage("This command require the kit name : /kit [name]", player);
-                return true;
-            }
+        if (args.length == 1 && HungerGameStateManager.gameIsNotStarted()) {
             final String KIT_NAME = args[0];
 
             Kit selectedKit = KitManager.getKitByName(KIT_NAME);
