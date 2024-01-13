@@ -36,3 +36,6 @@ commands:
   arenaradius:
     description: Show arena radius
     usage: /arenaradius
+  kitselector:
+    description: Give you a kit selector
+    usage: /kitselector
