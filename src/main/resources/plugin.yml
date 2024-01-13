@@ -36,6 +36,3 @@ commands:
   arenaradius:
     description: Show arena radius
     usage: /arenaradius
-  team:
-    description: Show teammate or add a teammate if given a valid player name
-    usage: /team or /team [player name]
