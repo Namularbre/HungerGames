@@ -37,10 +37,6 @@ public class Arena {
         return distanceSquared >= (distanceToBorder * distanceToBorder);
     }
 
-    public boolean isNearBorder(LivingEntity entity) {
-        return this.isNearBorder(entity.getLocation());
-    }
-
     public void reduceRadius() {
         this.radius = Math.max(this.radius - HungerGamesConfiguration.ARENA_REDUCING_VALUE, this.endRadius);
     }

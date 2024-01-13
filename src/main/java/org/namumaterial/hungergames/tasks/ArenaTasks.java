@@ -33,7 +33,7 @@ public class ArenaTasks extends BukkitRunnable {
             for (Player player: PlayerManager.getAlivePlayers()) {
                 if (!HungerGames.arena.isInsideRegion(player)) {
                     giveDamageToPlayer(player);
-                } else if (HungerGames.arena.isNearBorder(player)) {
+                } else if (HungerGames.arena.isNearBorder(player.getLocation())) {
                     PlayerRawMessageSender.sendInformationMessage("You are near the arena border ! Turn around to avoid being killed !", player);
                 }
             }
