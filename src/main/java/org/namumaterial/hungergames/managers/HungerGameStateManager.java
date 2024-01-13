@@ -51,6 +51,9 @@ public class HungerGameStateManager {
 
     public static void setCurrentStep(State state) {
         switch (state) {
+            case NOT_STARTED:
+                setNotStarted();
+                break;
             case STARTING:
                 setStarting();
                 break;
@@ -60,10 +63,12 @@ public class HungerGameStateManager {
             case ENDED:
                 setEnded();
                 break;
-            default:
-                currentState = State.NOT_STARTED;
-                break;
         }
+    }
+
+    public static void setNotStarted() {
+        PlayerManager.setPlayersAsNotStartedState();
+        currentState = State.NOT_STARTED;
     }
 
     public static void setStarting() {

@@ -64,4 +64,26 @@ public class PlayerManager {
             player.getInventory().remove(ItemManager.kitSelector);
         }
     }
+
+    public static void healPlayer(Player player) {
+        final double FULL_HEALTH = 20.0;
+        final int FULL_FOOD = 20;
+        final float SATURATION = 20.0F;
+
+        player.setHealth(FULL_HEALTH);
+        player.setFoodLevel(FULL_FOOD);
+        player.setSaturation(SATURATION);
+    }
+
+    public static void setPlayersAsNotStartedState() {
+        for (Player player: Bukkit.getServer().getOnlinePlayers()) {
+            if (player.getGameMode() == GameMode.SPECTATOR || player.getGameMode() == GameMode.SURVIVAL) {
+                player.setGameMode(GameMode.SURVIVAL);
+                player.getInventory().clear();
+                player.getInventory().addItem(ItemManager.kitSelector);
+                player.setExp(0.0F);
+                healPlayer(player);
+            }
+        }
+    }
 }
