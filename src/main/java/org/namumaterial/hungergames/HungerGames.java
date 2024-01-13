@@ -112,9 +112,7 @@ public final class HungerGames extends JavaPlugin {
     }
 
     public void createArena() {
-        final Location SPAWN_LOCATION = getServer().getWorld("world").getSpawnLocation();
-
-        arena = new Arena(SPAWN_LOCATION);
+        arena = new Arena();
     }
 
     @Override

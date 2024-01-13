@@ -9,7 +9,7 @@ public class Arena {
     private double radius;
     private final double endRadius;
 
-    public Arena(Location center) {
+    public Arena() {
         this.center = Bukkit.getServer().getWorld("world").getSpawnLocation();
         this.radius = HungerGamesConfiguration.ARENA_START_RADIUS;
         this.endRadius = HungerGamesConfiguration.ARENA_END_RADIUS;
