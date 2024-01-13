@@ -15,6 +15,8 @@ public final class HungerGames extends JavaPlugin {
     public void onEnable() {
         loadConfig();
 
+        initItems();
+
         initKits();
 
         initTributeManager();
@@ -28,6 +30,12 @@ public final class HungerGames extends JavaPlugin {
         initCommands();
 
         initTaskManager();
+    }
+
+    private void initItems() {
+        getLogger().info("Initialising items...");
+        ItemManager.createItems();
+        getLogger().info("Done");
     }
 
     private void initTaskManager() {
@@ -96,6 +104,7 @@ public final class HungerGames extends JavaPlugin {
         getCommand("heal").setExecutor(new HealCommand());
         getCommand("spawn").setExecutor(new SpawnCommand());
         getCommand("arenaradius").setExecutor(new ArenaRadiusCommand());
+        getCommand("kitselector").setExecutor(new KitSelectorCommand());
         getLogger().info("Done");
     }
 
