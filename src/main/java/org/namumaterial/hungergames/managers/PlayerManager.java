@@ -58,4 +58,10 @@ public class PlayerManager {
 
         return alivePlayers;
     }
+
+    public static void removeKitSelectorFromInventory() {
+        for (Player player: Bukkit.getServer().getOnlinePlayers()) {
+            player.getInventory().remove(ItemManager.kitSelector);
+        }
+    }
 }
