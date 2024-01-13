@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.namumaterial.hungergames.managers.HungerGameStateManager;
+import org.namumaterial.hungergames.managers.ItemManager;
 import org.namumaterial.hungergames.managers.TributeManager;
 import org.namumaterial.hungergames.utils.PlayerRawMessageSender;
 import org.namumaterial.hungergames.utils.Tribute; //Don't remove
@@ -33,7 +34,8 @@ public class PlayerConnectionListener implements Listener {
     }
 
     private void setPlayerNotStarted(Player player) {
-        PlayerRawMessageSender.sendInformationMessage("Do /kits to see the kits, and then /kit [name] to select the kit.", player);
+        player.getInventory().addItem(ItemManager.kitSelector);
+        PlayerRawMessageSender.sendInformationMessage("Do /kits to see the kits, and then /kit [name] to select the kit, or use kit selector.", player);
 
         addPlayerToTributeManager(player);
     }

@@ -50,10 +50,26 @@ public class HungerGameStateManager {
     }
 
     public static void setCurrentStep(State state) {
-        currentState = state;
+        switch (state) {
+            case STARTING:
+                setStarting();
+                break;
+            case PLAYING:
+                setPlaying();
+                break;
+            case ENDED:
+                setEnded();
+                break;
+            default:
+                currentState = State.NOT_STARTED;
+                break;
+        }
     }
 
     public static void setStarting() {
+        PlayerManager.removeKitSelectorFromInventory();
+        KitManager.giveKitToPlayers();
+        PlayerManager.teleportAllPlayersToSpawn();
         currentState = State.STARTING;
     }
 
@@ -74,5 +90,4 @@ public class HungerGameStateManager {
 
         return "ERROR_STATE_NOT_FOUND";
     }
-
 }

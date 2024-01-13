@@ -32,9 +32,7 @@ public class ChangeHungerGamesStateToStartingTasks extends BukkitRunnable {
                 }
             } else if (this.secondsLeft == 0) {
                 Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "May the odds be ever in your favor!");
-                KitManager.giveKitToPlayers();
                 HungerGameStateManager.setStarting();
-                PlayerManager.teleportAllPlayersToSpawn();
                 this.finished = true;
             }
         }

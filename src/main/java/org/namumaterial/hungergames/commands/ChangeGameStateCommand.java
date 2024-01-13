@@ -34,11 +34,6 @@ public class ChangeGameStateCommand implements CommandExecutor {
         if (state != null) {
             HungerGameStateManager.setCurrentStep(state);
             PlayerRawMessageSender.sendValidationMessage("Done", player);
-
-            if (state == HungerGameStateManager.State.STARTING) {
-                KitManager.giveKitToPlayers();
-            }
-
         } else {
             PlayerRawMessageSender.sendErrorMessage("Unknown state", player);
         }
