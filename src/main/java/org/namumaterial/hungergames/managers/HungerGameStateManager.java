@@ -1,5 +1,7 @@
 package org.namumaterial.hungergames.managers;
 
+import org.namumaterial.hungergames.HungerGames;
+
 import java.util.HashMap;
 
 public class HungerGameStateManager {
@@ -68,6 +70,7 @@ public class HungerGameStateManager {
 
     public static void setNotStarted() {
         PlayerManager.setPlayersAsNotStartedState();
+        HungerGames.arena.reset();
         currentState = State.NOT_STARTED;
     }
 

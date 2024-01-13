@@ -60,4 +60,8 @@ public class Arena {
     public void setRadius(double radius) {
         this.radius = radius;
     }
+
+    public void reset() {
+        this.radius = HungerGamesConfiguration.ARENA_START_RADIUS;
+    }
 }
