@@ -12,6 +12,7 @@ commands:
   setstate:
     description: Change current game state
     usage: /setstate [state]
+    tab-completer: org.namumaterial.hungergames.commands.ChangeGameStateCommand
   state:
     description: Show game current state
     usage: /state
