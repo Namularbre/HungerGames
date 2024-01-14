@@ -52,6 +52,13 @@ public class GiftContentMaker {
         new ItemStack(Material.LAPIS_LAZULI, 12),
         new ItemStack(Material.LAPIS_LAZULI, 15),
         new ItemStack(Material.LAPIS_LAZULI, 20),
+        //plugin modified items
+        new ItemStack(Material.FIRE_CHARGE, 7),
+        new ItemStack(Material.FIRE_CHARGE, 12),
+        new ItemStack(Material.FIRE_CHARGE, 15),
+        new ItemStack(Material.TNT, 5),
+        new ItemStack(Material.TNT, 10),
+        new ItemStack(Material.TNT, 12)
     };
 
     public void makeGiftContent(Inventory giftInventory) {

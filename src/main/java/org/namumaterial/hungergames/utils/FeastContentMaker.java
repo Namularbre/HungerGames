@@ -26,6 +26,14 @@ public class FeastContentMaker {
         new ItemStack(Material.ARROW, 24),
         new ItemStack(Material.ARROW, 30),
         new ItemStack(Material.ARROW, 42),
+
+        new ItemStack(Material.FIRE_CHARGE, 12),
+        new ItemStack(Material.FIRE_CHARGE, 15),
+        new ItemStack(Material.FIRE_CHARGE, 20),
+        new ItemStack(Material.TNT, 10),
+        new ItemStack(Material.TNT, 12),
+        new ItemStack(Material.TNT, 17),
+        new ItemStack(Material.SADDLE, 1),
     };
 
     public void makeFeastContent(Inventory inventory) {
