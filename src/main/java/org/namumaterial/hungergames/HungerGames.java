@@ -1,6 +1,5 @@
 package org.namumaterial.hungergames;
 
-import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.namumaterial.hungergames.commands.*;
 import org.namumaterial.hungergames.listeners.*;
