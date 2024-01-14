@@ -11,7 +11,7 @@ commands:
     usage: /kit [name]
   setstate:
     description: Change current game state
-    usage: /change_state [state]
+    usage: /setstate [state]
   state:
     description: Show game current state
     usage: /state
