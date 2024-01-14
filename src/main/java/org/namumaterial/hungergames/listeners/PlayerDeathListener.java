@@ -19,6 +19,7 @@ public class PlayerDeathListener implements Listener {
         Player killedPlayer = event.getEntity();
 
         makeCanonBallSound(killedPlayer);
+        putDeadPlayerInSpectatorGamemode(killedPlayer);
 
         final int NUMBER_OF_PLAYER_REMAINING = PlayerManager.getNumberOfAlivePlayer();
         final int ONE_PLAYER_LEFT = 1;
@@ -26,14 +27,11 @@ public class PlayerDeathListener implements Listener {
         if (NUMBER_OF_PLAYER_REMAINING != ONE_PLAYER_LEFT) {
             Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "" + NUMBER_OF_PLAYER_REMAINING + " tributes remaining !");
             givePopularityToKiller(killedPlayer);
-
         } else {
+            makeWinAnimation(killedPlayer);
             HungerGameStateManager.setEnded();
             Bukkit.getServer().broadcastMessage( ChatColor.GOLD + "GAME OVER");
-            makeWinAnimation(killedPlayer);
         }
-
-        putDeadPlayerInSpectatorGamemode(killedPlayer);
     }
 
     private void givePopularityToKiller(Player killedPlayer) {
@@ -65,11 +63,11 @@ public class PlayerDeathListener implements Listener {
         return sounds[musicIndex];
     }
 
-    private void makeWinAnimation(Player killedPlayer) {
+    private void makeWinAnimation(Player killer) {
         final float VOLUME = 5.0f;
         final float PITCH = 1.0f;
 
-        Location location = killedPlayer.getLocation();
+        Location location = killer.getLocation();
         location.getWorld().playSound(location, pickRandomMusic(), VOLUME, PITCH);
     }
 }
