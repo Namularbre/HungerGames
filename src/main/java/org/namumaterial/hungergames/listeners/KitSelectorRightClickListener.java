@@ -44,7 +44,9 @@ public class KitSelectorRightClickListener implements Listener {
 
         final int NUMBER_OF_KITS = kits.size();
 
-        Inventory menu = Bukkit.createInventory(null, NUMBER_OF_KITS, "Choose your kit:");
+        final int INVENTORY_SIZE = (int) Math.ceil((double) NUMBER_OF_KITS / 9) * 9;
+
+        Inventory menu = Bukkit.createInventory(null, INVENTORY_SIZE, "Choose your kit:");
 
         for (Kit kit: kits) {
             ItemStack item = new ItemStack(Material.NAME_TAG);
