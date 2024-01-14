@@ -6,7 +6,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.*;
 
 public class Kit {
-    private String name;
+    private final String name;
     private Map<ItemStack, Integer> items;
 
     public Kit(String name) {
