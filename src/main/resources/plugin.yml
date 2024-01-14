@@ -23,7 +23,7 @@ commands:
     usage: /feast
   setpopularity:
     description: Set the popularity of a player
-    usage: /set_popularity [amount] where amount is a positive Integer
+    usage: /setpopularity [amount] where amount is a positive Integer
   popularity:
     description: Show your popularity
     usage: /popularity
