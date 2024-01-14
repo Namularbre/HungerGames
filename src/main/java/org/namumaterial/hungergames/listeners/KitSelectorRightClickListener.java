@@ -17,6 +17,7 @@ import org.namumaterial.hungergames.managers.KitManager;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 public class KitSelectorRightClickListener implements Listener {
     @EventHandler
@@ -39,9 +40,11 @@ public class KitSelectorRightClickListener implements Listener {
     }
 
     private void openKitSelectionInterface(Player player) {
-        Inventory menu = Bukkit.createInventory(null, 9, "Choose your kit:");
-
         Collection<Kit> kits = KitManager.getKits();
+
+        final int NUMBER_OF_KITS = kits.size();
+
+        Inventory menu = Bukkit.createInventory(null, NUMBER_OF_KITS, "Choose your kit:");
 
         for (Kit kit: kits) {
             ItemStack item = new ItemStack(Material.NAME_TAG);
@@ -49,8 +52,8 @@ public class KitSelectorRightClickListener implements Listener {
 
             List<String> lore = new ArrayList<>();
 
-            for (ItemStack kitItem: kit.getItems().keySet()) {
-                lore.add(kitItem.getType() + " x" + kitItem.getAmount());
+            for (Map.Entry<ItemStack, Integer> kitdata: kit.getItems().entrySet()) {
+                lore.add(kitdata.getKey().getType() + " x" + kitdata.getValue().toString());
             }
             meta.setDisplayName(kit.getName());
             meta.setLore(lore);
