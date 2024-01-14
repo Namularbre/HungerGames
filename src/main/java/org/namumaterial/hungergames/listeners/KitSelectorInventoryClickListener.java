@@ -22,7 +22,7 @@ public class KitSelectorInventoryClickListener implements Listener {
         ItemStack clickedItem = event.getCurrentItem();
         Inventory clickedInventory = event.getClickedInventory();
 
-        if (clickedInventory != null && event.getView().getTitle() == "Choose your kit:" && HungerGameStateManager.gameIsNotStarted()) {
+        if (clickedInventory != null && event.getView().getTitle().equals("Choose your kit:") && HungerGameStateManager.gameIsNotStarted()) {
             event.setCancelled(true);
 
             if (clickedItem != null && clickedItem.getType() != Material.AIR) {
