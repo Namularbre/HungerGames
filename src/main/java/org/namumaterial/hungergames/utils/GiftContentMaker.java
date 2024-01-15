@@ -8,7 +8,6 @@ import java.util.Random;
 
 public class GiftContentMaker {
     private final ItemStack[] LOOT = {
-        //Diamond stuff
         new ItemStack(Material.DIAMOND, 1),
         new ItemStack(Material.DIAMOND, 2),
         new ItemStack(Material.DIAMOND, 3),
@@ -19,7 +18,6 @@ public class GiftContentMaker {
         new ItemStack(Material.DIAMOND_CHESTPLATE, 1),
         new ItemStack(Material.DIAMOND_LEGGINGS, 1),
         new ItemStack(Material.DIAMOND_BOOTS, 1),
-        //Iron
         new ItemStack(Material.IRON_INGOT, 5),
         new ItemStack(Material.IRON_SWORD, 1),
         new ItemStack(Material.IRON_AXE, 1),
@@ -28,14 +26,10 @@ public class GiftContentMaker {
         new ItemStack(Material.IRON_CHESTPLATE, 1),
         new ItemStack(Material.IRON_LEGGINGS, 1),
         new ItemStack(Material.IRON_BOOTS, 1),
-
-        //Food
         new ItemStack(Material.COOKED_BEEF, 3),
         new ItemStack(Material.COOKED_BEEF, 4),
         new ItemStack(Material.COOKED_BEEF, 5),
         new ItemStack(Material.GOLDEN_APPLE, 1),
-
-        //Random items
         new ItemStack(Material.ENCHANTING_TABLE, 1),
         new ItemStack(Material.BUCKET, 1),
         new ItemStack(Material.BUCKET, 2),
@@ -52,7 +46,6 @@ public class GiftContentMaker {
         new ItemStack(Material.LAPIS_LAZULI, 12),
         new ItemStack(Material.LAPIS_LAZULI, 15),
         new ItemStack(Material.LAPIS_LAZULI, 20),
-        //plugin modified items
         new ItemStack(Material.FIRE_CHARGE, 7),
         new ItemStack(Material.FIRE_CHARGE, 12),
         new ItemStack(Material.FIRE_CHARGE, 15),
