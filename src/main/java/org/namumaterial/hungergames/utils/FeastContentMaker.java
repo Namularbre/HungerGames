@@ -18,15 +18,12 @@ public class FeastContentMaker {
         new ItemStack(Material.DIAMOND_CHESTPLATE, 1),
         new ItemStack(Material.DIAMOND_LEGGINGS, 1),
         new ItemStack(Material.DIAMOND_BOOTS, 1),
-
         new ItemStack(Material.GOLDEN_APPLE, 1),
         new ItemStack(Material.BOW, 1),
         new ItemStack(Material.CROSSBOW, 1),
         new ItemStack(Material.ARROW, 15),
         new ItemStack(Material.ARROW, 24),
         new ItemStack(Material.ARROW, 30),
-        new ItemStack(Material.ARROW, 42),
-
         new ItemStack(Material.FIRE_CHARGE, 12),
         new ItemStack(Material.FIRE_CHARGE, 15),
         new ItemStack(Material.FIRE_CHARGE, 20),
