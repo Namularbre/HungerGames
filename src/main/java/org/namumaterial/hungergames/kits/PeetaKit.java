@@ -6,8 +6,7 @@ public class PeetaKit extends Kit {
     public PeetaKit() {
         super("Peeta");
 
-        addItemByMaterial(Material.CAKE, 3);
+        addItemByMaterial(Material.CAKE, 1);
         addItemByMaterial(Material.BREAD, 3);
-        addItemByMaterial(Material.WOODEN_SWORD);
     }
 }
