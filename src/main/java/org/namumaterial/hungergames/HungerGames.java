@@ -1,5 +1,6 @@
 package org.namumaterial.hungergames;
 
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.namumaterial.hungergames.commands.*;
 import org.namumaterial.hungergames.listeners.*;
@@ -75,21 +76,23 @@ public final class HungerGames extends JavaPlugin {
 
     private void initEvents() {
         getLogger().info("Initialising listeners...");
-        getServer().getPluginManager().registerEvents(new PlayerCompassListener(), this);
-        getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
-        getServer().getPluginManager().registerEvents(new PlayerKillListener(), this);
-        getServer().getPluginManager().registerEvents(new PlayerMineOreListener(), this);
-        getServer().getPluginManager().registerEvents(new ShieldCraftListener(), this);
-        getServer().getPluginManager().registerEvents(new PlayerConnectionListener(), this);
-        getServer().getPluginManager().registerEvents(new PlayerDisconnectionListener(), this);
-        getServer().getPluginManager().registerEvents(new EntityDamageListener(), this);
-        getServer().getPluginManager().registerEvents(new NoInteractionOnNotStartedListener(), this);
-        getServer().getPluginManager().registerEvents(new TntListener(), this);
-        getServer().getPluginManager().registerEvents(new FireballListener(), this);
-        getServer().getPluginManager().registerEvents(new TamedHorseListener(), this);
-        getServer().getPluginManager().registerEvents(new KitSelectorRightClickListener(), this);
-        getServer().getPluginManager().registerEvents(new KitSelectorInventoryClickListener(), this);
-        getServer().getPluginManager().registerEvents(new ItemDropListener(), this);
+        PluginManager pluginManager = getServer().getPluginManager();
+        pluginManager.registerEvents(new PlayerCompassListener(), this);
+        pluginManager.registerEvents(new PlayerDeathListener(), this);
+        pluginManager.registerEvents(new PlayerKillListener(), this);
+        pluginManager.registerEvents(new PlayerMineOreListener(), this);
+        pluginManager.registerEvents(new ShieldCraftListener(), this);
+        pluginManager.registerEvents(new PlayerConnectionListener(), this);
+        pluginManager.registerEvents(new PlayerDisconnectionListener(), this);
+        pluginManager.registerEvents(new EntityDamageListener(), this);
+        pluginManager.registerEvents(new NoInteractionOnNotStartedListener(), this);
+        pluginManager.registerEvents(new TntListener(), this);
+        pluginManager.registerEvents(new FireballListener(), this);
+        pluginManager.registerEvents(new TamedHorseListener(), this);
+        pluginManager.registerEvents(new KitSelectorRightClickListener(), this);
+        pluginManager.registerEvents(new KitSelectorInventoryClickListener(), this);
+        pluginManager.registerEvents(new ItemDropListener(), this);
+        pluginManager.registerEvents(new PlayerEatCakeListener(), this);
         getLogger().info("Done");
     }
 
