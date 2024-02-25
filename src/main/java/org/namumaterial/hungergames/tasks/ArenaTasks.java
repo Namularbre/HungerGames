@@ -12,7 +12,7 @@ public class ArenaTasks extends BukkitRunnable {
     @Override
     public void run() {
         reduceArena();
-        runBorderAndPlayerVerificationTasks();
+        makePlayerVerifications();
     }
 
     private void giveDamageToPlayer(Player player) {
@@ -27,7 +27,7 @@ public class ArenaTasks extends BukkitRunnable {
         }
     }
 
-    private void runBorderAndPlayerVerificationTasks() {
+    private void makePlayerVerifications() {
         if (HungerGameStateManager.gameIsLaunched()) {
 
             for (Player player: PlayerManager.getAlivePlayers()) {
@@ -39,5 +39,4 @@ public class ArenaTasks extends BukkitRunnable {
             }
         }
     }
-
 }
