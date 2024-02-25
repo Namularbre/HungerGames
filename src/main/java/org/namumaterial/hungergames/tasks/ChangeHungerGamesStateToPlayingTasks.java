@@ -6,12 +6,18 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.namumaterial.hungergames.managers.HungerGameStateManager;
 import org.namumaterial.hungergames.utils.HungerGamesConfiguration;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class ChangeHungerGamesStateToPlayingTasks extends BukkitRunnable {
 
     private boolean finished;
     private int secondLeft;
+    private final List<Integer> lastThreeSeconds;
 
     public ChangeHungerGamesStateToPlayingTasks() {
+        this.lastThreeSeconds = new ArrayList<>(Arrays.asList(new Integer[]{1,2,3}));
         this.secondLeft = HungerGamesConfiguration.SECOND_BEFORE_PVP;
         this.finished = false;
     }
@@ -23,10 +29,10 @@ public class ChangeHungerGamesStateToPlayingTasks extends BukkitRunnable {
         }
 
         if (HungerGameStateManager.gameIsStarting()) {
-            if (this.secondLeft > 0) {
+            if (timeLeft()) {
                 this.secondLeft--;
 
-                if (secondLeft % 5 == 0 || secondLeft == 3 || secondLeft == 2 || secondLeft == 1) {
+                if (secondLeft % 5 == 0 || this.lastThreeSeconds.contains(this.secondLeft)) {
                     Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "" + this.secondLeft + " seconds remaining before Pvp is enabled !");
                 }
             } else {
@@ -35,5 +41,9 @@ public class ChangeHungerGamesStateToPlayingTasks extends BukkitRunnable {
                 Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "Pvp is activated.");
             }
         }
+    }
+
+    private boolean timeLeft() {
+        return this.secondLeft > 0;
     }
 }
