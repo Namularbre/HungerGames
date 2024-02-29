@@ -10,6 +10,9 @@ import org.namumaterial.hungergames.utils.PlayerRawMessageSender;
 import org.namumaterial.hungergames.utils.Tribute;
 
 public class GiftTasks extends BukkitRunnable {
+
+    private final int giftPopularity = 1000;
+
     @Override
     public void run() {
         giveGiftToTributes();
@@ -29,19 +32,21 @@ public class GiftTasks extends BukkitRunnable {
             return;
         }
 
-        final int GIFT_POPULARITY = 1000;
-
         for (Player player : PlayerManager.getAlivePlayers()) {
             Tribute tribute = TributeManager.getTribute(player);
 
-            if (tribute.getPopularity() >= GIFT_POPULARITY) {
-                tribute.setPopularity(tribute.getPopularity() - GIFT_POPULARITY);
+            if (asEnoughPopularity(tribute)) {
+                tribute.setPopularity(tribute.getPopularity() - this.giftPopularity);
                 GiftContentMaker giftContentMaker = new GiftContentMaker();
 
                 giftContentMaker.makeGiftContent(player.getInventory());
                 advertPlayer(player);
             }
         }
+    }
+
+    private boolean asEnoughPopularity(Tribute tribute) {
+        return tribute.getPopularity() >= this.giftPopularity;
     }
 
     private void advertPlayer(Player player) {
