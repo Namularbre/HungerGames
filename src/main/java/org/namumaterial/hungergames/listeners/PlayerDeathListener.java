@@ -28,7 +28,6 @@ public class PlayerDeathListener implements Listener {
             Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "" + NUMBER_OF_PLAYER_REMAINING + " tributes remaining !");
             givePopularityToKiller(killedPlayer);
         } else {
-            makeWinAnimation(killedPlayer);
             HungerGameStateManager.setEnded();
             Bukkit.getServer().broadcastMessage( ChatColor.GOLD + "GAME OVER");
         }
@@ -53,21 +52,5 @@ public class PlayerDeathListener implements Listener {
 
         Location location = killedPlayer.getLocation();
         location.getWorld().playSound(location, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, VOLUME, PITCH);
-    }
-
-    private Sound pickRandomMusic() {
-        Sound[] sounds = {Sound.MUSIC_DISC_CHIRP, Sound.MUSIC_DISC_BLOCKS, Sound.MUSIC_DISC_CAT, Sound.MUSIC_DISC_FAR, Sound.MUSIC_DISC_MALL};
-        Random randomGenerator = new Random(sounds.length);
-        final int musicIndex = randomGenerator.nextInt();
-
-        return sounds[musicIndex];
-    }
-
-    private void makeWinAnimation(Player killer) {
-        final float VOLUME = 5.0f;
-        final float PITCH = 1.0f;
-
-        Location location = killer.getLocation();
-        location.getWorld().playSound(location, pickRandomMusic(), VOLUME, PITCH);
     }
 }
