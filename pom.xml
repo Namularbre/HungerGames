@@ -6,7 +6,7 @@
 
     <groupId>org.namumaterial</groupId>
     <artifactId>HungerGames</artifactId>
-    <version>v1.0.1-alpha</version>
+    <version>v1.0.2-alpha</version>
     <packaging>jar</packaging>
 
     <name>HungerGames</name>
