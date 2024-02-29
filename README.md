@@ -13,7 +13,7 @@ Hunger Games is a Minecraft game mode inspired by the Hunger Games book written 
 - An arena system
 - A kit system
 - A feast system
-- A popularity system that will reward you with gift form sponsor, like in the book
+- A popularity system that will reward you with gift from sponsor, like in the book
 
 
 ## FAQ
