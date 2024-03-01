@@ -15,7 +15,7 @@ public class PlayerManager {
         double nearestDistance = Double.MAX_VALUE;
 
         for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-            if (onlinePlayer != player) {
+            if (onlinePlayer != player && isPlaying(onlinePlayer)) {
                 double distance = onlinePlayer.getLocation().distance(player.getLocation());
                 if (distance < nearestDistance) {
                     nearestPlayer = onlinePlayer;
