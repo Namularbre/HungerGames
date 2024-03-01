@@ -30,7 +30,7 @@ public class ChangeHungerGamesStateToStartingTasks extends BukkitRunnable {
             return;
         }
 
-        if (PlayerManager.getAlivePlayers().size() >= HungerGamesConfiguration.MINIMAL_AMOUNT_OF_PLAYER) {
+        if (isEnoughPlayersToStart()) {
             if (timeLeft()) {
                 secondsLeft--;
 
@@ -43,6 +43,10 @@ public class ChangeHungerGamesStateToStartingTasks extends BukkitRunnable {
                 this.finished = true;
             }
         }
+    }
+
+    private static boolean isEnoughPlayersToStart() {
+        return PlayerManager.getAlivePlayers().size() >= HungerGamesConfiguration.MINIMAL_AMOUNT_OF_PLAYER;
     }
 
     private boolean timeLeft() {
