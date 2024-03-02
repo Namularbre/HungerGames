@@ -1,5 +1,7 @@
 package org.namumaterial.hungergames.utils;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 
@@ -59,6 +61,10 @@ public class HungerGamesConfiguration {
             MONSTER_KILLING_POPULARITY = configuration.getInt("monster_killing_popularity");
             ANIMAL_KILLING_POPULARITY = configuration.getInt("animal_killing_popularity");
             PLAYER_KILLING_POPULARITY = configuration.getInt("player_killing_popularity");
+        } else {
+            Bukkit.getServer().broadcastMessage(ChatColor.RED + "Configuration file was not found, using a default setup." +
+                    " To configure the plugin, go to /plugin/resources/ and create a config.yaml." +
+                    " This file is normally created when the plugin is installed, if not, try to reinstall the plugin.");
         }
     }
 
