@@ -93,6 +93,7 @@ public final class HungerGames extends JavaPlugin {
         pluginManager.registerEvents(new KitSelectorInventoryClickListener(), this);
         pluginManager.registerEvents(new ItemDropListener(), this);
         pluginManager.registerEvents(new PlayerEatCakeListener(), this);
+        pluginManager.registerEvents(new CreeperExplosionListener(), this);
         getLogger().info("Done");
     }
 
