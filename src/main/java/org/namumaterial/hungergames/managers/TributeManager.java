@@ -2,6 +2,7 @@ package org.namumaterial.hungergames.managers;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.namumaterial.hungergames.kits.NoKit;
 import org.namumaterial.hungergames.utils.Tribute;
 
 import java.util.HashMap;
@@ -14,12 +15,12 @@ public class TributeManager {
         tributes = new HashMap<>();
 
         for (Player player: Bukkit.getServer().getOnlinePlayers()) {
-            tributes.put(player, new Tribute(KitManager.getRandomKit(), 0));
+            tributes.put(player, new Tribute(KitManager.getKitByName(NoKit.NAME), 0));
         }
     }
 
     public static void addPlayer(Player player) {
-        tributes.put(player, new Tribute(KitManager.getRandomKit(), 0));
+        tributes.put(player, new Tribute(KitManager.getKitByName(NoKit.NAME), 0));
     }
 
     public static void removePlayer(Player player) {

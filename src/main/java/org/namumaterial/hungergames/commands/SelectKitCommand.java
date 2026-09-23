@@ -31,14 +31,12 @@ public class SelectKitCommand implements CommandExecutor {
 
                 PlayerRawMessageSender.sendInformationMessage("Kit " + KIT_NAME + " selected", player);
             } else {
-                TributeManager.getTribute(player).setKit(KitManager.getRandomKit());
-
-                PlayerRawMessageSender.sendErrorMessage("The kit doesn't exists. You have now a random one", player);
+                PlayerRawMessageSender.sendErrorMessage("The kit doesn't exist. Do /kits to see available kits", player);
             }
         } else {
             final Tribute TRIBUTE = TributeManager.getTribute(player);
             final String KIT_NAME = TRIBUTE.getKit().getName();
-            PlayerRawMessageSender.sendInformationMessage("Your kit is " + KIT_NAME, player);
+            PlayerRawMessageSender.sendInformationMessage("Current kit: " + KIT_NAME, player);
         }
 
         return true;

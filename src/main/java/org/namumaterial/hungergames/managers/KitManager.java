@@ -10,7 +10,7 @@ public class KitManager {
     private static Map<String, Kit> kits;
 
     public static void init() {
-        ArrayList<Kit> kitsList = new ArrayList<Kit>(Arrays.asList(
+        List<Kit> kitsList = new ArrayList<>(Arrays.asList(
                 new ButcherKit(),
                 new CareerKit(),
                 new FinnickKit(),
@@ -19,7 +19,8 @@ public class KitManager {
                 new HorsemanKit(),
                 new KatnissKit(),
                 new MinerKit(),
-                new PeetaKit()
+                new PeetaKit(),
+                new NoKit()
         ));
 
         kits = new HashMap<>();
@@ -39,15 +40,6 @@ public class KitManager {
         } catch (Exception exception) {
             return null;
         }
-    }
-
-    public static Kit getRandomKit() {
-        Random random = new Random();
-
-        final int KIT_INDEX = random.nextInt(kits.keySet().size());
-        final ArrayList<String> KITS_LIST = new ArrayList<>(kits.keySet());
-
-        return kits.get(KITS_LIST.get(KIT_INDEX));
     }
 
     public static void giveKitToPlayers() {

@@ -41,7 +41,7 @@ public class KitSelectorInventoryClickListener implements Listener {
 
             PlayerRawMessageSender.sendValidationMessage("Kit " + kitName + " selected.", player);
         } else {
-            PlayerRawMessageSender.sendErrorMessage("Error while selecting the kit, you still have a random kit.", player);
+            PlayerRawMessageSender.sendErrorMessage("Error while selecting the kit", player);
         }
     }
 }
