@@ -19,17 +19,17 @@ public class PlayerMineOreListener implements Listener {
         Block block = event.getBlock();
 
         if (HungerGameStateManager.gameIsLaunched()) {
-            if (block.getType() == Material.DIAMOND_ORE) {
+            if (block.getType() == Material.DIAMOND_ORE || block.getType() == Material.DEEPSLATE_DIAMOND_ORE) {
                 final int DIAMOND_MINING_POPULARITY_GAIN = HungerGamesConfiguration.DIAMOND_ORE_MINING_POPULARITY;
 
                 Tribute tribute = TributeManager.getTribute(player);
                 tribute.addPopularity(DIAMOND_MINING_POPULARITY_GAIN);
-            } else if (block.getType() == Material.IRON_ORE) {
+            } else if (block.getType() == Material.IRON_ORE || block.getType() == Material.DEEPSLATE_IRON_ORE) {
                 final int IRON_MINING_POPULARITY_GAIN = HungerGamesConfiguration.IRON_ORE_MINING_POPULARITY;
 
                 Tribute tribute = TributeManager.getTribute(player);
                 tribute.addPopularity(IRON_MINING_POPULARITY_GAIN);
-            } else if (block.getType() == Material.COAL_ORE) {
+            } else if (block.getType() == Material.COAL_ORE || block.getType() == Material.DEEPSLATE_COAL_ORE) {
                 final int COAL_MINING_POPULARITY_GAIN = HungerGamesConfiguration.COAL_ORE_MINING_POPULARITY;
 
                 Tribute tribute = TributeManager.getTribute(player);
