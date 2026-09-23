@@ -22,12 +22,17 @@ public class PlayerDisconnectionListener implements Listener {
 
         event.setQuitMessage(ChatColor.GOLD + "Tribute " + player.getName() + " escaped the game");
 
-        final int NUMBER_OF_PLAYER_REMAINING = PlayerManager.getNumberOfAlivePlayer();
-        final int ONE_PLAYER_LEFT = 1;
+        if (HungerGameStateManager.gameIsLaunched()) {
+            int numberOfAlivePlayer = PlayerManager.getNumberOfAlivePlayer();
+            final int ONE_PLAYER_LEFT = 1;
 
-        if (NUMBER_OF_PLAYER_REMAINING == ONE_PLAYER_LEFT) {
-            HungerGameStateManager.setEnded();
-            Bukkit.getServer().broadcastMessage( ChatColor.GOLD + "GAME OVER");
+            if (isPlaying(player))
+                numberOfAlivePlayer--;
+
+            if (numberOfAlivePlayer == ONE_PLAYER_LEFT) {
+                HungerGameStateManager.setEnded();
+                Bukkit.getServer().broadcastMessage( ChatColor.GOLD + "GAME OVER");
+            }
         }
     }
 
