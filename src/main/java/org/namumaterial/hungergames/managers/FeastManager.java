@@ -27,12 +27,13 @@ public class FeastManager {
         World world = HungerGames.arena.getCenter().getWorld();
 
         Random random = new Random();
-        int radius = (int) HungerGames.arena.getEndRadius();
-        double angle = random.nextDouble() * Math.PI * 2;
-        double distance = random.nextDouble() * radius;
+        // Half the width of the final border, which is a square
+        final double HALF_SIZE = HungerGames.arena.getEndRadius();
 
-        double xOffset = distance * Math.cos(angle);
-        double zOffset = distance * Math.sin(angle);
+        // The difference of two random numbers is between -1 and 1, but more often close to 0 :
+        // feasts can spawn anywhere in the final arena, but tend to be close to the spawn
+        double xOffset = (random.nextDouble() - random.nextDouble()) * HALF_SIZE;
+        double zOffset = (random.nextDouble() - random.nextDouble()) * HALF_SIZE;
 
         double randomX = HungerGames.arena.getCenter().getX() + xOffset;
         double randomZ = HungerGames.arena.getCenter().getZ() + zOffset;
