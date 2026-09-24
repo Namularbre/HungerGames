@@ -58,6 +58,19 @@ public class PlayerManager {
         player.setSaturation(SATURATION);
     }
 
+    // The lobby keeps the saturation at 20 : without this, tributes would need to sprint ~800 blocks before getting hungry
+    public static void resetTributesHungerToVanilla() {
+        final int FULL_FOOD = 20;
+        final float VANILLA_SPAWN_SATURATION = 5.0F;
+        final float NO_EXHAUSTION = 0.0F;
+
+        for (Player tribute: TributeManager.getTributePlayers()) {
+            tribute.setFoodLevel(FULL_FOOD);
+            tribute.setSaturation(VANILLA_SPAWN_SATURATION);
+            tribute.setExhaustion(NO_EXHAUSTION);
+        }
+    }
+
     public static void setPlayersAsNotStartedState() {
         for (Player player: Bukkit.getServer().getOnlinePlayers()) {
             setPlayerAsNotStartedState(player);

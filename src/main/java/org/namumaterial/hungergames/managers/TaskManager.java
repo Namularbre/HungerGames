@@ -29,11 +29,12 @@ public class TaskManager {
         startLobbyPhase();
     }
 
-    // NOT_STARTED : waiting for enough players, then countdown before the game starts
+    // NOT_STARTED : waiting for enough players, then countdown before the game starts. Players don't get hungry.
     public static void startLobbyPhase() {
         cancelPhaseTasks();
 
         schedule(new ChangeHungerGamesStateToStartingTasks(), NO_DELAY, ONE_SECOND_PERIOD);
+        schedule(new KeepPlayersFedTask(), NO_DELAY, ONE_SECOND_PERIOD);
     }
 
     // STARTING : grace period, gifts are given, countdown before pvp

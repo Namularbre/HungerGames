@@ -37,6 +37,9 @@ public class HungerGameStateManager {
         stringToStateMap.put("starting", State.STARTING);
         stringToStateMap.put("playing", State.PLAYING);
         stringToStateMap.put("ended", State.ENDED);
+
+        // The plugin starts in NOT_STARTED
+        WorldManager.freezeWorld();
     }
 
     public static boolean gameIsNotStarted() {
@@ -77,6 +80,7 @@ public class HungerGameStateManager {
         // Registers the players back as tributes
         PlayerManager.setPlayersAsNotStartedState();
         HungerGames.arena.reset();
+        WorldManager.freezeWorld();
         currentState = State.NOT_STARTED;
         TaskManager.startLobbyPhase();
     }
@@ -84,16 +88,19 @@ public class HungerGameStateManager {
     public static void setStarting() {
         PlayerManager.removeKitSelectorFromInventory();
         KitManager.giveKitToPlayers();
+        PlayerManager.resetTributesHungerToVanilla();
         PlayerManager.teleportAllPlayersToSpawn();
         currentState = State.STARTING;
         HungerGames.arena.startShrinking();
+        WorldManager.unfreezeWorld();
         TaskManager.startGracePhase();
     }
 
     public static void setPlaying() {
         currentState = State.PLAYING;
-        // Already shrinking if the game went through STARTING, needed when forced with /setstate
+        // Already shrinking and unfrozen if the game went through STARTING, needed when forced with /setstate
         HungerGames.arena.startShrinking();
+        WorldManager.unfreezeWorld();
         TaskManager.startPvpPhase();
     }
 
