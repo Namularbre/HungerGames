@@ -3,6 +3,7 @@ package org.namumaterial.hungergames.managers;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.PlayerInventory;
 import org.namumaterial.hungergames.HungerGames;
 
 public class PlayerManager {
@@ -32,7 +33,18 @@ public class PlayerManager {
 
     public static void removeKitSelectorFromInventory() {
         for (Player player: Bukkit.getServer().getOnlinePlayers()) {
-            player.getInventory().remove(ItemManager.kitSelector);
+            PlayerInventory inventory = player.getInventory();
+
+            // Inventory.remove(ItemStack) only removes stacks of the exact same amount, so 2 stacked selectors would stay
+            for (int slot = 0; slot < inventory.getSize(); slot++) {
+                if (ItemManager.kitSelector.isSimilar(inventory.getItem(slot))) {
+                    inventory.setItem(slot, null);
+                }
+            }
+
+            if (ItemManager.kitSelector.isSimilar(player.getItemOnCursor())) {
+                player.setItemOnCursor(null);
+            }
         }
     }
 

@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -23,6 +24,11 @@ public class KitSelectorRightClickListener implements Listener {
     @EventHandler
     public void onRightClick(PlayerInteractEvent event) {
         Player player = event.getPlayer();
+
+        // The event is fired once per hand : only open the menu once
+        if (event.getHand() != EquipmentSlot.HAND) {
+            return;
+        }
 
         if (playerAsKitSelectorInHand(player) && isRightClickAction(event)) {
             event.setCancelled(true);
