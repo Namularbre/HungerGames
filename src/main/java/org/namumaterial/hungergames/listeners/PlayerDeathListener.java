@@ -5,7 +5,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.namumaterial.hungergames.managers.PlayerManager;
 import org.namumaterial.hungergames.managers.TributeManager;
 import org.namumaterial.hungergames.managers.HungerGameStateManager;
 import org.namumaterial.hungergames.utils.HungerGamesConfiguration;
@@ -23,8 +22,8 @@ public class PlayerDeathListener implements Listener {
         TributeManager.removePlayer(killedPlayer);
         givePopularityToKiller(killedPlayer);
 
-        if (!HungerGameStateManager.checkForWinner(killedPlayer)) {
-            final int NUMBER_OF_PLAYER_REMAINING = PlayerManager.getNumberOfAlivePlayer();
+        if (!HungerGameStateManager.checkForWinner()) {
+            final int NUMBER_OF_PLAYER_REMAINING = TributeManager.getNumberOfTributes();
             Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "" + NUMBER_OF_PLAYER_REMAINING + " tributes remaining !");
         }
     }

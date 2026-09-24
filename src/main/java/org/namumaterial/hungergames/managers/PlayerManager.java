@@ -5,20 +5,17 @@ import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.namumaterial.hungergames.HungerGames;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 public class PlayerManager {
 
     public static Player getNearestPlayer(Player player) {
         Player nearestPlayer = null;
         double nearestDistance = Double.MAX_VALUE;
 
-        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-            if (onlinePlayer != player && isPlaying(onlinePlayer)) {
-                double distance = onlinePlayer.getLocation().distance(player.getLocation());
+        for (Player tribute : TributeManager.getTributePlayers()) {
+            if (tribute != player) {
+                double distance = tribute.getLocation().distance(player.getLocation());
                 if (distance < nearestDistance) {
-                    nearestPlayer = onlinePlayer;
+                    nearestPlayer = tribute;
                     nearestDistance = distance;
                 }
             }
@@ -31,32 +28,6 @@ public class PlayerManager {
         for (Player player : Bukkit.getServer().getOnlinePlayers()) {
             player.teleport(HungerGames.arena.getCenter());
         }
-    }
-
-    public static int getNumberOfAlivePlayer() {
-        int numberOfAlivePlayer = 0;
-        for (Player player: Bukkit.getServer().getOnlinePlayers()) {
-            if (isPlaying(player)) {
-                numberOfAlivePlayer++;
-            }
-        }
-
-        return numberOfAlivePlayer;
-    }
-
-    private static boolean isPlaying(Player player) {
-        return !player.isDead() && player.getGameMode() == GameMode.SURVIVAL;
-    }
-
-    public static Collection<Player> getAlivePlayers() {
-        ArrayList<Player> alivePlayers = new ArrayList<>();
-        for (Player player: Bukkit.getServer().getOnlinePlayers()) {
-            if (!player.isDead() && player.getGameMode() == GameMode.SURVIVAL) {
-                alivePlayers.add(player);
-            }
-        }
-
-        return alivePlayers;
     }
 
     public static void removeKitSelectorFromInventory() {
@@ -77,14 +48,20 @@ public class PlayerManager {
 
     public static void setPlayersAsNotStartedState() {
         for (Player player: Bukkit.getServer().getOnlinePlayers()) {
-            if (player.getGameMode() == GameMode.SPECTATOR || player.getGameMode() == GameMode.SURVIVAL) {
-                player.setGameMode(GameMode.SURVIVAL);
-                player.getInventory().clear();
-                player.getInventory().addItem(ItemManager.kitSelector);
-                player.setExp(0.0F);
-                healPlayer(player);
-                TributeManager.addPlayer(player);
-            }
+            setPlayerAsNotStartedState(player);
+        }
+    }
+
+    // Puts the player in the lobby and registers them as a tribute.
+    // Players in creative or adventure mode (admins) are left untouched and don't play.
+    public static void setPlayerAsNotStartedState(Player player) {
+        if (player.getGameMode() == GameMode.SPECTATOR || player.getGameMode() == GameMode.SURVIVAL) {
+            player.setGameMode(GameMode.SURVIVAL);
+            player.getInventory().clear();
+            player.getInventory().addItem(ItemManager.kitSelector);
+            player.setExp(0.0F);
+            healPlayer(player);
+            TributeManager.addPlayer(player);
         }
     }
 }

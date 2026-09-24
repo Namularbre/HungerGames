@@ -7,7 +7,6 @@ import org.namumaterial.hungergames.HungerGames;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class HungerGameStateManager {
     public enum State {
@@ -114,16 +113,13 @@ public class HungerGameStateManager {
         return "ERROR_STATE_NOT_FOUND";
     }
 
-    public static boolean checkForWinner(Player eliminated) {
+    // To call after a tribute is removed (death or disconnection)
+    public static boolean checkForWinner() {
         if (!gameIsLaunched()) {
             return false;
         }
 
-        List<Player> remaining = PlayerManager
-                .getAlivePlayers()
-                .stream()
-                .filter((x) -> !x.equals(eliminated))
-                .collect(Collectors.toList());
+        List<Player> remaining = TributeManager.getTributePlayers();
 
         if (remaining.size() > 1) {
             return false;

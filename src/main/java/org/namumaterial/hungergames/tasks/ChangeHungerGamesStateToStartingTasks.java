@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.namumaterial.hungergames.managers.HungerGameStateManager;
-import org.namumaterial.hungergames.managers.PlayerManager;
+import org.namumaterial.hungergames.managers.TributeManager;
 import org.namumaterial.hungergames.utils.HungerGamesConfiguration;
 
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public class ChangeHungerGamesStateToStartingTasks extends BukkitRunnable {
     }
 
     private static boolean isEnoughPlayersToStart() {
-        return PlayerManager.getAlivePlayers().size() >= HungerGamesConfiguration.MINIMAL_AMOUNT_OF_PLAYER;
+        return TributeManager.getNumberOfTributes() >= HungerGamesConfiguration.MINIMAL_AMOUNT_OF_PLAYER;
     }
 
     private boolean timeLeft() {

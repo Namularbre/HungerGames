@@ -4,7 +4,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.namumaterial.hungergames.managers.PlayerManager;
 import org.namumaterial.hungergames.managers.TributeManager;
 import org.namumaterial.hungergames.utils.PlayerRawMessageSender;
 
@@ -38,15 +37,15 @@ public class CheckPopularityCommand implements CommandExecutor {
     private static void showOtherPopularity(String[] args, Player player) {
         final String PLAYER_NAME = args[0];
 
-        for (Player onlinePlayer: PlayerManager.getAlivePlayers()) {
-            if (onlinePlayer.getName().equals(PLAYER_NAME) && TributeManager.isTribute(onlinePlayer)) {
-                final int POPULARITY = TributeManager.getTribute(onlinePlayer).getPopularity();
+        for (Player tribute: TributeManager.getTributePlayers()) {
+            if (tribute.getName().equals(PLAYER_NAME)) {
+                final int POPULARITY = TributeManager.getTribute(tribute).getPopularity();
                 PlayerRawMessageSender.sendValidationMessage(PLAYER_NAME + "'s popularity is " + POPULARITY, player);
                 return;
             }
         }
 
-        PlayerRawMessageSender.sendErrorMessage("Player not found or not alive", player);
+        PlayerRawMessageSender.sendErrorMessage("Player not found or not a tribute", player);
     }
 
     private static void showOwnPopularity(Player player) {

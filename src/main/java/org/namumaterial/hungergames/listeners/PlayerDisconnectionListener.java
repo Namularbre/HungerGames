@@ -17,6 +17,6 @@ public class PlayerDisconnectionListener implements Listener {
 
         event.setQuitMessage(ChatColor.GOLD + "Tribute " + player.getName() + " escaped the game");
 
-        HungerGameStateManager.checkForWinner(player);
+        HungerGameStateManager.checkForWinner();
     }
 }

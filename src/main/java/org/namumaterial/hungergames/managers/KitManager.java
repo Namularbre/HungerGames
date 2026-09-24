@@ -43,11 +43,7 @@ public class KitManager {
     }
 
     public static void giveKitToPlayers() {
-        for (Player player: PlayerManager.getAlivePlayers()) {
-            if (!TributeManager.isTribute(player)) {
-                continue;
-            }
-
+        for (Player player: TributeManager.getTributePlayers()) {
             Kit selectedKit = TributeManager.getTribute(player).getKit();
 
             for (Map.Entry<ItemStack, Integer> itemAndAmount: selectedKit.getItems().entrySet()) {
