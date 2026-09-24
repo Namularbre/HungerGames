@@ -138,6 +138,8 @@ public class HungerGameStateManager {
         } else {
             Bukkit.broadcastMessage(ChatColor.GOLD + "GAME OVER - no survivor");
         }
+
+        TaskManager.scheduleServerShutdown();
         return true;
     }
 }

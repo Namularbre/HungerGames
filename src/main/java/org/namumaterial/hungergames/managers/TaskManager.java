@@ -1,5 +1,7 @@
 package org.namumaterial.hungergames.managers;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
@@ -53,6 +55,16 @@ public class TaskManager {
 
         schedule(new GiftTasks(), NO_DELAY, TEN_SECOND_PERIOD);
         schedule(new FeastTasks(), SECONDS_BETWEEN_FEAST, SECONDS_BETWEEN_FEAST);
+    }
+
+    // ENDED by a victory : the server stops, and the start script resets the map and starts it again.
+    // It is a phase task, so going back to the lobby with /setstate cancels the shutdown.
+    public static void scheduleServerShutdown() {
+        final int SECONDS_BEFORE_SHUTDOWN = 15;
+
+        Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "The server will restart in " + SECONDS_BEFORE_SHUTDOWN + " seconds");
+
+        phaseTasks.add(Bukkit.getScheduler().runTaskLater(plugin, Bukkit::shutdown, SecondToTicksConverter.convert(SECONDS_BEFORE_SHUTDOWN)));
     }
 
     // ENDED (or any state without tasks)
