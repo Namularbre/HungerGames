@@ -20,6 +20,7 @@ public class PlayerDeathListener implements Listener {
 
         makeCanonBallSound(killedPlayer);
         putDeadPlayerInSpectatorGamemode(killedPlayer);
+        TributeManager.removePlayer(killedPlayer);
         givePopularityToKiller(killedPlayer);
 
         if (!HungerGameStateManager.checkForWinner(killedPlayer)) {
@@ -31,7 +32,7 @@ public class PlayerDeathListener implements Listener {
     private void givePopularityToKiller(Player killedPlayer) {
         Player killer = killedPlayer.getKiller();
 
-        if (killer != null) {
+        if (killer != null && TributeManager.isTribute(killer)) {
             Tribute tribute = TributeManager.getTribute(killer);
             tribute.addPopularity(HungerGamesConfiguration.PLAYER_KILLING_POPULARITY);
         }

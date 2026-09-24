@@ -28,6 +28,10 @@ public class GiftTasks extends BukkitRunnable {
 
     private void giveGiftToTributes() {
         for (Player player : PlayerManager.getAlivePlayers()) {
+            if (!TributeManager.isTribute(player)) {
+                continue;
+            }
+
             Tribute tribute = TributeManager.getTribute(player);
 
             if (asEnoughPopularity(tribute)) {

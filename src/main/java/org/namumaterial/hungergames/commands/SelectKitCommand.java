@@ -21,6 +21,11 @@ public class SelectKitCommand implements CommandExecutor {
 
         Player player = (Player) sender;
 
+        if (!TributeManager.isTribute(player)) {
+            PlayerRawMessageSender.sendErrorMessage("You are not a tribute", player);
+            return true;
+        }
+
         if (args.length == 1 && HungerGameStateManager.gameIsNotStarted()) {
             final String KIT_NAME = args[0];
 

@@ -39,7 +39,7 @@ public class CheckPopularityCommand implements CommandExecutor {
         final String PLAYER_NAME = args[0];
 
         for (Player onlinePlayer: PlayerManager.getAlivePlayers()) {
-            if (onlinePlayer.getName().equals(PLAYER_NAME)) {
+            if (onlinePlayer.getName().equals(PLAYER_NAME) && TributeManager.isTribute(onlinePlayer)) {
                 final int POPULARITY = TributeManager.getTribute(onlinePlayer).getPopularity();
                 PlayerRawMessageSender.sendValidationMessage(PLAYER_NAME + "'s popularity is " + POPULARITY, player);
                 return;
@@ -50,6 +50,11 @@ public class CheckPopularityCommand implements CommandExecutor {
     }
 
     private static void showOwnPopularity(Player player) {
+        if (!TributeManager.isTribute(player)) {
+            PlayerRawMessageSender.sendErrorMessage("You are not a tribute", player);
+            return;
+        }
+
         final int POPULARITY = TributeManager.getTribute(player).getPopularity();
         PlayerRawMessageSender.sendValidationMessage("Your popularity is " + POPULARITY, player);
     }

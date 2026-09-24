@@ -17,7 +17,7 @@ public class PlayerKillListener implements Listener {
 
             Player killer = killedEntity.getKiller();
 
-            if (killer != null) {
+            if (killer != null && TributeManager.isTribute(killer)) {
                 Tribute tribute = TributeManager.getTribute(killer);
 
                 if (killedEntity instanceof Monster) {

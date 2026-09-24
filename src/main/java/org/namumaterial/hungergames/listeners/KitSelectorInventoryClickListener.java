@@ -32,6 +32,11 @@ public class KitSelectorInventoryClickListener implements Listener {
     }
 
     private void handleKitSelection(Player player, ItemStack selectedKit) {
+        if (!TributeManager.isTribute(player)) {
+            PlayerRawMessageSender.sendErrorMessage("You are not a tribute", player);
+            return;
+        }
+
         Tribute tribute = TributeManager.getTribute(player);
         String kitName = selectedKit.getItemMeta().getDisplayName();
         Kit kit = KitManager.getKitByName(kitName);

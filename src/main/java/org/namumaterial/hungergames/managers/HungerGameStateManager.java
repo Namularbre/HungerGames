@@ -74,6 +74,8 @@ public class HungerGameStateManager {
     }
 
     public static void setNotStarted() {
+        TributeManager.reset();
+        // Registers the players back as tributes
         PlayerManager.setPlayersAsNotStartedState();
         HungerGames.arena.reset();
         currentState = State.NOT_STARTED;

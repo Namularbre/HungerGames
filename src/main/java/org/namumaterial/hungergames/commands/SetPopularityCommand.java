@@ -26,7 +26,9 @@ public class SetPopularityCommand implements CommandExecutor {
             final String STRING_AMOUNT = args[0];
             final int AMOUNT = getPopularityAmount(STRING_AMOUNT);
 
-            if (amountIsValid(AMOUNT)) {
+            if (!TributeManager.isTribute(player)) {
+                PlayerRawMessageSender.sendErrorMessage("You are not a tribute", player);
+            } else if (amountIsValid(AMOUNT)) {
                 TributeManager.getTribute(player).setPopularity(AMOUNT);
                 PlayerRawMessageSender.sendValidationMessage("Set your popularity to " + STRING_AMOUNT, player);
             } else {

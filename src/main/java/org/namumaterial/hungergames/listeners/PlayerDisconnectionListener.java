@@ -1,7 +1,6 @@
 package org.namumaterial.hungergames.listeners;
 
 import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,16 +13,10 @@ public class PlayerDisconnectionListener implements Listener {
     public void onPlayerDisconnection(PlayerQuitEvent event) {
         Player player = event.getPlayer();
 
-        if (isPlaying(player)) {
-            TributeManager.removePlayer(player);
-        }
+        TributeManager.removePlayer(player);
 
         event.setQuitMessage(ChatColor.GOLD + "Tribute " + player.getName() + " escaped the game");
 
         HungerGameStateManager.checkForWinner(player);
-    }
-
-    private static boolean isPlaying(Player player) {
-        return !player.isDead() && player.getGameMode() == GameMode.SURVIVAL;
     }
 }

@@ -83,6 +83,7 @@ public class PlayerManager {
                 player.getInventory().addItem(ItemManager.kitSelector);
                 player.setExp(0.0F);
                 healPlayer(player);
+                TributeManager.addPlayer(player);
             }
         }
     }

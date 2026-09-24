@@ -18,7 +18,7 @@ public class PlayerMineOreListener implements Listener {
         Player player = event.getPlayer();
         Block block = event.getBlock();
 
-        if (HungerGameStateManager.gameIsLaunched()) {
+        if (HungerGameStateManager.gameIsLaunched() && TributeManager.isTribute(player)) {
             if (block.getType() == Material.DIAMOND_ORE || block.getType() == Material.DEEPSLATE_DIAMOND_ORE) {
                 final int DIAMOND_MINING_POPULARITY_GAIN = HungerGamesConfiguration.DIAMOND_ORE_MINING_POPULARITY;
 
