@@ -15,7 +15,7 @@ public class ItemManager {
     }
 
     private static void createKitSelector() {
-        // Must not be a block : when right clicking with a block, the client places it before the server cancels it,
+        // Must not be a block : when right-clicking with a block, the client places it before the server cancels it,
         // which makes a ghost block and makes the item disappear from the client inventory
         ItemStack item = new ItemStack(Material.NETHER_STAR);
         ItemMeta meta = item.getItemMeta();
