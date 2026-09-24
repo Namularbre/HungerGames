@@ -85,16 +85,20 @@ public class HungerGameStateManager {
         KitManager.giveKitToPlayers();
         PlayerManager.teleportAllPlayersToSpawn();
         currentState = State.STARTING;
+        HungerGames.arena.startShrinking();
         TaskManager.startGracePhase();
     }
 
     public static void setPlaying() {
         currentState = State.PLAYING;
+        // Already shrinking if the game went through STARTING, needed when forced with /setstate
+        HungerGames.arena.startShrinking();
         TaskManager.startPvpPhase();
     }
 
     public static void setEnded() {
         currentState = State.ENDED;
+        HungerGames.arena.stopShrinking();
         TaskManager.cancelPhaseTasks();
     }
 

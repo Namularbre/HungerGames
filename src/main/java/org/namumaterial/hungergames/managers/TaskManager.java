@@ -36,21 +36,21 @@ public class TaskManager {
         schedule(new ChangeHungerGamesStateToStartingTasks(), NO_DELAY, ONE_SECOND_PERIOD);
     }
 
-    // STARTING : grace period, the arena shrinks and gifts are given, countdown before pvp
+    // STARTING : grace period, gifts are given, countdown before pvp
     public static void startGracePhase() {
         cancelPhaseTasks();
 
-        scheduleArenaAndGiftTasks();
+        schedule(new GiftTasks(), NO_DELAY, TEN_SECOND_PERIOD);
         schedule(new ChangeHungerGamesStateToPlayingTasks(), NO_DELAY, ONE_SECOND_PERIOD);
     }
 
-    // PLAYING : pvp is on, the arena keeps shrinking, gifts and feasts are given
+    // PLAYING : pvp is on, gifts and feasts are given
     public static void startPvpPhase() {
         cancelPhaseTasks();
 
         final int SECONDS_BETWEEN_FEAST = SecondToTicksConverter.convert(HungerGamesConfiguration.SECONDS_BETWEEN_FEAST);
 
-        scheduleArenaAndGiftTasks();
+        schedule(new GiftTasks(), NO_DELAY, TEN_SECOND_PERIOD);
         schedule(new FeastTasks(), SECONDS_BETWEEN_FEAST, SECONDS_BETWEEN_FEAST);
     }
 
@@ -61,11 +61,6 @@ public class TaskManager {
         }
 
         phaseTasks.clear();
-    }
-
-    private static void scheduleArenaAndGiftTasks() {
-        schedule(new ArenaTasks(), NO_DELAY, TEN_SECOND_PERIOD);
-        schedule(new GiftTasks(), NO_DELAY, TEN_SECOND_PERIOD);
     }
 
     private static void schedule(BukkitRunnable task, int delay, int period) {
