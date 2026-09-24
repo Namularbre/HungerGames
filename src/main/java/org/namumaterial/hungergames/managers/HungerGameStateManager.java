@@ -1,8 +1,15 @@
 package org.namumaterial.hungergames.managers;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
+import org.bukkit.entity.Player;
 import org.namumaterial.hungergames.HungerGames;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class HungerGameStateManager {
     public enum State {
@@ -97,5 +104,29 @@ public class HungerGameStateManager {
         }
 
         return "ERROR_STATE_NOT_FOUND";
+    }
+
+    public static boolean checkForWinner(Player eliminated) {
+        if (!gameIsLaunched()) {
+            return false;
+        }
+
+        List<Player> remaining = PlayerManager
+                .getAlivePlayers()
+                .stream()
+                .filter((x) -> !x.equals(eliminated))
+                .collect(Collectors.toList());
+
+        if (remaining.size() > 1) {
+            return false;
+        }
+
+        setEnded();
+        if (remaining.size() == 1) {
+            Bukkit.broadcastMessage(ChatColor.GOLD + remaining.get(0).getName() + " won the Hunger Games!");
+        } else {
+            Bukkit.broadcastMessage(ChatColor.GOLD + "GAME OVER - no survivor");
+        }
+        return true;
     }
 }

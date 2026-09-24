@@ -20,16 +20,11 @@ public class PlayerDeathListener implements Listener {
 
         makeCanonBallSound(killedPlayer);
         putDeadPlayerInSpectatorGamemode(killedPlayer);
+        givePopularityToKiller(killedPlayer);
 
-        final int NUMBER_OF_PLAYER_REMAINING = PlayerManager.getNumberOfAlivePlayer();
-        final int ONE_PLAYER_LEFT = 1;
-
-        if (NUMBER_OF_PLAYER_REMAINING != ONE_PLAYER_LEFT) {
+        if (!HungerGameStateManager.checkForWinner(killedPlayer)) {
+            final int NUMBER_OF_PLAYER_REMAINING = PlayerManager.getNumberOfAlivePlayer();
             Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "" + NUMBER_OF_PLAYER_REMAINING + " tributes remaining !");
-            givePopularityToKiller(killedPlayer);
-        } else {
-            HungerGameStateManager.setEnded();
-            Bukkit.getServer().broadcastMessage( ChatColor.GOLD + "GAME OVER");
         }
     }
 
