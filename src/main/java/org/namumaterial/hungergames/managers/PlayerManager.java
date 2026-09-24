@@ -33,6 +33,10 @@ public class PlayerManager {
 
     public static void removeKitSelectorFromInventory() {
         for (Player player: Bukkit.getServer().getOnlinePlayers()) {
+            if (player.getOpenInventory().getTitle().equals(ItemManager.KIT_SELECTOR_MENU_TITLE)) {
+                player.closeInventory();
+            }
+
             PlayerInventory inventory = player.getInventory();
 
             // Inventory.remove(ItemStack) only removes stacks of the exact same amount, so 2 stacked selectors would stay

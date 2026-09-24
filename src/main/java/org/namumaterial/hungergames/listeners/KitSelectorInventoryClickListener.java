@@ -9,6 +9,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.namumaterial.hungergames.kits.Kit;
 import org.namumaterial.hungergames.managers.HungerGameStateManager;
+import org.namumaterial.hungergames.managers.ItemManager;
 import org.namumaterial.hungergames.managers.KitManager;
 import org.namumaterial.hungergames.managers.TributeManager;
 import org.namumaterial.hungergames.utils.PlayerRawMessageSender;
@@ -22,10 +23,11 @@ public class KitSelectorInventoryClickListener implements Listener {
         ItemStack clickedItem = event.getCurrentItem();
         Inventory clickedInventory = event.getClickedInventory();
 
-        if (clickedInventory != null && event.getView().getTitle().equals("Choose your kit:") && HungerGameStateManager.gameIsNotStarted()) {
+        if (clickedInventory != null && event.getView().getTitle().equals(ItemManager.KIT_SELECTOR_MENU_TITLE)) {
+            // Always cancelled, even after the game started : the menu items must never be taken
             event.setCancelled(true);
 
-            if (clickedItem != null && clickedItem.getType() != Material.AIR) {
+            if (clickedItem != null && clickedItem.getType() != Material.AIR && HungerGameStateManager.gameIsNotStarted()) {
                 handleKitSelection(player, clickedItem);
             }
         }

@@ -8,7 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemManager {
+    public static final String KIT_SELECTOR_LORE = "Right click to use.";
+    public static final String KIT_SELECTOR_DISPLAY_NAME = "Kit Selector";
     public static ItemStack kitSelector;
+    public static final String KIT_SELECTOR_MENU_TITLE = "Choose your kit:";
 
     public static void createItems() {
         createKitSelector();
@@ -21,8 +24,8 @@ public class ItemManager {
         ItemMeta meta = item.getItemMeta();
         List<String> lore = new ArrayList<>();
 
-        lore.add("Right click to use.");
-        meta.setDisplayName("Kit Selector");
+        lore.add(KIT_SELECTOR_LORE);
+        meta.setDisplayName(KIT_SELECTOR_DISPLAY_NAME);
         meta.setLore(lore);
         item.setItemMeta(meta);
 
