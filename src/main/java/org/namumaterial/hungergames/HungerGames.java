@@ -40,7 +40,7 @@ public final class HungerGames extends JavaPlugin {
 
     private void initTaskManager() {
         getLogger().info("Initialising tasks...");
-        TaskManager.runTasks(this);
+        TaskManager.init(this);
         getLogger().info("Done");
     }
 

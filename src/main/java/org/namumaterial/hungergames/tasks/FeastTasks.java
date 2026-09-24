@@ -2,7 +2,6 @@ package org.namumaterial.hungergames.tasks;
 
 import org.bukkit.scheduler.BukkitRunnable;
 import org.namumaterial.hungergames.managers.FeastManager;
-import org.namumaterial.hungergames.managers.HungerGameStateManager;
 import org.namumaterial.hungergames.utils.HungerGamesConfiguration;
 
 public class FeastTasks extends BukkitRunnable {
@@ -15,11 +14,13 @@ public class FeastTasks extends BukkitRunnable {
     @Override
     public void run() {
         final int UNLIMITED_NUMBER_OF_FEAST = -1;
-        if (HungerGameStateManager.gameIsPlaying()) {
-            if (HungerGamesConfiguration.NUMBER_OF_FEAST == UNLIMITED_NUMBER_OF_FEAST || HungerGamesConfiguration.NUMBER_OF_FEAST > numberOfFeastSpawned) {
-                this.numberOfFeastSpawned++;
-                FeastManager.placeFeast();
-            }
+
+        if (HungerGamesConfiguration.NUMBER_OF_FEAST != UNLIMITED_NUMBER_OF_FEAST && this.numberOfFeastSpawned >= HungerGamesConfiguration.NUMBER_OF_FEAST) {
+            cancel();
+            return;
         }
+
+        this.numberOfFeastSpawned++;
+        FeastManager.placeFeast();
     }
 }

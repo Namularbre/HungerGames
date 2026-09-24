@@ -2,11 +2,9 @@ package org.namumaterial.hungergames.managers;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.namumaterial.hungergames.HungerGames;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -79,6 +77,7 @@ public class HungerGameStateManager {
         PlayerManager.setPlayersAsNotStartedState();
         HungerGames.arena.reset();
         currentState = State.NOT_STARTED;
+        TaskManager.startLobbyPhase();
     }
 
     public static void setStarting() {
@@ -86,14 +85,17 @@ public class HungerGameStateManager {
         KitManager.giveKitToPlayers();
         PlayerManager.teleportAllPlayersToSpawn();
         currentState = State.STARTING;
+        TaskManager.startGracePhase();
     }
 
     public static void setPlaying() {
         currentState = State.PLAYING;
+        TaskManager.startPvpPhase();
     }
 
     public static void setEnded() {
         currentState = State.ENDED;
+        TaskManager.cancelPhaseTasks();
     }
 
     public static String currentStateToString() {

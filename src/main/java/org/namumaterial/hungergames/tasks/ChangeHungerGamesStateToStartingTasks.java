@@ -13,7 +13,6 @@ import java.util.List;
 
 public class ChangeHungerGamesStateToStartingTasks extends BukkitRunnable {
     private int secondsLeft;
-    private boolean finished;
 
     private final List<Integer> lastThreeSeconds;
 
@@ -21,15 +20,10 @@ public class ChangeHungerGamesStateToStartingTasks extends BukkitRunnable {
         this.lastThreeSeconds = new ArrayList<>(Arrays.asList(new Integer[]{1,2,3}));
 
         this.secondsLeft = HungerGamesConfiguration.SECOND_BEFORE_STARTING_GAME;
-        this.finished = false;
     }
 
     @Override
     public void run() {
-        if (finished) {
-            return;
-        }
-
         if (isEnoughPlayersToStart()) {
             if (timeLeft()) {
                 secondsLeft--;
@@ -39,8 +33,8 @@ public class ChangeHungerGamesStateToStartingTasks extends BukkitRunnable {
                 }
             } else {
                 Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "May the odds be ever in your favor!");
+                // Cancels this task and starts the grace period tasks
                 HungerGameStateManager.setStarting();
-                this.finished = true;
             }
         }
     }

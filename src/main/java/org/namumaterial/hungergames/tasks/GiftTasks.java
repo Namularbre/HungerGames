@@ -2,7 +2,6 @@ package org.namumaterial.hungergames.tasks;
 
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.namumaterial.hungergames.managers.HungerGameStateManager;
 import org.namumaterial.hungergames.managers.PlayerManager;
 import org.namumaterial.hungergames.managers.TributeManager;
 import org.namumaterial.hungergames.utils.GiftContentMaker;
@@ -28,10 +27,6 @@ public class GiftTasks extends BukkitRunnable {
     }
 
     private void giveGiftToTributes() {
-        if (!HungerGameStateManager.gameIsLaunched()) {
-            return;
-        }
-
         for (Player player : PlayerManager.getAlivePlayers()) {
             Tribute tribute = TributeManager.getTribute(player);
 
