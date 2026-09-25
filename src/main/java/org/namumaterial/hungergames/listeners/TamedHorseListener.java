@@ -52,14 +52,14 @@ public class TamedHorseListener implements Listener {
 
         Horse horse = (Horse) tamedHorseUser.getWorld().spawnEntity(clickedBlockLocation, EntityType.HORSE);
         horse.setTamed(true);
+        horse.setOwner(tamedHorseUser);
         horse.getInventory().addItem(new ItemStack(Material.SADDLE, 1));
         horse.setCustomName(horseName);
         horse.setAdult();
         horse.setColor(Horse.Color.CREAMY);
         horse.setStyle(Horse.Style.BLACK_DOTS);
-        horse.setMaxHealth(40.0);
-        horse.setHealth(40.0);
-        horse.setJumpStrength(1.0);
+        horse.setHealth(40.0D);
+        horse.setJumpStrength(1.0D);
     }
 
     private void removeTamedHorseFromInventory(Player tamedHorseUser, ItemStack tamedHorse) {
