@@ -13,7 +13,7 @@ public class ShieldCraftListener implements Listener {
 
         if (resultMaterial.equals(Material.SHIELD)) {
             event.setCancelled(true);
-            Bukkit.getServer().broadcastMessage("Shield are not craftable");
+            Bukkit.getServer().broadcastMessage("Shields are not craftable");
         }
     }
 }

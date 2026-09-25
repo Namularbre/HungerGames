@@ -53,6 +53,6 @@ public class Kit {
             }
         }
 
-        return "Kit " + this.name + " contains : " + itemsToString;
+        return "Kit " + this.name + " contains: " + itemsToString;
     }
 }

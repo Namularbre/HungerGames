@@ -26,12 +26,12 @@ public class ChangeHungerGamesStateToPlayingTasks extends BukkitRunnable {
             this.secondLeft--;
 
             if (secondLeft % 5 == 0 || this.lastThreeSeconds.contains(this.secondLeft)) {
-                Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "" + this.secondLeft + " seconds remaining before Pvp is enabled !");
+                Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "" + this.secondLeft + " seconds remaining before PvP is enabled!");
             }
         } else {
             // Cancels this task and starts the pvp tasks
             HungerGameStateManager.setPlaying();
-            Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "Pvp is activated.");
+            Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "PvP is activated.");
         }
     }
 

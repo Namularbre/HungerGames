@@ -24,7 +24,7 @@ public class PlayerDeathListener implements Listener {
 
         if (!HungerGameStateManager.checkForWinner()) {
             final int NUMBER_OF_PLAYER_REMAINING = TributeManager.getNumberOfTributes();
-            Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "" + NUMBER_OF_PLAYER_REMAINING + " tributes remaining !");
+            Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "" + NUMBER_OF_PLAYER_REMAINING + " tributes remaining!");
         }
     }
 

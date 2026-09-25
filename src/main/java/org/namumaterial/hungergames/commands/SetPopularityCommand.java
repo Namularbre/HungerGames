@@ -19,7 +19,7 @@ public class SetPopularityCommand implements CommandExecutor {
         if (player.isOp()) {
 
             if (args.length != 1) {
-                PlayerRawMessageSender.sendErrorMessage("This command need one argument. /set_popularity [amount]", player);
+                PlayerRawMessageSender.sendErrorMessage("This command needs one argument: /setpopularity [amount]", player);
                 return true;
             }
 
@@ -32,7 +32,7 @@ public class SetPopularityCommand implements CommandExecutor {
                 TributeManager.getTribute(player).setPopularity(AMOUNT);
                 PlayerRawMessageSender.sendValidationMessage("Set your popularity to " + STRING_AMOUNT, player);
             } else {
-                PlayerRawMessageSender.sendErrorMessage("The argument need to be an integer (Ex : 1, 2, 3...)", player);
+                PlayerRawMessageSender.sendErrorMessage("The argument needs to be a positive integer (e.g. 1, 2, 3...)", player);
             }
         } else {
             PlayerRawMessageSender.sendNoCommandPermissionMessage(player);

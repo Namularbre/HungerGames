@@ -18,7 +18,7 @@ public class HealCommand implements CommandExecutor {
 
         if (player.isOp()) {
             PlayerManager.healPlayer(player);
-            PlayerRawMessageSender.sendValidationMessage("Healed !", player);
+            PlayerRawMessageSender.sendValidationMessage("Healed!", player);
         } else {
             PlayerRawMessageSender.sendNoCommandPermissionMessage(player);
         }

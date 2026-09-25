@@ -22,7 +22,7 @@ public class ArenaRadiusCommand implements CommandExecutor {
             } else if (args.length == 1) {
                 setArenaRadius(args[0], player);
             } else {
-                PlayerRawMessageSender.sendErrorMessage("Invalid number of arguments. use : /arenaradius [number] or /arenaradius", player);
+                PlayerRawMessageSender.sendErrorMessage("Invalid number of arguments. Use: /arenaradius [number] or /arenaradius", player);
             }
         } else {
             PlayerRawMessageSender.sendNoCommandPermissionMessage(player);
@@ -43,7 +43,7 @@ public class ArenaRadiusCommand implements CommandExecutor {
             HungerGames.arena.setRadius(radius);
             PlayerRawMessageSender.sendValidationMessage("Worked", player);
         } else {
-            PlayerRawMessageSender.sendErrorMessage("The number must be higher are equal to " + HungerGames.arena.getEndRadius(), player);
+            PlayerRawMessageSender.sendErrorMessage("The number must be higher or equal to " + HungerGames.arena.getEndRadius(), player);
         }
     }
 

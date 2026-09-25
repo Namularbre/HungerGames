@@ -24,17 +24,17 @@ public class PlayerConnectionListener implements Listener {
     }
 
     private static void setJoinMessage(PlayerJoinEvent event, Player player) {
-        final String MESSAGE = player.getDisplayName() + " is volunteers as a tribute.";
+        final String MESSAGE = player.getDisplayName() + " volunteers as a tribute.";
         event.setJoinMessage(MESSAGE);
     }
 
     private void setPlayerNotStarted(Player player) {
         PlayerManager.setPlayerAsNotStartedState(player);
-        PlayerRawMessageSender.sendInformationMessage("Do /kits to see the kits, and then /kit [name] to select the kit, or use kit selector.", player);
+        PlayerRawMessageSender.sendInformationMessage("Do /kits to see the kits, then /kit [name] to select one, or use the kit selector.", player);
     }
 
     private void setPlayerSpectator(Player player) {
-        PlayerRawMessageSender.sendInformationMessage("Game is already started, but you can have a look !", player);
+        PlayerRawMessageSender.sendInformationMessage("The game has already started, but you can watch!", player);
         player.setGameMode(GameMode.SPECTATOR);
     }
 }

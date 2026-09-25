@@ -41,10 +41,10 @@ public class PlayerCompassListener implements Listener {
 
                 final double distanceBetweenPlayers = nearestPlayerLocation.distance(player.getLocation());
 
-                String message = "PLayer " + nearestPlayer.getName() + " is at " + Math.floor(distanceBetweenPlayers) + " block(s) from you.";
+                String message = "Player " + nearestPlayer.getName() + " is at " + Math.floor(distanceBetweenPlayers) + " block(s) from you.";
                 player.sendRawMessage(message);
             } else {
-                player.sendRawMessage("No player where found.");
+                player.sendRawMessage("No player was found.");
             }
         }
     }

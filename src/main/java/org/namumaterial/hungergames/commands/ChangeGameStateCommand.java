@@ -22,7 +22,7 @@ public class ChangeGameStateCommand implements CommandExecutor, TabCompleter {
         Player player = (Player) sender;
 
         if (args.length != 1) {
-            PlayerRawMessageSender.sendErrorMessage("This command need one argument. It is used like this : /change_state [state]", player);
+            PlayerRawMessageSender.sendErrorMessage("This command needs one argument: /setstate [state]", player);
             return true;
         }
 
