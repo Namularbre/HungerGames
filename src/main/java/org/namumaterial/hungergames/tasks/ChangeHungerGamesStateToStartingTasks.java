@@ -24,18 +24,29 @@ public class ChangeHungerGamesStateToStartingTasks extends BukkitRunnable {
 
     @Override
     public void run() {
-        if (isEnoughPlayersToStart()) {
-            if (timeLeft()) {
-                secondsLeft--;
+        if (!isEnoughPlayersToStart()) {
+            resetCountdownIfStarted();
+            return;
+        }
 
-                if (this.secondsLeft % 5 == 0 || this.lastThreeSeconds.contains(this.secondsLeft)) {
-                    Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "Enough players are connected, starting in " + secondsLeft + " seconds");
-                }
-            } else {
-                Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "May the odds be ever in your favor!");
-                // Cancels this task and starts the grace period tasks
-                HungerGameStateManager.setStarting();
+        if (timeLeft()) {
+            secondsLeft--;
+
+            if (this.secondsLeft % 5 == 0 || this.lastThreeSeconds.contains(this.secondsLeft)) {
+                Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "Enough players are connected, starting in " + secondsLeft + " seconds");
             }
+        } else {
+            Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "May the odds be ever in your favor!");
+            // Cancels this task and starts the grace period tasks
+            HungerGameStateManager.setStarting();
+        }
+    }
+
+    // A player left during the countdown : it starts again from the beginning when there are enough players
+    private void resetCountdownIfStarted() {
+        if (this.secondsLeft != HungerGamesConfiguration.SECOND_BEFORE_STARTING_GAME) {
+            this.secondsLeft = HungerGamesConfiguration.SECOND_BEFORE_STARTING_GAME;
+            Bukkit.getServer().broadcastMessage(ChatColor.RED + "Not enough players anymore, the countdown is cancelled");
         }
     }
 
