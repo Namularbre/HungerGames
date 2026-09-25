@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
+import org.bukkit.Tag;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Chest;
@@ -37,10 +38,10 @@ public class GiftManager {
         new GiftContentMaker().makeGiftContent(chest.getInventory());
 
         final int PARTICLES_COUNT = 30;
-        final double PARTICLES_SPREAD = 0.4;
-        final double PARTICLES_SPEED = 0.02;
+        final double PARTICLES_SPREAD = 0.4D;
+        final double PARTICLES_SPEED = 0.02D;
 
-        parachuteBlock.getWorld().spawnParticle(Particle.CLOUD, parachuteBlock.getLocation().add(0.5, 1.0, 0.5),
+        parachuteBlock.getWorld().spawnParticle(Particle.CLOUD, parachuteBlock.getLocation().add(0.5D, 1.0D, 0.5D),
                 PARTICLES_COUNT, PARTICLES_SPREAD, PARTICLES_SPREAD, PARTICLES_SPREAD, PARTICLES_SPEED);
         // Only the receiver hears it
         player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BELL, 1.0F, 1.0F);
@@ -105,7 +106,13 @@ public class GiftManager {
     private static boolean canLandOn(Block block) {
         Block below = block.getRelative(BlockFace.DOWN);
 
-        // Passable : air, but also tall grass or flowers, which are replaced by the chest
-        return block.isPassable() && !block.isLiquid() && below.getType().isSolid();
+        return isReplaceable(block) && below.getType().isSolid();
+    }
+
+    // Air, or plants like grass and flowers. Other blocks (torches, cobwebs...) may have been placed by a player.
+    private static boolean isReplaceable(Block block) {
+        Material type = block.getType();
+
+        return block.isEmpty() || Tag.REPLACEABLE_PLANTS.isTagged(type) || Tag.SMALL_FLOWERS.isTagged(type);
     }
 }
