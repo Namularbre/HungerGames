@@ -1,19 +1,24 @@
 package org.namumaterial.hungergames.listeners;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.CraftItemEvent;
+import org.bukkit.event.inventory.PrepareItemCraftEvent;
+import org.bukkit.inventory.Recipe;
 
 public class ShieldCraftListener implements Listener {
+    // Fired when the crafting grid changes : the shield never shows up in the result slot
     @EventHandler
-    public void onPlayerCraftShield(CraftItemEvent event) {
-        Material resultMaterial = event.getRecipe().getResult().getType();
+    public void onPrepareShieldCraft(PrepareItemCraftEvent event) {
+        Recipe recipe = event.getRecipe();
 
-        if (resultMaterial.equals(Material.SHIELD)) {
-            event.setCancelled(true);
-            Bukkit.getServer().broadcastMessage("Shields are not craftable");
+        // No recipe matches the items in the grid
+        if (recipe == null) {
+            return;
+        }
+
+        if (recipe.getResult().getType() == Material.SHIELD) {
+            event.getInventory().setResult(null);
         }
     }
 }
