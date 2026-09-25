@@ -13,10 +13,11 @@ public class PlayerDisconnectionListener implements Listener {
     public void onPlayerDisconnection(PlayerQuitEvent event) {
         Player player = event.getPlayer();
 
-        TributeManager.removePlayer(player);
+        if (TributeManager.isTribute(player)) {
+            TributeManager.removePlayer(player);
+            event.setQuitMessage(ChatColor.GOLD + "Tribute " + player.getName() + " escaped the game");
 
-        event.setQuitMessage(ChatColor.GOLD + "Tribute " + player.getName() + " escaped the game");
-
-        HungerGameStateManager.checkForWinner();
+            HungerGameStateManager.checkForWinner();
+        }
     }
 }
