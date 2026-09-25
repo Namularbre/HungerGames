@@ -39,6 +39,8 @@ public class HungerGamesConfiguration {
     public static double HORSE_JUMP_STRENGTH;
 
     private static final int UNLIMITED_NUMBER_OF_FEAST = -1;
+    // Minecraft caps the max health attribute at 1024 : a higher health would make setHealth() throw an exception
+    private static final double MAX_HORSE_HEALTH = 1024.0;
     // Bukkit refuses a higher jump strength
     private static final double MAX_HORSE_JUMP_STRENGTH = 2.0;
 
@@ -80,12 +82,10 @@ public class HungerGamesConfiguration {
         TNT_FUSE_TIME_SECONDS = getPositiveDouble("tnt_fuse_time_seconds");
 
         HORSE_HEALTH = getPositiveDouble("horse_health");
-        HORSE_JUMP_STRENGTH = getPositiveDouble("horse_jump_strength");
+        checkAtMost("horse_health", HORSE_HEALTH, MAX_HORSE_HEALTH);
 
-        if (HORSE_JUMP_STRENGTH > MAX_HORSE_JUMP_STRENGTH) {
-            throw new IllegalArgumentException("Invalid config: horse_jump_strength must be at most " + MAX_HORSE_JUMP_STRENGTH
-                    + ", found: " + HORSE_JUMP_STRENGTH);
-        }
+        HORSE_JUMP_STRENGTH = getPositiveDouble("horse_jump_strength");
+        checkAtMost("horse_jump_strength", HORSE_JUMP_STRENGTH, MAX_HORSE_JUMP_STRENGTH);
     }
 
     private static int getInt(String key, int minimum) {
@@ -102,6 +102,12 @@ public class HungerGamesConfiguration {
         }
 
         return INT_VALUE;
+    }
+
+    private static void checkAtMost(String key, double value, double maximum) {
+        if (value > maximum) {
+            throw new IllegalArgumentException("Invalid config: " + key + " must be at most " + maximum + ", found: " + value);
+        }
     }
 
     private static double getPositiveDouble(String key) {

@@ -109,7 +109,7 @@ A missing key uses the default value.
 | `animal_killing_popularity`     | 10      | Popularity for killing an animal                               |
 | `player_killing_popularity`     | 500     | Popularity for killing a tribute                               |
 | `tnt_fuse_time_seconds`         | 1.5     | Time before a placed TNT explodes                              |
-| `horse_health`                  | 40.0    | Health of the horses spawned with a saddle                     |
+| `horse_health`                  | 40.0    | Health of the horses spawned with a saddle (at most 1024)      |
 | `horse_jump_strength`           | 1.0     | Jump strength of the horses (at most 2.0)                      |
 
 A tribute receives a gift every 1000 popularity.
