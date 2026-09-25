@@ -7,36 +7,35 @@ commands:
     description: Show all the existing kits
     usage: /kits
   kit:
-    description: Select a tributes kit
+    description: Select your kit in the lobby, or show your current kit
     usage: /kit [name]
   setstate:
-    description: Change current game state
-    usage: /setstate [state]
-    tab-completer: org.namumaterial.hungergames.commands.ChangeGameStateCommand
+    description: Force the game state (debug)
+    usage: /setstate <not_started|starting|playing|ended>
   state:
-    description: Show game current state
+    description: Show the game state (debug)
     usage: /state
   gift:
-    description: Spawn a gift next to you
+    description: Send yourself a sponsor gift (debug)
     usage: /gift
   feast:
-    description: Spawn a feast on the map
+    description: Spawn a feast in the arena (debug)
     usage: /feast
   setpopularity:
-    description: Set the popularity of a player
-    usage: /setpopularity [amount] where amount is a positive Integer
+    description: Set your own popularity (debug)
+    usage: /setpopularity <amount>
   popularity:
-    description: Show your popularity
-    usage: /popularity
+    description: Show your popularity, or the one of another tribute (debug)
+    usage: /popularity [player]
   heal:
-    description: Heal the player
+    description: Heal yourself (debug)
     usage: /heal
   spawn:
-    description: Teleport the player to the spawn point, the middle of the arena
+    description: Teleport to the middle of the arena (debug)
     usage: /spawn
   arenaradius:
-    description: Show arena radius
-    usage: /arenaradius
+    description: Show the arena radius, or set it (debug)
+    usage: /arenaradius [radius]
   kitselector:
-    description: Give you a kit selector
+    description: Give yourself a kit selector (debug)
     usage: /kitselector
