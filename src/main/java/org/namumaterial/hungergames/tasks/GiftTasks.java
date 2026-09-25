@@ -2,9 +2,8 @@ package org.namumaterial.hungergames.tasks;
 
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.namumaterial.hungergames.managers.GiftManager;
 import org.namumaterial.hungergames.managers.TributeManager;
-import org.namumaterial.hungergames.utils.GiftContentMaker;
-import org.namumaterial.hungergames.utils.PlayerRawMessageSender;
 import org.namumaterial.hungergames.utils.Tribute;
 
 public class GiftTasks extends BukkitRunnable {
@@ -16,34 +15,18 @@ public class GiftTasks extends BukkitRunnable {
         giveGiftToTributes();
     }
 
-    //This method is used with the command
-    public void giveGiftToPlayer(Player player) {
-        GiftContentMaker giftContentMaker = new GiftContentMaker();
-
-        giftContentMaker.makeGiftContent(player.getInventory());
-        player.updateInventory();
-        advertPlayer(player);
-    }
-
     private void giveGiftToTributes() {
         for (Player player : TributeManager.getTributePlayers()) {
             Tribute tribute = TributeManager.getTribute(player);
 
             if (asEnoughPopularity(tribute)) {
                 tribute.setPopularity(tribute.getPopularity() - this.giftPopularity);
-                GiftContentMaker giftContentMaker = new GiftContentMaker();
-
-                giftContentMaker.makeGiftContent(player.getInventory());
-                advertPlayer(player);
+                GiftManager.sendGift(player);
             }
         }
     }
 
     private boolean asEnoughPopularity(Tribute tribute) {
         return tribute.getPopularity() >= this.giftPopularity;
-    }
-
-    private void advertPlayer(Player player) {
-        PlayerRawMessageSender.sendInformationMessage("You received a gift from sponsors !", player);
     }
 }
