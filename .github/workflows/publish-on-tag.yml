@@ -1,0 +1,65 @@
+name: Publish release on tag
+
+# Pushing a tag (git tag v1.1.0-alpha && git push origin v1.1.0-alpha) builds the plugin
+# and publishes a GitHub release with the jar.
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  # Needed to create the release
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # The whole history, to check that the tag is on master
+          fetch-depth: 0
+
+      - name: Check that the tag is on master
+        run: |
+          if ! git merge-base --is-ancestor "$GITHUB_SHA" origin/master; then
+            echo "::error::The tag $GITHUB_REF_NAME is not on master"
+            exit 1
+          fi
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      - name: Check that the tag matches the pom.xml version
+        run: |
+          POM_VERSION=$(mvn -B -q help:evaluate -Dexpression=project.version -DforceStdout)
+          if [ "$POM_VERSION" != "$GITHUB_REF_NAME" ]; then
+            echo "::error::The tag ($GITHUB_REF_NAME) doesn't match the pom.xml version ($POM_VERSION)"
+            exit 1
+          fi
+
+      - name: Build
+        run: mvn -B clean package
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Versions like v1.1.0-alpha are published as pre-releases
+          PRERELEASE_FLAG=""
+          if [[ "$GITHUB_REF_NAME" == *-* ]]; then
+            PRERELEASE_FLAG="--prerelease"
+          fi
+
+          # The shaded jar, not the one starting with "original-"
+          gh release create "$GITHUB_REF_NAME" "target/HungerGames-$GITHUB_REF_NAME.jar" \
+            --title "HungerGames $GITHUB_REF_NAME" \
+            --generate-notes \
+            --verify-tag \
+            $PRERELEASE_FLAG
