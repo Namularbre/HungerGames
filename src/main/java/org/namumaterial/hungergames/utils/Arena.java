@@ -14,6 +14,7 @@ public class Arena {
     // Damage per second, for each block the player is outside the border
     private static final double DAMAGE_AMOUNT = 0.5;
     private static final double DAMAGE_BUFFER = 0.0;
+    private static final int OVERWORLD_INDEX = 0;
 
     private final Location center;
     private final double endRadius;
@@ -21,7 +22,7 @@ public class Arena {
     private boolean shrinking;
 
     public Arena() {
-        this.center = Bukkit.getServer().getWorld("world").getSpawnLocation();
+        this.center = Bukkit.getServer().getWorlds().get(OVERWORLD_INDEX).getSpawnLocation();
         this.endRadius = HungerGamesConfiguration.ARENA_END_RADIUS;
         this.border = this.center.getWorld().getWorldBorder();
 
