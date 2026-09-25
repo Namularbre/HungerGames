@@ -31,7 +31,16 @@ public class HungerGamesConfiguration {
     public static int ANIMAL_KILLING_POPULARITY;
     public static int PLAYER_KILLING_POPULARITY;
 
+    //TNT configuration
+    public static double TNT_FUSE_TIME_SECONDS;
+
+    //Horse configuration
+    public static double HORSE_HEALTH;
+    public static double HORSE_JUMP_STRENGTH;
+
     private static final int UNLIMITED_NUMBER_OF_FEAST = -1;
+    // Bukkit refuses a higher jump strength
+    private static final double MAX_HORSE_JUMP_STRENGTH = 2.0;
 
     private static FileConfiguration configuration;
 
@@ -67,6 +76,16 @@ public class HungerGamesConfiguration {
         MONSTER_KILLING_POPULARITY = getInt("monster_killing_popularity", 0);
         ANIMAL_KILLING_POPULARITY = getInt("animal_killing_popularity", 0);
         PLAYER_KILLING_POPULARITY = getInt("player_killing_popularity", 0);
+
+        TNT_FUSE_TIME_SECONDS = getPositiveDouble("tnt_fuse_time_seconds");
+
+        HORSE_HEALTH = getPositiveDouble("horse_health");
+        HORSE_JUMP_STRENGTH = getPositiveDouble("horse_jump_strength");
+
+        if (HORSE_JUMP_STRENGTH > MAX_HORSE_JUMP_STRENGTH) {
+            throw new IllegalArgumentException("Invalid config: horse_jump_strength must be at most " + MAX_HORSE_JUMP_STRENGTH
+                    + ", found: " + HORSE_JUMP_STRENGTH);
+        }
     }
 
     private static int getInt(String key, int minimum) {

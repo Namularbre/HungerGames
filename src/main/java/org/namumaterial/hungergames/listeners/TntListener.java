@@ -8,6 +8,8 @@ import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.namumaterial.hungergames.utils.HungerGamesConfiguration;
+import org.namumaterial.hungergames.utils.SecondToTicksConverter;
 
 public class TntListener implements Listener {
 
@@ -26,7 +28,7 @@ public class TntListener implements Listener {
     }
 
     private static void spawnTNTPrimedEntity(Block placedBlock, Location TNTLocation) {
-        final int fuseTicks = 30; //1.5 second
+        final int fuseTicks = SecondToTicksConverter.convert(HungerGamesConfiguration.TNT_FUSE_TIME_SECONDS);
 
         TNTPrimed tntPrimed = (TNTPrimed) placedBlock.getWorld().spawnEntity(TNTLocation, EntityType.PRIMED_TNT);
         tntPrimed.setFuseTicks(fuseTicks);
