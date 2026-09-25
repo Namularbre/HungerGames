@@ -2,6 +2,7 @@ package org.namumaterial.hungergames.managers;
 
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.block.Chest;
 import org.namumaterial.hungergames.HungerGames;
 import org.namumaterial.hungergames.utils.FeastContentMaker;
@@ -19,11 +20,28 @@ public class FeastManager {
             Chest chest = (Chest) chestBlock.getState();
             FeastContentMaker feastContentMaker = new FeastContentMaker();
             feastContentMaker.makeFeastContent(chest.getInventory());
-            Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "A feast is generated at : " + feastLocationToString(feastLocation));
+            Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "A feast spawned at: " + feastLocationToString(feastLocation));
         }
     }
 
+    // Retries a few times to avoid spawning a feast on water or lava
     private static Location getLocation() {
+        final int MAX_ATTEMPTS = 20;
+
+        Location location = getRandomGroundLocation();
+
+        for (int attempt = 1; attempt < MAX_ATTEMPTS && isAboveLiquid(location); attempt++) {
+            location = getRandomGroundLocation();
+        }
+
+        return location;
+    }
+
+    private static boolean isAboveLiquid(Location location) {
+        return location.getBlock().getRelative(BlockFace.DOWN).isLiquid();
+    }
+
+    private static Location getRandomGroundLocation() {
         World world = HungerGames.arena.getCenter().getWorld();
 
         Random random = new Random();
@@ -38,9 +56,15 @@ public class FeastManager {
         double randomX = HungerGames.arena.getCenter().getX() + xOffset;
         double randomZ = HungerGames.arena.getCenter().getZ() + zOffset;
 
-        int groundY = world.getHighestBlockYAt((int) randomX, (int) randomZ);
+        // Leaves are ignored, so the feast doesn't spawn on the top of a tree
+        Block ground = world.getHighestBlockAt((int) Math.floor(randomX), (int) Math.floor(randomZ), HeightMap.MOTION_BLOCKING_NO_LEAVES);
 
-        return new Location(world, randomX, groundY + 1, randomZ);
+        // Tree trunks are not the ground either
+        while (Tag.LOGS.isTagged(ground.getType()) && ground.getY() > world.getMinHeight()) {
+            ground = ground.getRelative(BlockFace.DOWN);
+        }
+
+        return ground.getRelative(BlockFace.UP).getLocation();
     }
 
     private static String feastLocationToString(Location feastLocation) {
